@@ -9,6 +9,9 @@ const Order = db.define('order', {
       notEmpty: true
     }
   },
+  user: {
+    type: Sequelize.STRING,
+  },
   shippingFirstName: {
     type: Sequelize.STRING,
     allowNull: false,
