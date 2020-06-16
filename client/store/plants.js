@@ -6,13 +6,6 @@ import axios from 'axios'
 const GET_PLANTS = 'GET_PLANTS'
 
 /**
- * INITIAL STATE
- */
-const initialState = {
-  plants: []
-}
-
-/**
  * ACTION CREATORS
  */
 const getPlants = plants => ({
@@ -33,6 +26,12 @@ export const fetchPlants = () => {
       console.error(error)
     }
   }
+}
+/**
+ * INITIAL STATE
+ */
+const initialState = {
+  plants: []
 }
 
 /**
