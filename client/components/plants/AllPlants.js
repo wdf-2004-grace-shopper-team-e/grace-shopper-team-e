@@ -27,7 +27,7 @@ export const Plants = props => {
  */
 const mapState = state => {
   return {
-    plants: [] || state.plants //get from redux store
+    plants: state.plants //get from redux store
   }
 }
 
