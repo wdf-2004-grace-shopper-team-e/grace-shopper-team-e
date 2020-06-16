@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
+import {Link} from 'react-router-dom'
 /**
  * Plants COMPONENT
  */
@@ -11,10 +11,12 @@ export const Plants = props => {
   return (
     <div className="plants-list">
       {plants.map(plant => (
-        <div key={plant.id}>
-          <h1>{plant.name}</h1>
-          <img src={plant.imageUrl} height="100" width="150" />
-        </div>
+        <Link to="/plants/?" key={plant.id}>
+          <div>
+            <h1>{plant.name}</h1>
+            <img src={plant.imageUrl} height="100" width="150" />
+          </div>
+        </Link>
       ))}
     </div>
   )
