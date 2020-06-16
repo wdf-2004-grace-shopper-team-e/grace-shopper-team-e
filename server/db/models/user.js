@@ -6,41 +6,66 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true,
+      notEmpty: true
+    }
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('password')
     }
   },
   salt: {
     type: Sequelize.STRING,
+    // Salts are used to safeguard passwords in storage.
     // Making `.salt` act like a function hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('salt')
     }
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  orders: {
+    type: Sequelize.ARRAY,
+    allowNull: false
+  },
+  cart: {
+    type: Sequelize.ARRAY,
+    allowNull: false
+  },
+  imgUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'images/defaultUser.jpg'
   }
 })
 
 module.exports = User
 
-/**
- * instanceMethods
- */
+// Instance Methods
 User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 
-/**
- * classMethods
- */
+// Class Methods
 User.generateSalt = function() {
   return crypto.randomBytes(16).toString('base64')
 }
@@ -53,9 +78,7 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex')
 }
 
-/**
- * hooks
- */
+// Hooks
 const setSaltAndPassword = user => {
   if (user.changed('password')) {
     user.salt = User.generateSalt()
