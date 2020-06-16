@@ -62,14 +62,14 @@ router.get('/orders', async (req, res, next) => {
   }
 })
 
-router.get('/cart', async (req, res, next) => {
-  try {
-    const plants = await Plant.findAll({
-      // select all items associated with this user's shopping cart
-      attributes: ['id', 'userId']
-    })
-    res.json(plants)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.get('/cart', async (req, res, next) => {
+//   try {
+//     const plants = await Plant.findAll({
+//       // select all items associated with this user's shopping cart
+//       attributes: ['id', 'userId']
+//     })
+//     res.json(plants)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
