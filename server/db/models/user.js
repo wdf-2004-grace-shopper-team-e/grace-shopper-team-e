@@ -44,6 +44,10 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaulValue: false
+  },
   orders: {
     type: Sequelize.ARRAY,
     allowNull: false
