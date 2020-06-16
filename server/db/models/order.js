@@ -48,7 +48,7 @@ const Order = db.define('order', {
     }
   },
   shippingZipCode: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
