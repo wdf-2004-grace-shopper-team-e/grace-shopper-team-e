@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const updateUser = (id, update) => ({type: UPDATE_USER, id, update})
 
 /**
  * THUNK CREATORS
@@ -30,10 +32,39 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const updateUserThunk = (id, update) => async dispatch => {
+  try {
+    await axios.put('/api/users', {
+      firstName: update.firstName,
+      lastName: update.lastName,
+      email: update.email,
+      id: update.id
+    })
+    dispatch(updateUser(id, update))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const auth = (
+  email,
+  password,
+  method,
+  firstName,
+  lastName
+) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    if (method === 'login') {
+      res = await axios.post(`/auth/${method}`, {email, password})
+    } else if (method === 'signup') {
+      res = await axios.post(`/auth/${method}`, {
+        email,
+        password,
+        firstName,
+        lastName
+      })
+    }
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -65,6 +96,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case UPDATE_USER:
+      return action.update
     default:
       return state
   }
