@@ -1,6 +1,7 @@
 const User = require('./user')
 const Plant = require('./plant')
 const Order = require('./order')
+const OrderSummary = require('./orderSummary')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -8,6 +9,12 @@ const Order = require('./order')
  *
  *    BlogPost.belongsTo(User)
  */
+
+// creates through-table 'Order_Summary'
+Plant.belongsToMany(Order, { as: 'OrderSummary', through: 'plant_order'})
+Order.belongsToMany(Plant, { as: 'OrderSummary', through: 'plant_order'})
+
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -18,5 +25,6 @@ const Order = require('./order')
 module.exports = {
   User,
   Order,
-  Plant
+  Plant,
+  OrderSummary
 }

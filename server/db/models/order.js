@@ -9,8 +9,13 @@ const Order = db.define('order', {
       notEmpty: true
     }
   },
-  user: {
-    type: Sequelize.STRING,
+  isCart: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
+  totalCost: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   shippingFirstName: {
     type: Sequelize.STRING,
@@ -105,3 +110,10 @@ const Order = db.define('order', {
     }
   }
 })
+
+// instance methods
+Order.prototype.setTotalCost = () => {
+
+}
+
+module.exports = Order
