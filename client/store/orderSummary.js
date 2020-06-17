@@ -27,7 +27,7 @@ const submitOrder = (order) => ({
 // thunks
 
 // initial state
-const orderSummary = {}
+const orderSummary = []
 
 // reducer
 export default function (state = order, action) {
