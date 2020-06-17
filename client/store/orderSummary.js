@@ -4,6 +4,7 @@ import axios from 'axios'
 const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
+const SUBMIT_ORDER = 'SUBMIT_ORDER'
 
 // action creators
 const addItem = (item) => ({
@@ -18,18 +19,23 @@ const updateItem = (item) => ({
   type: UPDATE_ITEM,
   item
 })
+const submitOrder = (order) => ({
+  type: SUBMIT_ORDER,
+  order
+})
 
 // thunks
 
 // initial state
-const cart = []
+const orderSummary = []
 
 // reducer
-export default function(state = cart, action) {
+export default function (state = order, action) {
   switch (action.type) {
     // ADD_ITEM
     // REMOVE_ITEM
     // UPDATE_ITEM
+    // SUBMIT_ORDER
     default:
       return state
   }
