@@ -5,12 +5,15 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import plants from './plants'
 import orderSummary from './orderSummary'
+import singleplant from './singlePlant'
 
 const reducer = combineReducers({
-  user, 
+  user,
   plants,
-  orderSummary
+  orderSummary,
+  singleplant
 })
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

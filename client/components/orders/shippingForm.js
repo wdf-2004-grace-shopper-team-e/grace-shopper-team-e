@@ -1,16 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 class shippingForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       shippingFirstName: '',
       shippingLastName: '',
       shippingAddress: '',
       shippingCity: '',
       shippingState: '',
-      shippingZipCode: '',
+      shippingZipCode: ''
     }
     this.handleFirstName = this.handleFirstName.bind(this)
     this.handleLastName = this.handleLastName.bind(this)
@@ -22,31 +22,31 @@ class shippingForm extends React.Component {
   }
 
   handleFirstName(event) {
-    this.setState({ shippingFirstName: event.target.value })
+    this.setState({shippingFirstName: event.target.value})
   }
 
   handleLastName(event) {
-    this.setState({ shippingLastName: event.target.value })
+    this.setState({shippingLastName: event.target.value})
   }
 
   handleAddress(event) {
-    this.setState({ shippingAddress: event.target.value })
+    this.setState({shippingAddress: event.target.value})
   }
 
   handleCity(event) {
-    this.setState({ shippingCity: event.target.value })
+    this.setState({shippingCity: event.target.value})
   }
 
   handleState(event) {
-    this.setState({ shippingState: event.target.value })
+    this.setState({shippingState: event.target.value})
   }
 
   handleZipCode(event) {
-    this.setState({ shippingZipCode: event.target.value })
+    this.setState({shippingZipCode: event.target.value})
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     // if (this.props.getAddRobot) this.props.getAddRobot(event)
     // else if (this.props.putEditRobot) this.props.putEditRobot(event)
 
@@ -56,7 +56,7 @@ class shippingForm extends React.Component {
       shippingAddress: '',
       shippingCity: '',
       shippingState: '',
-      shippingZipCode: '',
+      shippingZipCode: ''
     })
   }
 
@@ -67,29 +67,65 @@ class shippingForm extends React.Component {
           <div>
             <div>
               <label>First Name:</label>
-              <input type="text" name="shippingFirstName" onChange={this.handleFirstName} value={this.state.shippingFirstName} required />
+              <input
+                type="text"
+                name="shippingFirstName"
+                onChange={this.handleFirstName}
+                value={this.state.shippingFirstName}
+                required
+              />
             </div>
             <div>
               <label>Last Name:</label>
-              <input type="text" name="shippingLastName" onChange={this.handleLastName} value={this.state.shippingLastName} required />
+              <input
+                type="text"
+                name="shippingLastName"
+                onChange={this.handleLastName}
+                value={this.state.shippingLastName}
+                required
+              />
             </div>
           </div>
           <div>
             <label>Address:</label>
-            <input type="text" name="shippingFirstName" onChange={this.handleFirstName} value={this.state.robotName} required />
+            <input
+              type="text"
+              name="shippingFirstName"
+              onChange={this.handleFirstName}
+              value={this.state.robotName}
+              required
+            />
           </div>
           <div>
             <div>
               <label>City:</label>
-              <input type="text" name="shippingFirstName" onChange={this.handleFirstName} value={this.state.robotName} required />
+              <input
+                type="text"
+                name="shippingFirstName"
+                onChange={this.handleFirstName}
+                value={this.state.robotName}
+                required
+              />
             </div>
             <div>
               <label>State:</label>
-              <input type="text" name="shippingFirstName" onChange={this.handleFirstName} value={this.state.robotName} required />
+              <input
+                type="text"
+                name="shippingFirstName"
+                onChange={this.handleFirstName}
+                value={this.state.robotName}
+                required
+              />
             </div>
             <div>
               <label>Zip Code:</label>
-              <input type="text" name="shippingFirstName" onChange={this.handleFirstName} value={this.state.robotName} required />
+              <input
+                type="text"
+                name="shippingFirstName"
+                onChange={this.handleFirstName}
+                value={this.state.robotName}
+                required
+              />
             </div>
           </div>
           <button type="submit">Submit</button>
@@ -98,19 +134,13 @@ class shippingForm extends React.Component {
     )
   }
 }
-  
-}
 
 const mapState = state => {
-  return {
-
-  }
+  return {}
 }
 
 const mapDispatch = dispatch => {
-  return {
-
-  }
+  return {}
 }
 
 export default shippingForm

@@ -3,25 +3,25 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const GET_PLANTS = 'GET_PLANTS'
+const GET_PLANT = 'GET_PLANT'
 
 /**
  * ACTION CREATORS
  */
-const getPlants = plants => ({
-  type: GET_PLANTS,
-  plants
+const getPlant = plant => ({
+  type: GET_PLANT,
+  plant
 })
 
 /**
  * THUNK CREATORS
  */
-export const fetchPlants = () => {
+export const fetchPlant = id => {
   return async dispatch => {
     try {
-      const res = await axios.get('/api/plants')
-      const plants = getPlants(res.data)
-      dispatch(plants)
+      const res = await axios.get(`api/plants/${id}`)
+      const plant = getPlant(res.data)
+      dispatch(plant)
     } catch (error) {
       console.error(error)
     }
@@ -30,15 +30,15 @@ export const fetchPlants = () => {
 /**
  * INITIAL STATE
  */
-const initialState = []
+const initialState = {}
 
 /**
  * REDUCER
  */
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_PLANTS:
-      return action.plants
+    case GET_PLANT:
+      return action.plant
     default:
       return state
   }

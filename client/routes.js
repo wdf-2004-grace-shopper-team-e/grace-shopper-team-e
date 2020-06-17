@@ -30,6 +30,9 @@ class Routes extends Component {
         {/* plants page listing all plants */}
         <Route path="/plants" component={Allplants} />
 
+        {/* change component to refer to single plant view */}
+        <Route path="/plants/:plantId" component={Allplants} />
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
