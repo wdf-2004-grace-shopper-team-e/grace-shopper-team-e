@@ -1,20 +1,21 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
-const CheckoutPage = (props) => {
-  (
+const CheckoutPage = props => {
+  return (
     <div>
       <h1>Checkout Page</h1>
-      <div>Form Info
-      <form>
-        <div>Shipping Form</div>
-        <div>Billing Info</div>
-        <button type="submit"></button>
-      </form>
-
+      <div>
+        Form Info
+        <form>
+          <div>Shipping Form</div>
+          <div>Billing Info</div>
+          <button type="submit" />
+        </form>
       </div>
-      <div>Sidebar w/ order information
+      <div>
+        Sidebar w/ order information
         <div>Price Info</div>
         <div>Cart</div>
       </div>
@@ -23,15 +24,11 @@ const CheckoutPage = (props) => {
 }
 
 const mapState = state => {
-  return {
-
-  }
+  return {}
 }
 
 const mapDispatch = dispatch => {
-  return {
-
-  }
+  return {}
 }
 
 export default connect(mapState, mapDispatch)(CheckoutPage)

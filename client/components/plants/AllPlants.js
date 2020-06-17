@@ -11,7 +11,7 @@ export const Plants = props => {
   return (
     <div className="plants-list">
       {plants.map(plant => (
-        <Link to="/plants/?" key={plant.id}>
+        <Link to={`/plants/${plant.id}`} key={plant.id}>
           <div>
             <h1>{plant.name}</h1>
             <img src={plant.imageUrl} height="100" width="150" />
