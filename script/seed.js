@@ -1,14 +1,13 @@
 'use strict'
 const db = require('../server/db')
-const {Plant, User} = require('../server/db/models')
+const {Plant, User, Order} = require('../server/db/models')
 const userSeeds = require('./user-seed')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  //user can be found at user-seed.js I got an error that you could not go over 30 on one file
-
+  //user can be found at user-seed.js I got an error that I was hitting them maximum seeding per file
   const users = await Promise.all(
     userSeeds.map(user => {
       return User.create(user)
@@ -169,62 +168,19 @@ async function seed() {
       'https://images.unsplash.com/photo-1580428456289-31b363a16e73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
-  const plant19 = await Plant.create({
-    name: 'Krynoid',
-    price: 2799,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1590622541550-5bc0b2df5bd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+
+  const order1 = await Order.create({
+    //order seeds to begin testing
+    email: 'jenniferB@email.com'
   })
-  const plant20 = await Plant.create({
-    name: 'Snake Vine',
-    price: 2400,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1507746212228-2d3645cbeb56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+  const order2 = await Order.create({
+    email: 'frederickD@email.com'
   })
-  const plant21 = await Plant.create({
-    name: 'Triffids',
-    price: 1300,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1566836610874-46562b32dfc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
-  const plant22 = await Plant.create({
-    name: 'Aeglos',
-    price: 2699,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1581176780057-c6b5258ff5a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
-  const plant23 = await Plant.create({
-    name: 'Athelas',
-    price: 1100,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1565241603507-952d845eceb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
-  const plant24 = await Plant.create({
-    name: 'Inkvine',
-    price: 2300,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1589597606736-e78a0438e081?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
-  const plant25 = await Plant.create({
-    name: 'Mallorn',
-    price: 2400,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1591454371758-644f9d123a81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
+
+  // console.log(order1.__proto__)  Displays Magic Methods
+
+  await order1.setOrderSummary([plant1, plant2])
+  await order2.setOrderSummary([plant4, plant5])
 
   // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
