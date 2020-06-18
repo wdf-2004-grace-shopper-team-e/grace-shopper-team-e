@@ -1,5 +1,5 @@
 const User = require('./user')
-const Plant = require('./plant')
+const Plant = require('./plants')
 const Order = require('./order')
 const OrderSummary = require('./orderSummary')
 
@@ -11,10 +11,8 @@ const OrderSummary = require('./orderSummary')
  */
 
 // creates through-table 'Order_Summary'
-Plant.belongsToMany(Order, { as: 'OrderSummary', through: 'plant_order'})
-Order.belongsToMany(Plant, { as: 'OrderSummary', through: 'plant_order'})
-
-
+Plant.belongsToMany(Order, {as: 'OrderSummary', through: 'plant_order'})
+Order.belongsToMany(Plant, {as: 'OrderSummary', through: 'plant_order'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

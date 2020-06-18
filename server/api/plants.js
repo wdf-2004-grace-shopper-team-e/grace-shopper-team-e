@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
-    const plant = await Plant.findByPk(id)
+    const plant = await Plants.findByPk(id)
     if (plant) {
       res.json(plant)
     } else {
@@ -25,3 +25,5 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+module.exports = router

@@ -44,18 +44,11 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  // isAdmin: {
-  //   type: Sequelize.BOOLEAN,
-  //   defaulValue: false
-  // },
-  orders: {
-    type: Sequelize.ARRAY,
-    allowNull: false
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
-  cart: {
-    type: Sequelize.ARRAY,
-    allowNull: false
-  },
+
   imgUrl: {
     type: Sequelize.STRING,
     defaultValue: 'images/defaultUser.jpg'

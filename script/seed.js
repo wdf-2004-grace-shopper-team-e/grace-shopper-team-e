@@ -1,6 +1,7 @@
 'use strict'
 const db = require('../server/db')
 const {Plant} = require('../server/db/models')
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -8,6 +9,18 @@ async function seed() {
   //   User.create({email: 'cody@email.com', password: '123'}),
   //   User.create({email: 'murphy@email.com', password: '123'})
   // ])
+
+  //Plant names From: https://en.wikipedia.org/wiki/List_of_fictional_plants
+
+  //Plant images From: Unsplash - The internet’s source of freely-usable images.
+
+  // phase 1 of seeding data. Would like too:
+  // update the description and price
+  // randomize the season, stock and living condition
+  // If not will manually update
+
+  //api is currently producing all plant dummy data and single plant dummy data
+
   const plant1 = await Plant.create({
     name: 'Cactus',
     price: 1000,
@@ -16,29 +29,29 @@ async function seed() {
       'https://images.unsplash.com/photo-1519336056116-bc0f1771dec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
     livingConditions: 'shade',
-    season: 'summer'
+    season: 'Summer'
   })
   const plant2 = await Plant.create({
-    name: 'Cactus',
+    name: 'Plantera',
     price: 1000,
     imageUrl:
       'https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant3 = await Plant.create({
-    name: 'Cactus',
+    name: 'Treant',
     price: 1000,
     stock: 10
   })
   const plant4 = await Plant.create({
-    name: 'Cactus',
+    name: 'Kelpie',
     price: 3498,
     imageUrl:
       'https://images.unsplash.com/photo-1530176238587-b53132214c54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant5 = await Plant.create({
-    name: 'Cactus',
+    name: 'Myconid',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -46,7 +59,7 @@ async function seed() {
     stock: 10
   })
   const plant6 = await Plant.create({
-    name: 'Cactus',
+    name: 'Shalebark',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -54,7 +67,7 @@ async function seed() {
     stock: 10
   })
   const plant7 = await Plant.create({
-    name: 'Cactus',
+    name: 'Rockbuds',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -62,7 +75,7 @@ async function seed() {
     stock: 10
   })
   const plant8 = await Plant.create({
-    name: 'Cactus',
+    name: 'Knobweed',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -70,7 +83,7 @@ async function seed() {
     stock: 10
   })
   const plant9 = await Plant.create({
-    name: 'Cactus',
+    name: 'Prickletac',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -78,7 +91,7 @@ async function seed() {
     stock: 10
   })
   const plant10 = await Plant.create({
-    name: 'Cactus',
+    name: 'Firemoss',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -86,7 +99,7 @@ async function seed() {
     stock: 10
   })
   const plant11 = await Plant.create({
-    name: 'Cactus',
+    name: 'Mandrakes',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -94,7 +107,7 @@ async function seed() {
     stock: 10
   })
   const plant12 = await Plant.create({
-    name: 'Cactus',
+    name: 'Gurdyroot',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -102,7 +115,7 @@ async function seed() {
     stock: 10
   })
   const plant13 = await Plant.create({
-    name: 'Cactus',
+    name: 'Gillyweed',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -117,7 +130,7 @@ async function seed() {
       'https://images.unsplash.com/photo-1556408978-4d89b27624bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
     livingConditions: 'shade',
-    season: 'summer'
+    season: 'Summer'
   })
   const plant15 = await Plant.create({
     name: 'Cactus',
@@ -126,17 +139,17 @@ async function seed() {
     stock: 10
   })
   const plant16 = await Plant.create({
-    name: 'Cactus',
+    name: 'Bowtruckle',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1556408977-209cb41649e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
     livingConditions: 'sun',
-    season: 'summer'
+    season: 'Summer'
   })
   const plant17 = await Plant.create({
-    name: 'Cactus',
+    name: 'Cactacae',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -144,7 +157,7 @@ async function seed() {
     stock: 10
   })
   const plant18 = await Plant.create({
-    name: 'Cactus',
+    name: 'Biollante',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -152,7 +165,7 @@ async function seed() {
     stock: 10
   })
   const plant19 = await Plant.create({
-    name: 'Cactus',
+    name: 'Krynoid',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -160,7 +173,7 @@ async function seed() {
     stock: 10
   })
   const plant20 = await Plant.create({
-    name: 'Cactus',
+    name: 'Snake Vine',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -168,7 +181,7 @@ async function seed() {
     stock: 10
   })
   const plant21 = await Plant.create({
-    name: 'Cactus',
+    name: 'Triffids',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -176,7 +189,7 @@ async function seed() {
     stock: 10
   })
   const plant22 = await Plant.create({
-    name: 'Cactus',
+    name: 'Aeglos',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -184,7 +197,7 @@ async function seed() {
     stock: 10
   })
   const plant23 = await Plant.create({
-    name: 'Cactus',
+    name: 'Athelas',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -192,7 +205,7 @@ async function seed() {
     stock: 10
   })
   const plant24 = await Plant.create({
-    name: 'Cactus',
+    name: 'Inkvine',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -200,7 +213,7 @@ async function seed() {
     stock: 10
   })
   const plant25 = await Plant.create({
-    name: 'Cactus',
+    name: 'Mallorn',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -208,7 +221,7 @@ async function seed() {
     stock: 10
   })
   const plant26 = await Plant.create({
-    name: 'Cactus',
+    name: 'Nimloth',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
@@ -216,7 +229,7 @@ async function seed() {
     stock: 10
   })
   const plant27 = await Plant.create({
-    name: 'Cactus',
+    name: 'Pipe-weed',
     price: 1000,
     description: 'indoor dry plant',
     imageUrl:
