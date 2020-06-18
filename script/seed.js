@@ -1,14 +1,19 @@
 'use strict'
 const db = require('../server/db')
-const {Plant} = require('../server/db/models')
+const {Plant, User} = require('../server/db/models')
+const userSeeds = require('./user-seed')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
-  // const users = await Promise.all([
-  //   User.create({email: 'cody@email.com', password: '123'}),
-  //   User.create({email: 'murphy@email.com', password: '123'})
-  // ])
+
+  //user can be found at user-seed.js I got an error that you could not go over 30 on one file
+
+  const users = await Promise.all(
+    userSeeds.map(user => {
+      return User.create(user)
+    })
+  )
 
   //Plant names From: https://en.wikipedia.org/wiki/List_of_fictional_plants
 
@@ -33,14 +38,14 @@ async function seed() {
   })
   const plant2 = await Plant.create({
     name: 'Plantera',
-    price: 1000,
+    price: 1899,
     imageUrl:
       'https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant3 = await Plant.create({
     name: 'Treant',
-    price: 1000,
+    price: 2999,
     stock: 10
   })
   const plant4 = await Plant.create({
@@ -60,7 +65,7 @@ async function seed() {
   })
   const plant6 = await Plant.create({
     name: 'Shalebark',
-    price: 1000,
+    price: 3200,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1533629046790-addefc28951e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -68,7 +73,7 @@ async function seed() {
   })
   const plant7 = await Plant.create({
     name: 'Rockbuds',
-    price: 1000,
+    price: 1900,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1558693168-c370615b54e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -76,7 +81,7 @@ async function seed() {
   })
   const plant8 = await Plant.create({
     name: 'Knobweed',
-    price: 1000,
+    price: 2200,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1590452224879-867e8012a828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -84,7 +89,7 @@ async function seed() {
   })
   const plant9 = await Plant.create({
     name: 'Prickletac',
-    price: 1000,
+    price: 1599,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1556408978-ce0a0a5e352e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -100,7 +105,7 @@ async function seed() {
   })
   const plant11 = await Plant.create({
     name: 'Mandrakes',
-    price: 1000,
+    price: 2000,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1591958911259-bee2173bdccc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -108,7 +113,7 @@ async function seed() {
   })
   const plant12 = await Plant.create({
     name: 'Gurdyroot',
-    price: 1000,
+    price: 3100,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1562351831-03432082f946?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -116,7 +121,7 @@ async function seed() {
   })
   const plant13 = await Plant.create({
     name: 'Gillyweed',
-    price: 1000,
+    price: 2700,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1575652471646-d37126819b27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -124,7 +129,7 @@ async function seed() {
   })
   const plant14 = await Plant.create({
     name: 'Buy 1 Get 3',
-    price: 1000,
+    price: 2900,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1556408978-4d89b27624bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -134,13 +139,13 @@ async function seed() {
   })
   const plant15 = await Plant.create({
     name: 'Cactus',
-    price: 1000,
+    price: 1200,
     description: 'indoor dry plant',
     stock: 10
   })
   const plant16 = await Plant.create({
     name: 'Bowtruckle',
-    price: 1000,
+    price: 2100,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1556408977-209cb41649e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -150,7 +155,7 @@ async function seed() {
   })
   const plant17 = await Plant.create({
     name: 'Cactacae',
-    price: 1000,
+    price: 1499,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1562351757-66f3589f30cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -158,7 +163,7 @@ async function seed() {
   })
   const plant18 = await Plant.create({
     name: 'Biollante',
-    price: 1000,
+    price: 1799,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1580428456289-31b363a16e73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -166,7 +171,7 @@ async function seed() {
   })
   const plant19 = await Plant.create({
     name: 'Krynoid',
-    price: 1000,
+    price: 2799,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1590622541550-5bc0b2df5bd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -174,7 +179,7 @@ async function seed() {
   })
   const plant20 = await Plant.create({
     name: 'Snake Vine',
-    price: 1000,
+    price: 2400,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1507746212228-2d3645cbeb56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -182,7 +187,7 @@ async function seed() {
   })
   const plant21 = await Plant.create({
     name: 'Triffids',
-    price: 1000,
+    price: 1300,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1566836610874-46562b32dfc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -190,7 +195,7 @@ async function seed() {
   })
   const plant22 = await Plant.create({
     name: 'Aeglos',
-    price: 1000,
+    price: 2699,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1581176780057-c6b5258ff5a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -198,7 +203,7 @@ async function seed() {
   })
   const plant23 = await Plant.create({
     name: 'Athelas',
-    price: 1000,
+    price: 1100,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1565241603507-952d845eceb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -206,7 +211,7 @@ async function seed() {
   })
   const plant24 = await Plant.create({
     name: 'Inkvine',
-    price: 1000,
+    price: 2300,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1589597606736-e78a0438e081?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -214,28 +219,13 @@ async function seed() {
   })
   const plant25 = await Plant.create({
     name: 'Mallorn',
-    price: 1000,
+    price: 2400,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1591454371758-644f9d123a81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
-  const plant26 = await Plant.create({
-    name: 'Nimloth',
-    price: 1000,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1563419837758-e48ef1b731dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
-  const plant27 = await Plant.create({
-    name: 'Pipe-weed',
-    price: 1000,
-    description: 'indoor dry plant',
-    imageUrl:
-      'https://images.unsplash.com/photo-1550731827-6ec2951e3099?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
-  })
+
   // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
