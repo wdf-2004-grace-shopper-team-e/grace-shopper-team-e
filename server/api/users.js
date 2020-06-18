@@ -39,7 +39,7 @@ router.put('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      attributes: ['id', 'email', 'firstName', 'lastName', 'orders', 'cart'],
+      attributes: ['id', 'email', 'firstName', 'lastName', 'cartId'],
       where: {
         id: req.params.id
       }
@@ -49,27 +49,3 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
-
-router.get('/orders', async (req, res, next) => {
-  try {
-    const orders = await Order.findAll({
-      // select all orders associated with this user
-      attributes: ['id', 'userId']
-    })
-    res.json(orders)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// router.get('/cart', async (req, res, next) => {
-//   try {
-//     const plants = await Plant.findAll({
-//       // select all items associated with this user's shopping cart
-//       attributes: ['id', 'userId']
-//     })
-//     res.json(plants)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
