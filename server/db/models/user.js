@@ -48,14 +48,7 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  orders: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-    allowNull: false
-  },
-  cart: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-    allowNull: false
-  },
+
   imgUrl: {
     type: Sequelize.STRING,
     defaultValue: 'images/defaultUser.jpg'
