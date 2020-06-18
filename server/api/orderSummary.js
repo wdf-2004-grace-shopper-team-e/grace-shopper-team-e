@@ -19,21 +19,27 @@ router.get('/:orderId', async (req, res, next) => {
 // add a specific plant to a specific order
 router.post('/:orderId/add/:plantId', async (req, res, next) => {
   try {
-    const order = await Order.findOne({
-      where: {orderId: req.params.orderId}
+    const order = await OrderSummary.findOne({
+      where: {id: req.params.orderId}
     })
-    const plant = await Plant.findOne({
+    const plantToAdd = await Plant.findOne({
       where: {id: req.params.plantId}
     })
 
-    await order.addPlant(plant)
-    await plant.addOrder(order)
+    await order.addPlant(plantToAdd)
+    await plantToAdd.addOrder(order)
 
-    // plant.quantity += 1
+    const plant = await OrderSummary.findOne({
+      where: {
+        plantId: req.params.plantId,
+        orderId: req.params.orderId
+      }
+    })
+
     plant.setPlantQuantity(1)
     plant.setPlantSubtotal(plant.price)
 
-    const updatedOrder = await Order.findOne({
+    const updatedOrder = await OrderSummary.findOne({
       where: {id: req.params.orderId},
       include: [{model: Plant}]
     })
@@ -44,17 +50,24 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
   }
 })
 
-// remove specific plants associated with an order
+// remove a specific plant associated with an order
 router.delete('/:orderId/remove/:plantId', async (req, res, next) => {
   try {
-    const order = await Order.findByPk(req.params.orderId)
-    const plant = await Plant.findByPk(req.params.orderId)
+    const order = await OrderSummary.findOne({
+      where: {orderId: req.params.orderId}
+    })
+    const plant = await OrderSummary.findOne({
+      where: {
+        orderId: req.params.orderId,
+        plantId: req.params.plantId
+      }
+    })
 
     await order.removePlant(plant)
     await plant.removeOrder(order)
 
-    const updatedOrder = await Order.findOne({
-      where: {id: req.params.orderId},
+    const updatedOrder = await OrderSummary.findOne({
+      where: {orderId: req.params.orderId},
       include: [{model: Plant}]
     })
     res.json(updatedOrder)
@@ -64,10 +77,27 @@ router.delete('/:orderId/remove/:plantId', async (req, res, next) => {
 })
 
 // edit specific plants associated with an order
+router.put('/:orderId/edit/:plantId/:value', async (req, res, next) => {
+  try {
+    const order = await OrderSummary.findOne({
+      where: {orderId: req.params.orderId}
+    })
+    const plant = await OrderSummary.findOne({
+      where: {
+        orderId: req.params.orderId,
+        plantId: req.params.plantId
+      }
+    })
 
-// const plant = await OrderSummary.findOne({
-//   where: {
-//     plantId: req.params.plantId,
-//     orderId: req.params.orderId
-//   }
-// })
+    plant.setQuantity(req.params.value)
+    plant.setPlantSubtotal(plant.price)
+
+    const updatedOrder = await OrderSummary.findOne({
+      where: {orderId: req.params.orderId},
+      include: [{model: Plant}]
+    })
+    res.json(updatedOrder)
+  } catch (error) {
+    next(error)
+  }
+})

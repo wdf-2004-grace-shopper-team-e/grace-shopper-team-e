@@ -8,9 +8,6 @@ const OrderSummary = db.define('plant_order', {
   plantSubtotal: {
     type: Sequelize.INTEGER
   }
-  // subtotalCost: {
-  //   type: Sequelize.INTEGER
-  // }
 })
 
 // instance methods
@@ -21,9 +18,5 @@ OrderSummary.prototype.setPlantQuantity = value => {
 OrderSummary.prototype.setPlantSubtotal = price => {
   this.plantSubtotal = price * this.plantQuantity
 }
-
-// OrderSummary.prototype.setTotalCost = () => {
-
-// }
 
 module.exports = OrderSummary
