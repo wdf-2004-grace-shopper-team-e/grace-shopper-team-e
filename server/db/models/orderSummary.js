@@ -13,6 +13,7 @@ const OrderSummary = db.define('plant_order', {
 // instance methods
 OrderSummary.prototype.setPlantQuantity = value => {
   this.plantQuantity = value
+  console.log(this.plantQuantity)
 }
 
 OrderSummary.prototype.setPlantSubtotal = price => {

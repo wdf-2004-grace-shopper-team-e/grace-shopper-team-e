@@ -6,10 +6,13 @@ module.exports = router
 router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
-    const order = await OrderSummary.findOne({
-      where: {orderId: orderId},
-      include: [{model: Plant}]
+
+    const order = await Order.findOne({
+      where: {id: orderId},
+      include: [{model: Plant, as: 'OrderSummary'}]
     })
+    // console.log(order.OrderSummary[1].plant_order.plantQuantity)
+
     res.json(order)
   } catch (error) {
     next(error)
@@ -19,15 +22,15 @@ router.get('/:orderId', async (req, res, next) => {
 // add a specific plant to a specific order
 router.post('/:orderId/add/:plantId', async (req, res, next) => {
   try {
-    const order = await OrderSummary.findOne({
+    const order = await Order.findOne({
       where: {id: req.params.orderId}
     })
     const plantToAdd = await Plant.findOne({
       where: {id: req.params.plantId}
     })
 
-    await order.addPlant(plantToAdd)
-    await plantToAdd.addOrder(order)
+    await order.addOrderSummary(plantToAdd)
+    await plantToAdd.addOrderSummary(order)
 
     const plant = await OrderSummary.findOne({
       where: {
@@ -35,15 +38,17 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
         orderId: req.params.orderId
       }
     })
-
+    console.log('plant', plant)
+    console.log('qty before: ', plant.plantQuantity)
     plant.setPlantQuantity(1)
     plant.setPlantSubtotal(plant.price)
+    console.log('qty after: ', plant.plantQuantity)
 
-    const updatedOrder = await OrderSummary.findOne({
+    const updatedOrder = await Order.findOne({
       where: {id: req.params.orderId},
-      include: [{model: Plant}]
+      include: [{model: Plant, as: 'OrderSummary'}]
     })
-
+    // console.log('updated order: ', updatedOrder)
     res.json(updatedOrder)
   } catch (error) {
     next(error)
