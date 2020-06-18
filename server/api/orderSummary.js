@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {OrderSummary, Order, Plant} = require('../db/models')
 module.exports = router
 
-// get all of the plants of a specific order
+// get all of the plants of a specific order, including their specific through-table quantity and subTotal
 router.get('/:orderId/plants', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
@@ -17,7 +17,7 @@ router.get('/:orderId/plants', async (req, res, next) => {
   }
 })
 
-// add a specific plant to a specific order
+// add a specific plant to a specific order, and update its quantity and subtotal
 router.post('/:orderId/add/:plantId', async (req, res, next) => {
   try {
     const order = await Order.findOne({
@@ -27,8 +27,8 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
       where: {id: req.params.plantId}
     })
 
-    await order.addOrderSummary(plantToAdd)
     await plantToAdd.addOrderSummary(order)
+    await order.addOrderSummary(plantToAdd)
 
     const plant = await OrderSummary.findOne({
       where: {
@@ -36,18 +36,20 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
         orderId: req.params.orderId
       }
     })
-    console.log('plant', plant)
-    console.log('qty before: ', plant.plantQuantity)
-    plant.setPlantQuantity(1)
-    plant.setPlantSubtotal(plant.price)
-    console.log('qty after: ', plant.plantQuantity)
+
+    await plant.update({
+      plantQuantity: 1
+    })
+    await plant.update({
+      plantSubtotal: plantToAdd.price * plant.plantQuantity
+    })
 
     const updatedOrder = await Order.findOne({
       where: {id: req.params.orderId},
       include: [{model: Plant, as: 'OrderSummary'}]
     })
-    // console.log('updated order: ', updatedOrder)
-    res.json(updatedOrder)
+
+    res.json(updatedOrder.OrderSummary)
   } catch (error) {
     next(error)
   }
