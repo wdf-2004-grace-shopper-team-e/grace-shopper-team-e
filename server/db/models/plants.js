@@ -13,7 +13,8 @@ const Plants = db.define('plants', {
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Brings Life into Your Home.'
   },
   imgUrl: {
     type: Sequelize.STRING,

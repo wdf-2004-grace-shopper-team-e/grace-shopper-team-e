@@ -46,14 +46,14 @@ const User = db.define('user', {
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
-    defaulValue: false
+    defaultValue: false
   },
   orders: {
-    type: Sequelize.ARRAY,
+    type: Sequelize.ARRAY(Sequelize.INTEGER),
     allowNull: false
   },
   cart: {
-    type: Sequelize.ARRAY,
+    type: Sequelize.ARRAY(Sequelize.INTEGER),
     allowNull: false
   },
   imgUrl: {
