@@ -11,10 +11,39 @@ export class Plant extends React.Component {
     const id = this.props.match.params.plantId
     this.props.getPlant(id)
   }
+  getPrice = priceInPennies => {
+    let dollars = priceInPennies / 100
+    dollars = dollars.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    })
+    return dollars
+  }
 
   render() {
     const {plant} = this.props
-    return <div className="plant" />
+
+    return (
+      <div className="plant">
+        <div>
+          <h1>{plant.name}</h1>
+          <img src={plant.imgUrl} height="100" width="150" />
+        </div>
+        <div>
+          <h2>Maintenance</h2>
+          <p>Condition: {plant.livingCondition}</p>
+          <p>Season: {plant.season}</p>
+        </div>
+        <div style={{backgroundColor: 'lightblue'}}>
+          <p>Price: {this.getPrice(plant.price)} </p>
+          <p>Current Stock: {plant.stock}</p>
+        </div>
+        <div>
+          <h2>Plant Overview</h2>
+          <p>{plant.description}</p>
+        </div>
+      </div>
+    )
   }
 }
 /**
