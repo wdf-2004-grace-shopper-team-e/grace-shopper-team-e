@@ -39,7 +39,7 @@ export class Plant extends React.Component {
       <div className="plant">
         <div>
           <h1>{plant.name}</h1>
-          <img src={plant.imgUrl} height="100" width="150" />
+          <img src={plant.imageUrl} height="100" width="150" />
         </div>
         <div>
           <h2>Maintenance</h2>

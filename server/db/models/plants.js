@@ -16,7 +16,7 @@ const Plants = db.define('plants', {
     allowNull: false,
     defaultValue: 'Brings Life into Your Home.'
   },
-  imgUrl: {
+  imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
       'https://images.unsplash.com/photo-1517204452548-5f07ce910c9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60' //customize
