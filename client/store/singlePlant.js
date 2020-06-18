@@ -19,7 +19,7 @@ const getPlant = plant => ({
 export const fetchPlant = id => {
   return async dispatch => {
     try {
-      const res = await axios.get(`api/plants/${id}`)
+      const res = await axios.get(`/api/plants/${id}`)
       const plant = getPlant(res.data)
       dispatch(plant)
     } catch (error) {

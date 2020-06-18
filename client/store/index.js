@@ -5,13 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import plants from './plants'
 import orderSummary from './orderSummary'
-import singleplant from './singlePlant'
+import singlePlant from './singlePlant'
 
 const reducer = combineReducers({
   user,
   plants,
   orderSummary,
-  singleplant
+  singlePlant
 })
 
 const middleware = composeWithDevTools(
