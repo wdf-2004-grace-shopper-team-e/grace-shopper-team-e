@@ -9,7 +9,7 @@ import {fetchPlant} from '../../store/singlePlant'
 export class Plant extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.plantId
-    this.props.getRobot(id)
+    this.props.getPlant(id)
   }
 
   render() {
@@ -22,7 +22,7 @@ export class Plant extends React.Component {
  */
 const mapState = state => {
   return {
-    plant: state.plant //get plant from redux store
+    plant: state.singlePlant //get plant from redux store
   }
 }
 const mapDispatch = dispatch => {

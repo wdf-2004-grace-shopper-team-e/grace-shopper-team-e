@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Allplants} from './components'
+import {Login, Signup, UserHome, Allplants, SinglePlant} from './components'
 import {me} from './store'
 
 /**
@@ -28,10 +28,10 @@ class Routes extends Component {
           </Switch>
         )}
         {/* plants page listing all plants */}
-        <Route path="/plants" component={Allplants} />
+        <Route exact path="/plants" component={Allplants} />
 
         {/* change component to refer to single plant view */}
-        <Route path="/plants/:plantId" component={Allplants} />
+        <Route path="/plants/:plantId" component={SinglePlant} />
 
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />

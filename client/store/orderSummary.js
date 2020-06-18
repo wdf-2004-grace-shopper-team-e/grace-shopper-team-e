@@ -7,19 +7,19 @@ const UPDATE_ITEM = 'UPDATE_ITEM'
 const SUBMIT_ORDER = 'SUBMIT_ORDER'
 
 // action creators
-const addItem = (item) => ({
+const addItem = item => ({
   type: ADD_ITEM,
   item
 })
-const removeItem = (item) => ({
+const removeItem = item => ({
   type: REMOVE_ITEM,
   item
 })
-const updateItem = (item) => ({
+const updateItem = item => ({
   type: UPDATE_ITEM,
   item
 })
-const submitOrder = (order) => ({
+const submitOrder = order => ({
   type: SUBMIT_ORDER,
   order
 })
@@ -30,7 +30,7 @@ const submitOrder = (order) => ({
 const orderSummary = []
 
 // reducer
-export default function (state = order, action) {
+export default function(state = orderSummary, action) {
   switch (action.type) {
     // ADD_ITEM
     // REMOVE_ITEM
