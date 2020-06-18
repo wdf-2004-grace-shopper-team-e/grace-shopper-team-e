@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -11,25 +12,65 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      {displayName === 'Login' ? (
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          {' '}
+          New user? <Link to="/signup">Sign Up</Link>
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <input name="email" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <input name="password" type="password" required />
+            </div>
+            <div>
+              <button type="submit">{displayName}</button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+          <a href="/auth/google">{displayName} with Google</a>
         </div>
+      ) : (
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <h3>Sign up!</h3>
+          <p>
+            Returning user? <Link to="/login">Login</Link>
+          </p>
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="firstName">First Name</label>
+              <input name="firstName" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="lastName">Last Name</label>
+              <input name="lastName" type="text" required />
+            </div>
+            <div className="input-field">
+              <label htmlFor="email">Email</label>
+              <input name="email" type="email" required />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input name="password" type="password" required />
+            </div>
+            <div>
+              <button className="button" type="submit">
+                {displayName}
+              </button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+          <div>
+            <a href="/auth/google">{`${displayName} with Google`}</a>
+          </div>
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      )}
     </div>
   )
 }

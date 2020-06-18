@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {UserNav} from './user-nav'
 import {updateUserThunk} from '../store/user'
 
 /**
@@ -29,10 +30,10 @@ export class UserHome extends Component {
     this.handleLogin()
   }
 
-  async handleLogin() {
-    const ls = window.localStorage
-    // In progress
-  }
+  // async handleLogin() {
+  //   const ls = window.localStorage
+  //   // In progress
+  // }
 
   handleChange(event) {
     this.setState({
@@ -47,7 +48,55 @@ export class UserHome extends Component {
   }
 
   render() {
-    return <div />
+    const {firstName, imgUrl, isAdmin} = this.props // add googleId, email
+    return (
+      <div>
+        <div>
+          <UserNav isAdmin={isAdmin} />
+          <div>
+            <h3>Welcome, {firstName}!</h3>
+            <div>
+              <div>
+                {imgUrl ? (
+                  <img src={imgUrl} />
+                ) : (
+                  <img src="images/defaultUser.jpg" />
+                )}
+              </div>
+              <div>
+                <div>
+                  <form onSubmit={this.handleSubmit}>
+                    <div>
+                      <div>
+                        <input
+                          type="text"
+                          name="firstName"
+                          onChange={this.handleChange}
+                          value={this.state.firstName}
+                          className="validate"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          name="lastName"
+                          onChange={this.handleChange}
+                          value={this.state.lastName}
+                          className="validate"
+                        />
+                      </div>
+                    </div>
+                    <button type="submit" name="action">
+                      Update Changes
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
