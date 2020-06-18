@@ -2,18 +2,16 @@ const router = require('express').Router()
 const {OrderSummary, Order, Plant} = require('../db/models')
 module.exports = router
 
-// get a specific order, and include all of its plants
-router.get('/:orderId', async (req, res, next) => {
+// get all of the plants of a specific order
+router.get('/:orderId/plants', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
-
     const order = await Order.findOne({
       where: {id: orderId},
       include: [{model: Plant, as: 'OrderSummary'}]
     })
-    // console.log(order.OrderSummary[1].plant_order.plantQuantity)
 
-    res.json(order)
+    res.json(order.OrderSummary)
   } catch (error) {
     next(error)
   }
