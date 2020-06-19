@@ -1,41 +1,79 @@
 import axios from 'axios'
 
 // action types
-const ADD_ITEM = 'ADD_ITEM'
-const REMOVE_ITEM = 'REMOVE_ITEM'
-const UPDATE_ITEM = 'UPDATE_ITEM'
-const SUBMIT_ORDER = 'SUBMIT_ORDER'
+const UPDATE_ITEMS = 'UPDATE_ITEMS'
 
 // action creators
-const addItem = item => ({
-  type: ADD_ITEM,
-  item
-})
-const removeItem = item => ({
-  type: REMOVE_ITEM,
-  item
-})
-const updateItem = item => ({
-  type: UPDATE_ITEM,
-  item
-})
-const submitOrder = order => ({
-  type: SUBMIT_ORDER,
-  order
+const updateItems = items => ({
+  type: UPDATE_ITEMS,
+  items
 })
 
 // thunks
+export const getItems = orderId => {
+  return async dispatch => {
+    try {
+      const plants = await axios.get(`/api/ordersummary/${orderId}/plants`)
+      dispatch(updateItems(plants.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const postAddItem = event => {
+  return async dispatch => {
+    try {
+      const {orderId, plantId} = event.target
+      const plants = await axios.post(
+        `/api/ordersummary/${orderId}/add/${plantId}`
+      )
+      dispatch(updateItems(plants.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const deleteRemoveItem = event => {
+  return async dispatch => {
+    try {
+      const {orderId, plantId} = event.target
+      const plants = await axios.delete(
+        `/api/ordersummary/${orderId}/remove/${plantId}`
+      )
+      dispatch(updateItems(plants.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const putEditItem = event => {
+  return async dispatch => {
+    try {
+      const {orderId, plantId, plantQuantity} = event.target
+      const plants = await axios.put(
+        `/api/ordersummary/${orderId}/edit/${plantId}`,
+        {
+          plantQuantity: plantQuantity.value
+        }
+      )
+      dispatch(updateItems(plants.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 // initial state
 const orderSummary = []
 
 // reducer
-export default function(state = orderSummary, action) {
+export default (state = orderSummary, action) => {
   switch (action.type) {
-    // ADD_ITEM
-    // REMOVE_ITEM
-    // UPDATE_ITEM
-    // SUBMIT_ORDER
+    case UPDATE_ITEMS:
+      return action.items
     default:
       return state
   }

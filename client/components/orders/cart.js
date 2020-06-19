@@ -1,16 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
+import Item from './item'
 
-const Cart = (props) => {
-  const { orderSummary } = props
-  // orderSummary will be an array of item objects
+const Cart = props => {
+  const {orderSummary} = props
+
   return (
-    <div>
-      (
-        orderSummary.map(item => (
-
-        ))
-      )
+    <div className="order-summary">
+      {orderSummary.map(plant => <Item key={plant.id} plant={plant} />)}
     </div>
   )
 }
@@ -21,10 +18,4 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-
-  }
-}
-
-export default connect(mapState, mapDispatch)(Cart)
+export default connect(mapState)(Cart)

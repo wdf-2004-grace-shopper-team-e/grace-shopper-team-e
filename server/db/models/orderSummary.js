@@ -10,13 +10,4 @@ const OrderSummary = db.define('plant_order', {
   }
 })
 
-// instance methods
-OrderSummary.prototype.setPlantQuantity = value => {
-  this.plantQuantity = value
-}
-
-OrderSummary.prototype.setPlantSubtotal = price => {
-  this.plantSubtotal = price * this.plantQuantity
-}
-
 module.exports = OrderSummary
