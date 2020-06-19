@@ -1,82 +1,65 @@
 import axios from 'axios'
 
 // action types
-const GET_ITEMS = 'GET_ITEMS'
-const ADD_ITEM = 'ADD_ITEM'
-const REMOVE_ITEM = 'REMOVE_ITEM'
-const UPDATE_ITEM = 'UPDATE_ITEM'
-const SUBMIT_ORDER = 'SUBMIT_ORDER'
+const UPDATE_ITEMS = 'UPDATE_ITEMS'
 
 // action creators
-const getItems = items => ({
-  type: GET_ITEMS,
+const updateItems = items => ({
+  type: UPDATE_ITEMS,
   items
-})
-const addItem = items => ({
-  type: ADD_ITEM,
-  items
-})
-const removeItem = items => ({
-  type: REMOVE_ITEM,
-  items
-})
-const updateItem = items => ({
-  type: UPDATE_ITEM,
-  items
-})
-const submitOrder = order => ({
-  type: SUBMIT_ORDER,
-  order
 })
 
 // thunks
-export const fetchItems = orderId => {
+export const getItems = orderId => {
   return async dispatch => {
     try {
       const plants = await axios.get(`/api/ordersummary/${orderId}/plants`)
-      dispatch(getItems(plants.data))
+      dispatch(updateItems(plants.data))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const thunkAddItem = event => {
+export const postAddItem = event => {
   return async dispatch => {
     try {
       const {orderId, plantId} = event.target
       const plants = await axios.post(
         `/api/ordersummary/${orderId}/add/${plantId}`
       )
-      dispatch(addItem(plants.data))
+      dispatch(updateItems(plants.data))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const thunkRemoveItem = event => {
+export const deleteRemoveItem = event => {
   return async dispatch => {
     try {
       const {orderId, plantId} = event.target
-      const plants = await axios.post(
+      const plants = await axios.delete(
         `/api/ordersummary/${orderId}/remove/${plantId}`
       )
-      dispatch(removeItem(plants.data))
+      dispatch(updateItems(plants.data))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const thunkUpdateItem = event => {
+export const putEditItem = event => {
   return async dispatch => {
     try {
-      const {orderId, plantId, value} = event.target
-      const plants = await axios.post(
-        `/api/ordersummary/${orderId}/add/${plantId}/${value}`
+      const {orderId, plantId, plantQuantity} = event.target
+      const plants = await axios.put(
+        `/api/ordersummary/${orderId}/edit/${plantId}`,
+        {
+          plantQuantity: plantQuantity.value
+        }
       )
-      dispatch(updateItem(plants.data))
+      dispatch(updateItems(plants.data))
     } catch (error) {
       console.error(error)
     }
@@ -87,17 +70,10 @@ export const thunkUpdateItem = event => {
 const orderSummary = []
 
 // reducer
-export default function(state = orderSummary, action) {
+export default (state = orderSummary, action) => {
   switch (action.type) {
-    case GET_ITEMS:
+    case UPDATE_ITEMS:
       return action.items
-    case ADD_ITEM:
-      return action.items
-    case REMOVE_ITEM:
-      return action.items
-    case UPDATE_ITEM:
-      return action.items
-    // SUBMIT_ORDER
     default:
       return state
   }
