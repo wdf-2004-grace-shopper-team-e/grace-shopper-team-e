@@ -81,8 +81,8 @@ router.delete('/:orderId/remove/:plantId', async (req, res, next) => {
 // edit specific plants associated with an order
 router.put('/:orderId/edit/:plantId/:value', async (req, res, next) => {
   try {
-    const order = await OrderSummary.findOne({
-      where: {orderId: req.params.orderId}
+    const plantProduct = await Plant.findOne({
+      where: {id: req.params.plantId}
     })
     const plant = await OrderSummary.findOne({
       where: {
@@ -91,14 +91,18 @@ router.put('/:orderId/edit/:plantId/:value', async (req, res, next) => {
       }
     })
 
-    plant.setQuantity(req.params.value)
-    plant.setPlantSubtotal(plant.price)
-
-    const updatedOrder = await OrderSummary.findOne({
-      where: {orderId: req.params.orderId},
-      include: [{model: Plant}]
+    await plant.update({
+      plantQuantity: req.params.value
     })
-    res.json(updatedOrder)
+    await plant.update({
+      plantSubtotal: plantProduct.price * plant.plantQuantity
+    })
+
+    const updatedOrder = await Order.findOne({
+      where: {id: req.params.orderId},
+      include: [{model: Plant, as: 'OrderSummary'}]
+    })
+    res.json(updatedOrder.OrderSummary)
   } catch (error) {
     next(error)
   }
