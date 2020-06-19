@@ -1,0 +1,20 @@
+import React from 'react'
+
+export const Item = props => {
+  const {plant} = props
+  const {name, price, imgUrl} = plant
+  const {plantQuantity, plantSubtotal} = plant.plant_order
+  return (
+    <div className="item">
+      <div>
+        <h1>{name}</h1>
+        <img src={imgUrl} height="100" width="150" />
+        <h3>cost: {price}</h3>
+      </div>
+      <div>
+        <h2>in Cart: {plantQuantity}</h2>
+        <h2>subtotal: ${plantSubtotal / 10}</h2>
+      </div>
+    </div>
+  )
+}
