@@ -48,7 +48,7 @@ export const thunkAddItem = event => {
       const plants = await axios.post(
         `/api/ordersummary/${orderId}/add/${plantId}`
       )
-      dispatch(addItem(plants))
+      dispatch(addItem(plants.data))
     } catch (error) {
       console.error(error)
     }
@@ -62,7 +62,7 @@ export const thunkRemoveItem = event => {
       const plants = await axios.post(
         `/api/ordersummary/${orderId}/remove/${plantId}`
       )
-      dispatch(removeItem(plants))
+      dispatch(removeItem(plants.data))
     } catch (error) {
       console.error(error)
     }
@@ -76,7 +76,7 @@ export const thunkUpdateItem = event => {
       const plants = await axios.post(
         `/api/ordersummary/${orderId}/add/${plantId}/${value}`
       )
-      dispatch(updateItem(plants))
+      dispatch(updateItem(plants.data))
     } catch (error) {
       console.error(error)
     }
