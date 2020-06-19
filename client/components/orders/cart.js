@@ -14,7 +14,8 @@ const Cart = props => {
 
 const mapState = state => {
   return {
-    orderSummary: state.orderSummary
+    orderSummary: state.orderSummary,
+    currentOrder: state.currentOrder
   }
 }
 

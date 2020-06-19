@@ -13,6 +13,8 @@ const updateOrder = order => ({
 export const createOrder = () => {
   return async dispatch => {
     try {
+      event.preventDefault()
+      console.log('inside createOrder thunk')
       const order = await axios.post('/api/orders')
       dispatch(updateOrder(order.data))
     } catch (error) {
