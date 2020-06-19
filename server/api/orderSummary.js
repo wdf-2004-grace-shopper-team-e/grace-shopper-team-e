@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {OrderSummary, Order, Plant} = require('../db/models')
 module.exports = router
 
-// get all of the plants of a specific order, including their specific through-table quantity and subTotal
+// get all of the plants of a specific order
 router.get('/:orderId/plants', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
@@ -23,12 +23,12 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
     const order = await Order.findOne({
       where: {id: req.params.orderId}
     })
-    const plantToAdd = await Plant.findOne({
+    const plantProduct = await Plant.findOne({
       where: {id: req.params.plantId}
     })
 
-    await plantToAdd.addOrderSummary(order)
-    await order.addOrderSummary(plantToAdd)
+    await plantProduct.addOrderSummary(order)
+    await order.addOrderSummary(plantProduct)
 
     const plant = await OrderSummary.findOne({
       where: {
@@ -41,7 +41,7 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
       plantQuantity: 1
     })
     await plant.update({
-      plantSubtotal: plantToAdd.price * plant.plantQuantity
+      plantSubtotal: plantProduct.price * plant.plantQuantity
     })
 
     const updatedOrder = await Order.findOne({
@@ -79,7 +79,7 @@ router.delete('/:orderId/remove/:plantId', async (req, res, next) => {
 })
 
 // edit specific plants associated with an order
-router.put('/:orderId/edit/:plantId/:value', async (req, res, next) => {
+router.put('/:orderId/edit/:plantId/', async (req, res, next) => {
   try {
     const plantProduct = await Plant.findOne({
       where: {id: req.params.plantId}
@@ -92,7 +92,7 @@ router.put('/:orderId/edit/:plantId/:value', async (req, res, next) => {
     })
 
     await plant.update({
-      plantQuantity: req.params.value
+      plantQuantity: req.body.plantQuantity
     })
     await plant.update({
       plantSubtotal: plantProduct.price * plant.plantQuantity
