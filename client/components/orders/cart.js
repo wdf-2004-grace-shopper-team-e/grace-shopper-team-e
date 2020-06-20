@@ -24,6 +24,11 @@ export const Cart = props => {
         {orderSummary.map(plant => (
           <Item key={plant.id} plant={plant} order={order} />
         ))}
+        <h1>
+          Total Cost: ${orderSummary.reduce((sum, curPlant) => {
+            return sum + curPlant.plant_order.plantSubtotal
+          }, 0) / 100}
+        </h1>
       </div>
     </div>
   )

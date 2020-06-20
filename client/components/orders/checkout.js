@@ -18,6 +18,11 @@ export const CheckoutPage = props => {
     <div>
       <Link to="/plants">Continue Shopping</Link>
       <h1>Checkout Page</h1>
+      <h1>
+        Total Cost: ${orderSummary.reduce((sum, curPlant) => {
+          return sum + curPlant.plant_order.plantSubtotal
+        }, 0) / 100}
+      </h1>
       <div>
         Form Info
         <form>
