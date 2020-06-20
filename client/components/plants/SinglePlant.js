@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchPlant} from '../../store/singlePlant'
+import {postAddItem} from '../../store/orderSummary'
+import {createOrder} from '../../store/orders'
 
 /**
  * Plant COMPONENT
@@ -10,7 +12,7 @@ export class Plant extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantityOrdered: 1
+      quantityOrdered: '1'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,7 +24,18 @@ export class Plant extends React.Component {
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-  handleSubmit(event) {}
+  async handleSubmit(event) {
+    event.preventDefault()
+    event.persist()
+    if (!localStorage.getItem('currentOrder')) {
+      await this.props.createOrder()
+      localStorage.setItem('currentOrder', JSON.stringify(this.props.order))
+    }
+    const currentOrder = JSON.parse(localStorage.getItem('currentOrder'))
+    const plantId = this.props.plant.id
+
+    await this.props.postAddItem(event, currentOrder.id, plantId)
+  }
   getPrice = priceInPennies => {
     let dollars = priceInPennies / 100
     dollars = dollars.toLocaleString('en-US', {
@@ -49,7 +62,7 @@ export class Plant extends React.Component {
         <div style={{backgroundColor: 'lightblue'}}>
           <p>Price: {this.getPrice(plant.price)} </p>
           <p>Current Stock: {plant.stock}</p>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input
               name="quantityOrdered"
               type="number"
@@ -77,12 +90,16 @@ export class Plant extends React.Component {
  */
 const mapState = state => {
   return {
-    plant: state.singlePlant //get plant from redux store
+    plant: state.singlePlant, //get plant from redux store
+    order: state.order
   }
 }
 const mapDispatch = dispatch => {
   return {
-    getPlant: id => dispatch(fetchPlant(id))
+    getPlant: id => dispatch(fetchPlant(id)),
+    createOrder: () => dispatch(createOrder()),
+    postAddItem: (event, orderId, plantId) =>
+      dispatch(postAddItem(event, orderId, plantId))
   }
 }
 

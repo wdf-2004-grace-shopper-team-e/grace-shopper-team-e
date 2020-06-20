@@ -5,9 +5,8 @@ module.exports = router
 // get all of the plants of a specific order
 router.get('/:orderId/plants', async (req, res, next) => {
   try {
-    const orderId = req.params.orderId
     const order = await Order.findOne({
-      where: {id: orderId},
+      where: {id: req.params.orderId},
       include: [{model: Plant, as: 'OrderSummary'}]
     })
 
@@ -38,7 +37,7 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
     })
 
     await plant.update({
-      plantQuantity: 1
+      plantQuantity: plant.plantQuantity + parseInt(req.body.quantityOrdered)
     })
     await plant.update({
       plantSubtotal: plantProduct.price * plant.plantQuantity
