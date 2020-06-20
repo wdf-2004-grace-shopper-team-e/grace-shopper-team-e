@@ -20,7 +20,7 @@ describe('Plant routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/products/', () => {
+  describe('/api/plants/', () => {
     const testPlant = {
       name: 'Cactus',
       price: 1000,

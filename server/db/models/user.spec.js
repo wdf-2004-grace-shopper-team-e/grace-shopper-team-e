@@ -12,12 +12,7 @@ describe('User model', () => {
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
       let jennifer
-      // {
-      //   email: 'jenniferB@email.com',
-      //   firstName: 'Jennifer',
-      //   lastName: 'Brown',
-      //   password: '1234'
-      // },
+
       beforeEach(async () => {
         jennifer = await User.create({
           email: 'jenniferB@email.com',

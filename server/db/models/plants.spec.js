@@ -44,7 +44,7 @@ describe('Plant model', () => {
 
     it('sets the stock', () => {
       expect(typeof plant.stock).to.be.equal('number')
-      expect(plant.stock).to.be.equal('10')
+      expect(plant.stock).to.be.equal(10)
     })
   }) // end describe('sets correct values at product creation')
 }) // end describe('Product model')
