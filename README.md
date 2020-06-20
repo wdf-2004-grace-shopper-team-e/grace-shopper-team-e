@@ -196,7 +196,7 @@ using Boilermaker's handy deployment script:
 1.  Make sure that all your work is fully committed and merged into your
     master branch on Github.
 2.  If you currently have an existing branch called "deploy", delete
-    it now (`git branch -d deploy`). We will use a dummy branch
+    it now (`c`). We will use a dummy branch
     with the name `deploy` (see below), so and the script below will error if a
     branch with that name already exists.
 3.  `npm run deploy`
