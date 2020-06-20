@@ -35,13 +35,13 @@ export class Item extends React.Component {
     return (
       <div className="item">
         <div>
-          <h1>{name}</h1>
+          <h2>{name}</h2>
           <img src={imageUrl} height="100" width="150" />
-          <h3>price: ${price / 100}</h3>
+          <h4>price: ${price / 100}</h4>
         </div>
         <div>
-          <h2>in Cart: {plantQuantity}</h2>
-          <h2>subtotal: ${plantSubtotal / 100}</h2>
+          <h4>in Cart: {plantQuantity}</h4>
+          <h3>subtotal: ${plantSubtotal / 100}</h3>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>

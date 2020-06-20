@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {default as Item} from './item'
+import {default as OrderForm} from './orderForm'
 import {getItems} from '../../store/orderSummary'
 
 export const CheckoutPage = props => {
@@ -24,18 +25,13 @@ export const CheckoutPage = props => {
         }, 0) / 100}
       </h1>
       <div>
-        Form Info
-        <form>
-          <div>Shipping Form</div>
-          <div>Billing Info</div>
-          <button type="submit" />
-        </form>
+        <OrderForm order={order} orderSummary={orderSummary} />
       </div>
       <div>
-        <h1>Order Summary</h1>
+        {/* <h1>Order Summary</h1>
         {orderSummary.map(plant => (
           <Item key={plant.id} plant={plant} order={order} />
-        ))}
+        ))} */}
       </div>
     </div>
   )
