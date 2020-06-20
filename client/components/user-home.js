@@ -30,10 +30,19 @@ export class UserHome extends Component {
     this.handleLogin()
   }
 
-  // async handleLogin() {
-  //   const ls = window.localStorage
-  //   // In progress
-  // }
+  async handleLogin() {
+    const ls = window.localStorage
+    const guestCart = JSON.parse(ls.getItem('cart'))
+    await this.props.getAllCartItems()
+    if (guestCart) {
+      this.props.mergeCarts({guestCart, userCart: this.props.userCart})
+      ls.removeItem('cart')
+      console.log('guest cart: ', guestCart)
+      console.log('user cart: ', this.props.userCart)
+    } else {
+      console.log('no guest cart found')
+    }
+  }
 
   handleChange(event) {
     this.setState({
