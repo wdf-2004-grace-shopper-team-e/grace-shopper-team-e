@@ -38,10 +38,10 @@ export const postAddItem = (event, orderId, plantId) => {
   }
 }
 
-export const deleteRemoveItem = event => {
+export const deleteRemoveItem = (orderId, plantId) => {
   return async dispatch => {
     try {
-      const {orderId, plantId} = event.target
+      // const {orderId, plantId} = event.target
       const plants = await axios.delete(
         `/api/ordersummary/${orderId}/remove/${plantId}`
       )
@@ -52,14 +52,14 @@ export const deleteRemoveItem = event => {
   }
 }
 
-export const putEditItem = event => {
+export const putEditItem = (event, orderId, plantId) => {
   return async dispatch => {
     try {
-      const {orderId, plantId, plantQuantity} = event.target
+      const {updateQuantity} = event.target
       const plants = await axios.put(
         `/api/ordersummary/${orderId}/edit/${plantId}`,
         {
-          plantQuantity: plantQuantity.value
+          plantQuantity: updateQuantity.value
         }
       )
       dispatch(updateItems(plants.data))
