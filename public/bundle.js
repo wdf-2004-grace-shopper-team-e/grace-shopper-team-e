@@ -143,7 +143,7 @@ var AuthForm = function AuthForm(props) {
       displayName = props.displayName,
       handleSubmit = props.handleSubmit,
       error = props.error;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, displayName === 'Login' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', "New user? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, displayName === 'Login' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign up"), "New user? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/signup"
   }, "Sign Up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit,
@@ -164,7 +164,7 @@ var AuthForm = function AuthForm(props) {
     type: "submit"
   }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/auth/google"
-  }, displayName, " with Google")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign up!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Returning user? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+  }, displayName, " with Google")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Returning user? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/login"
   }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit,
@@ -1227,6 +1227,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1284,11 +1288,50 @@ function (_Component) {
         imgUrl: "".concat(this.props.imgUrl)
       });
       this.handleLogin();
-    } // async handleLogin() {
-    //   const ls = window.localStorage
-    //   // In progress
-    // }
+    }
+  }, {
+    key: "handleLogin",
+    value: function () {
+      var _handleLogin = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var ls, guestCart;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                ls = window.localStorage;
+                guestCart = JSON.parse(ls.getItem('cart'));
+                _context.next = 4;
+                return this.props.getAllCartItems();
 
+              case 4:
+                if (guestCart) {
+                  this.props.mergeCarts({
+                    guestCart: guestCart,
+                    userCart: this.props.userCart
+                  });
+                  ls.removeItem('cart');
+                  console.log('guest cart: ', guestCart);
+                  console.log('user cart: ', this.props.userCart);
+                } else {
+                  console.log('no guest cart found');
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleLogin() {
+        return _handleLogin.apply(this, arguments);
+      }
+
+      return handleLogin;
+    }()
   }, {
     key: "handleChange",
     value: function handleChange(event) {
