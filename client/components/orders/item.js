@@ -10,28 +10,26 @@ export class Item extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleRemoveItem = this.handleRemoveItem.bind(this)
   }
-  // componentDidMount() {
-  //   console.log(this.props)
-  // }
 
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
   async handleSubmit(event) {
     event.preventDefault()
-    // event.persist()
-    // console.log('order', this.props.order)
-    // console.log('plant', this.props.plant)
     await this.props.putEditItem(
       event,
       this.props.order.id,
       this.props.plant.id
     )
   }
+  handleRemoveItem = () => {
+    this.props.deleteRemoveItem(this.props.order.id, this.props.plant.id)
+  }
 
   render() {
-    const {plant, order} = this.props
+    const {plant} = this.props
     const {name, price, imageUrl, stock} = plant
     const {plantQuantity, plantSubtotal} = plant.plant_order
     return (
@@ -61,16 +59,15 @@ export class Item extends React.Component {
             </button>
           </form>
         </div>
+        <div>
+          <button type="button" onClick={this.handleRemoveItem}>
+            Remove from Cart
+          </button>
+        </div>
       </div>
     )
   }
 }
-
-// const mapState = state => {
-//   // return {
-//   //   order: state.order
-//   // }
-// }
 
 const mapDispatch = dispatch => {
   return {
