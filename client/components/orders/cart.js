@@ -1,14 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import Item from './item'
-import {getOrder} from '../../store/orders'
+import {Item} from './item'
+import {getItems} from '../../store/orderSummary'
 
-const Cart = props => {
-  const {orderSummary} = props
+export const Cart = props => {
+  const {orderSummary, order} = props
 
-  // useEffect(() => {
-  //   props.
-  // })
+  useEffect(() => {
+    if (localStorage.getItem('currentOrder')) {
+      const currentOrder = JSON.parse(localStorage.getItem('currentOrder'))
+      // console.log('currentOrder', currentOrder)
+      // console.log('props', props)
+      props.getItems(currentOrder.id)
+    }
+  }, [])
 
   return (
     <div className="order-summary">
@@ -20,14 +25,14 @@ const Cart = props => {
 const mapState = state => {
   return {
     orderSummary: state.orderSummary,
-    currentOrder: state.currentOrder
+    order: state.order
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getOrder: orderId => dispatch(getOrder(orderId))
+    getItems: orderId => dispatch(getItems(orderId))
   }
 }
 
-export default connect(mapState)(Cart)
+export default connect(mapState, mapDispatch)(Cart)

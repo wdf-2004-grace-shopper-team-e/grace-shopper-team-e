@@ -13,7 +13,7 @@ export const Item = props => {
       </div>
       <div>
         <h2>in Cart: {plantQuantity}</h2>
-        <h2>subtotal: ${plantSubtotal / 10}</h2>
+        <h2>subtotal: ${plantSubtotal / 100}</h2>
       </div>
     </div>
   )
