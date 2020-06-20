@@ -21,12 +21,15 @@ export const getItems = orderId => {
   }
 }
 
-export const postAddItem = event => {
+export const postAddItem = (event, orderId, plantId) => {
   return async dispatch => {
     try {
-      const {orderId, plantId} = event.target
+      const {quantityOrdered} = event.target
       const plants = await axios.post(
-        `/api/ordersummary/${orderId}/add/${plantId}`
+        `/api/ordersummary/${orderId}/add/${plantId}`,
+        {
+          quantityOrdered: quantityOrdered.value
+        }
       )
       dispatch(updateItems(plants.data))
     } catch (error) {

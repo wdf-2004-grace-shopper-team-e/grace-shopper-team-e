@@ -37,7 +37,7 @@ router.post('/:orderId/add/:plantId', async (req, res, next) => {
     })
 
     await plant.update({
-      plantQuantity: 1
+      plantQuantity: req.body.quantityOrdered
     })
     await plant.update({
       plantSubtotal: plantProduct.price * plant.plantQuantity

@@ -12,7 +12,8 @@ export class Plant extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantityOrdered: '1'
+      quantityOrdered: '1',
+      currentOrder: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,17 +21,24 @@ export class Plant extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.plantId
     this.props.getPlant(id)
+    if (this.props.currentOrder === {}) {
+      this.props.createOrder()
+    }
   }
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    // if (this.props.currentOrder === {}) {
-    this.props.createOrder(event)
-    // const {orderId} = this.props.currentOrder
-    // this.props.postAddItem(event)
-    // }
+    event.persist()
+    if (this.props.currentOrder === {}) {
+      await this.props.createOrder()
+      // await this.props.getOrder(this.props.currentOrder)
+      const {id} = this.props.currentOrder
+      const plantId = this.props.plant.id
+
+      await this.props.postAddItem(event, id, plantId)
+    }
     // else {
     //   const {orderId} = this.props.currentOrder
     //   this.props.putEditItem(event)
@@ -47,6 +55,7 @@ export class Plant extends React.Component {
 
   render() {
     const {plant} = this.props
+    const {currentOrder} = this.props
 
     return (
       <div className="plant">
@@ -62,7 +71,11 @@ export class Plant extends React.Component {
         <div style={{backgroundColor: 'lightblue'}}>
           <p>Price: {this.getPrice(plant.price)} </p>
           <p>Current Stock: {plant.stock}</p>
-          <form onSubmit={this.handleSubmit}>
+          <form
+            plantid={plant.id}
+            orderid={currentOrder.id}
+            onSubmit={this.handleSubmit}
+          >
             <input
               name="quantityOrdered"
               type="number"
@@ -98,7 +111,8 @@ const mapDispatch = dispatch => {
   return {
     getPlant: id => dispatch(fetchPlant(id)),
     createOrder: () => dispatch(createOrder()),
-    postAddItem: event => dispatch(postAddItem(event)),
+    postAddItem: (event, orderId, plantId) =>
+      dispatch(postAddItem(event, orderId, plantId)),
     putEditItem: event => dispatch(putEditItem(event))
   }
 }
