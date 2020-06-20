@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {editOrder} from '../../store/orders'
 
 class OrderForm extends React.Component {
   constructor(props) {
@@ -29,8 +30,9 @@ class OrderForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    // if (this.props.getAddRobot) this.props.getAddRobot(event)
-    // else if (this.props.putEditRobot) this.props.putEditRobot(event)
+    console.log('submit pressed!')
+    console.log('event', event.target)
+    this.props.editOrder(event, this.props.order.id)
 
     this.setState({
       email: '',
@@ -50,142 +52,157 @@ class OrderForm extends React.Component {
   }
 
   render() {
+    const totalCost = this.props.orderSummary.reduce((sum, curPlant) => {
+      return sum + curPlant.plant_order.plantSubtotal
+    }, 0)
+
     return (
-      <div className="form-element">
-        <form id={this.props.orderId} onSubmit={this.handleSubmit}>
-          <div id="shipping-info">
-            <h1>Shipping Information</h1>
-            <div id="shipping-name">
-              <div>
-                <label>First Name:</label>
+      <div>
+        <h1>Total Cost: ${totalCost / 100}</h1>
+        <div className="form-element">
+          <form id={this.props.orderId} onSubmit={this.handleSubmit}>
+            <div id="shipping-info">
+              <h1>Shipping Information</h1>
+              <div id="shipping-name">
+                <div>
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    name="shippingFirstName"
+                    onChange={this.handleChange}
+                    value={this.state.shippingFirstName}
+                  />
+                </div>
+                <div>
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    name="shippingLastName"
+                    onChange={this.handleChange}
+                    value={this.state.shippingLastName}
+                  />
+                </div>
+              </div>
+              <div id="shipping-address">
+                <label>Address:</label>
                 <input
                   type="text"
-                  name="shippingFirstName"
+                  name="shippingAddress"
                   onChange={this.handleChange}
-                  value={this.state.shippingFirstName}
+                  value={this.state.shippingAddress}
                 />
               </div>
-              <div>
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  name="shippingLastName"
-                  onChange={this.handleChange}
-                  value={this.state.shippingLastName}
-                />
-              </div>
-            </div>
-            <div id="shipping-address">
-              <label>Address:</label>
-              <input
-                type="text"
-                name="shippingAddress"
-                onChange={this.handleChange}
-                value={this.state.shippingAddress}
-              />
-            </div>
-            <div id="shipping-region">
-              <div>
-                <label>City:</label>
-                <input
-                  type="text"
-                  name="shippingCity"
-                  onChange={this.handleChange}
-                  value={this.state.shippingCity}
-                />
-              </div>
-              <div>
-                <label>State:</label>
-                <input
-                  type="text"
-                  name="shippingState"
-                  onChange={this.handleChange}
-                  value={this.state.shippingState}
-                />
-              </div>
-              <div>
-                <label>Zip Code:</label>
-                <input
-                  type="text"
-                  name="shippingZipCode"
-                  onChange={this.handleChange}
-                  value={this.state.shippingZipCode}
-                />
-              </div>
-            </div>
-          </div>
-          <div id="billing-info">
-            <h1>Billing Information</h1>
-            <div id="order-email">
-              <label>Email:</label>
-              <input
-                type="text"
-                name="email"
-                onChange={this.handleChange}
-                value={this.state.email}
-              />
-            </div>
-            <div id="billing-name">
-              <div>
-                <label>First Name:</label>
-                <input
-                  type="text"
-                  name="billingFirstName"
-                  onChange={this.handleChange}
-                  value={this.state.billingFirstName}
-                />
-              </div>
-              <div>
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  name="billingLastName"
-                  onChange={this.handleChange}
-                  value={this.state.billingLastName}
-                />
+              <div id="shipping-region">
+                <div>
+                  <label>City:</label>
+                  <input
+                    type="text"
+                    name="shippingCity"
+                    onChange={this.handleChange}
+                    value={this.state.shippingCity}
+                  />
+                </div>
+                <div>
+                  <label>State:</label>
+                  <input
+                    type="text"
+                    name="shippingState"
+                    onChange={this.handleChange}
+                    value={this.state.shippingState}
+                  />
+                </div>
+                <div>
+                  <label>Zip Code:</label>
+                  <input
+                    type="text"
+                    name="shippingZipCode"
+                    onChange={this.handleChange}
+                    value={this.state.shippingZipCode}
+                  />
+                </div>
               </div>
             </div>
-            <div id="billing-address">
-              <label>Address:</label>
-              <input
-                type="text"
-                name="billingAddress"
-                onChange={this.handleChange}
-                value={this.state.billingAddress}
-              />
+            <div id="billing-info">
+              <h1>Billing Information</h1>
+              <div id="order-cost">
+                <input
+                  type="hidden"
+                  name="totalCost"
+                  readOnly
+                  value={totalCost}
+                />
+              </div>
+              <div id="order-email">
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="email"
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                />
+              </div>
+              <div id="billing-name">
+                <div>
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    name="billingFirstName"
+                    onChange={this.handleChange}
+                    value={this.state.billingFirstName}
+                  />
+                </div>
+                <div>
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    name="billingLastName"
+                    onChange={this.handleChange}
+                    value={this.state.billingLastName}
+                  />
+                </div>
+              </div>
+              <div id="billing-address">
+                <label>Address:</label>
+                <input
+                  type="text"
+                  name="billingAddress"
+                  onChange={this.handleChange}
+                  value={this.state.billingAddress}
+                />
+              </div>
+              <div id="billing-region">
+                <div>
+                  <label>City:</label>
+                  <input
+                    type="text"
+                    name="billingCity"
+                    onChange={this.handleChange}
+                    value={this.state.billingCity}
+                  />
+                </div>
+                <div>
+                  <label>State:</label>
+                  <input
+                    type="text"
+                    name="billingState"
+                    onChange={this.handleChange}
+                    value={this.state.billingState}
+                  />
+                </div>
+                <div>
+                  <label>Zip Code:</label>
+                  <input
+                    type="text"
+                    name="billingZipCode"
+                    onChange={this.handleChange}
+                    value={this.state.billingZipCode}
+                  />
+                </div>
+              </div>
             </div>
-            <div id="billing-region">
-              <div>
-                <label>City:</label>
-                <input
-                  type="text"
-                  name="billingCity"
-                  onChange={this.handleChange}
-                  value={this.state.billingCity}
-                />
-              </div>
-              <div>
-                <label>State:</label>
-                <input
-                  type="text"
-                  name="billingState"
-                  onChange={this.handleChange}
-                  value={this.state.billingState}
-                />
-              </div>
-              <div>
-                <label>Zip Code:</label>
-                <input
-                  type="text"
-                  name="billingZipCode"
-                  onChange={this.handleChange}
-                  value={this.state.billingZipCode}
-                />
-              </div>
-            </div>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
@@ -196,7 +213,9 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {}
+  return {
+    editOrder: (event, orderId) => dispatch(editOrder(event, orderId))
+  }
 }
 
 export default connect(mapState, mapDispatch)(OrderForm)

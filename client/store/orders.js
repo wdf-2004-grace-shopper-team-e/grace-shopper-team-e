@@ -44,14 +44,44 @@ export const deleteOrder = event => {
   }
 }
 
-export const editOrder = event => {
+export const editOrder = (event, orderId) => {
   return async dispatch => {
     try {
-      const {orderId, isCart, totalCost} = event.target
+      const {
+        email,
+        shippingFirstName,
+        shippingLastName,
+        shippingAddress,
+        shippingCity,
+        shippingState,
+        shippingZipCode,
+        totalCost,
+        billingFirstName,
+        billingLastName,
+        billingAddress,
+        billingCity,
+        billingState,
+        billingZipCode
+      } = event.target
+
       const order = await axios.put(`/api/orders/${orderId}`, {
-        isCart,
-        totalCost
+        email: email.value,
+        isCart: false,
+        totalCost: totalCost.value,
+        shippingFirstName: shippingFirstName.value,
+        shippingLastName: shippingLastName.value,
+        shippingAddress: shippingAddress.value,
+        shippingCity: shippingCity.value,
+        shippingState: shippingState.value,
+        shippingZipCode: shippingZipCode.value,
+        billingFirstName: billingFirstName.value,
+        billingLastName: billingLastName.value,
+        billingAddress: billingAddress.value,
+        billingCity: billingCity.value,
+        billingState: billingState.value,
+        billingZipCode: billingZipCode.value
       })
+      console.log('order updated!')
       dispatch(updateOrder(order.data))
     } catch (error) {
       console.error(error)
