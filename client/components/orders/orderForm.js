@@ -30,9 +30,8 @@ class OrderForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('submit pressed!')
-    console.log('event', event.target)
     this.props.editOrder(event, this.props.order.id)
+    localStorage.removeItem('currentOrder')
 
     this.setState({
       email: '',
@@ -200,7 +199,7 @@ class OrderForm extends React.Component {
                 </div>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Submit Order</button>
           </form>
         </div>
       </div>

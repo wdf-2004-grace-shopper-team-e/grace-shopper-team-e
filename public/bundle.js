@@ -397,9 +397,7 @@ var Cart = function Cart(props) {
   var orderSummary = props.orderSummary;
   var order = JSON.parse(localStorage.getItem('currentOrder'));
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (localStorage.getItem('currentOrder')) {
-      props.getItems(order.id);
-    }
+    if (order) props.getItems(order.id);
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/cart/checkout"
@@ -449,10 +447,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./item */ "./client/components/orders/item.js");
-/* harmony import */ var _orderForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./orderForm */ "./client/components/orders/orderForm.js");
-/* harmony import */ var _store_orderSummary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/orderSummary */ "./client/store/orderSummary.js");
-
+/* harmony import */ var _orderForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./orderForm */ "./client/components/orders/orderForm.js");
+/* harmony import */ var _store_orderSummary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/orderSummary */ "./client/store/orderSummary.js");
 
 
 
@@ -462,16 +458,16 @@ var CheckoutPage = function CheckoutPage(props) {
   var orderSummary = props.orderSummary;
   var order = JSON.parse(localStorage.getItem('currentOrder'));
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (localStorage.getItem('currentOrder')) {
-      props.getItems(order.id);
-    }
+    if (order) props.getItems(order.id);
   }, []);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/plants"
-  }, "Continue Shopping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Checkout Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_orderForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Continue Shopping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/cart"
+  }, "Back to My Cart")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Checkout Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_orderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
     order: order,
     orderSummary: orderSummary
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
+  })));
 };
 
 var mapState = function mapState(state) {
@@ -484,7 +480,7 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     getItems: function getItems(orderId) {
-      return dispatch(Object(_store_orderSummary__WEBPACK_IMPORTED_MODULE_5__["getItems"])(orderId));
+      return dispatch(Object(_store_orderSummary__WEBPACK_IMPORTED_MODULE_4__["getItems"])(orderId));
     }
   };
 };
@@ -508,10 +504,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_orderSummary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/orderSummary */ "./client/store/orderSummary.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -565,32 +557,10 @@ function (_React$Component) {
 
   _createClass(Item, [{
     key: "handleSubmit",
-    value: function () {
-      var _handleSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(event) {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                event.preventDefault();
-                _context.next = 3;
-                return this.props.putEditItem(event, this.props.order.id, this.props.plant.id);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleSubmit(_x) {
-        return _handleSubmit.apply(this, arguments);
-      }
-
-      return handleSubmit;
-    }()
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      this.props.putEditItem(event, this.props.order.id, this.props.plant.id);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -723,9 +693,8 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      console.log('submit pressed!');
-      console.log('event', event.target);
       this.props.editOrder(event, this.props.order.id);
+      localStorage.removeItem('currentOrder');
       this.setState({
         email: '',
         shippingFirstName: '',
@@ -845,7 +814,7 @@ function (_React$Component) {
         value: this.state.billingZipCode
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Submit"))));
+      }, "Submit Order"))));
     }
   }]);
 
@@ -1747,11 +1716,12 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, m
 /*!**************************************!*\
   !*** ./client/store/orderSummary.js ***!
   \**************************************/
-/*! exports provided: getItems, postAddItem, deleteRemoveItem, putEditItem, default */
+/*! exports provided: clearItems, getItems, postAddItem, deleteRemoveItem, putEditItem, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearItems", function() { return clearItems; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getItems", function() { return getItems; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAddItem", function() { return postAddItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteRemoveItem", function() { return deleteRemoveItem; });
@@ -1764,15 +1734,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
  // action types
 
-var UPDATE_ITEMS = 'UPDATE_ITEMS'; // action creators
+var UPDATE_ITEMS = 'UPDATE_ITEMS';
+var CLEAR_ITEMS = 'CLEAR_ITEMS'; // action creators
 
 var updateItems = function updateItems(items) {
   return {
     type: UPDATE_ITEMS,
     items: items
   };
-}; // thunks
+};
 
+var clearItems = function clearItems() {
+  return {
+    type: CLEAR_ITEMS
+  };
+}; // thunks
 
 var getItems = function getItems(orderId) {
   return (
@@ -1955,6 +1931,9 @@ var orderSummary = []; // reducer
     case UPDATE_ITEMS:
       return action.items;
 
+    case CLEAR_ITEMS:
+      return [];
+
     default:
       return state;
   }
@@ -1966,32 +1945,41 @@ var orderSummary = []; // reducer
 /*!********************************!*\
   !*** ./client/store/orders.js ***!
   \********************************/
-/*! exports provided: createOrder, getOrder, deleteOrder, editOrder, default */
+/*! exports provided: submitOrder, createOrder, getOrder, deleteOrder, editOrder, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "submitOrder", function() { return submitOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createOrder", function() { return createOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOrder", function() { return getOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteOrder", function() { return deleteOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editOrder", function() { return editOrder; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _orderSummary__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./orderSummary */ "./client/store/orderSummary.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+
  // action types
 
-var UPDATE_ORDER = 'UPDATE_ORDER'; // action creators
+var UPDATE_ORDER = 'UPDATE_ORDER';
+var SUBMIT_ORDER = 'SUBMIT_ORDER'; // action creators
 
 var updateOrder = function updateOrder(order) {
   return {
     type: UPDATE_ORDER,
     order: order
   };
-}; // thunks
+};
 
+var submitOrder = function submitOrder() {
+  return {
+    type: SUBMIT_ORDER
+  };
+}; // thunks
 
 var createOrder = function createOrder() {
   return (
@@ -2154,8 +2142,8 @@ var editOrder = function editOrder(event, orderId) {
 
               case 4:
                 _order3 = _context4.sent;
-                console.log('order updated!');
-                dispatch(updateOrder(_order3.data));
+                dispatch(submitOrder());
+                dispatch(Object(_orderSummary__WEBPACK_IMPORTED_MODULE_1__["clearItems"])());
                 _context4.next = 12;
                 break;
 
@@ -2188,6 +2176,9 @@ var order = {}; // reducer
   switch (action.type) {
     case UPDATE_ORDER:
       return action.order;
+
+    case SUBMIT_ORDER:
+      return {};
 
     default:
       return state;

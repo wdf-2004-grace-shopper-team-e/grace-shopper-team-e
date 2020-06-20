@@ -2,11 +2,15 @@ import axios from 'axios'
 
 // action types
 const UPDATE_ITEMS = 'UPDATE_ITEMS'
+const CLEAR_ITEMS = 'CLEAR_ITEMS'
 
 // action creators
 const updateItems = items => ({
   type: UPDATE_ITEMS,
   items
+})
+export const clearItems = () => ({
+  type: CLEAR_ITEMS
 })
 
 // thunks
@@ -77,6 +81,8 @@ export default (state = orderSummary, action) => {
   switch (action.type) {
     case UPDATE_ITEMS:
       return action.items
+    case CLEAR_ITEMS:
+      return []
     default:
       return state
   }

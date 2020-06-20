@@ -16,13 +16,9 @@ export class Item extends React.Component {
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
-    await this.props.putEditItem(
-      event,
-      this.props.order.id,
-      this.props.plant.id
-    )
+    this.props.putEditItem(event, this.props.order.id, this.props.plant.id)
   }
   handleRemoveItem = () => {
     this.props.deleteRemoveItem(this.props.order.id, this.props.plant.id)
@@ -32,6 +28,7 @@ export class Item extends React.Component {
     const {plant} = this.props
     const {name, price, imageUrl, stock} = plant
     const {plantQuantity, plantSubtotal} = plant.plant_order
+
     return (
       <div className="item">
         <div>
