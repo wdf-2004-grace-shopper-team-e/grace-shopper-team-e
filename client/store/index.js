@@ -6,14 +6,14 @@ import user from './user'
 import plants from './plants'
 import orderSummary from './orderSummary'
 import singlePlant from './singlePlant'
-import currentOrder from './currentOrder'
+import order from './orders'
 
 const reducer = combineReducers({
   user,
   plants,
   singlePlant,
   orderSummary,
-  currentOrder
+  order
 })
 
 const middleware = composeWithDevTools(

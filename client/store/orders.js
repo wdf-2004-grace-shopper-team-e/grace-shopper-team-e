@@ -15,7 +15,6 @@ export const createOrder = () => {
     try {
       const order = await axios.post('/api/orders')
       dispatch(updateOrder(order.data))
-      console.log('done creating order')
     } catch (error) {
       console.error(error)
     }
@@ -61,10 +60,10 @@ export const editOrder = event => {
 }
 
 // initial state
-const currentOrder = {}
+const order = {}
 
 // reducer
-export default (state = currentOrder, action) => {
+export default (state = order, action) => {
   switch (action.type) {
     case UPDATE_ORDER:
       return action.order

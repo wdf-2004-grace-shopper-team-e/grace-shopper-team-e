@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchPlant} from '../../store/singlePlant'
-import {postAddItem, putEditItem} from '../../store/orderSummary'
-import {createOrder, getOrder} from '../../store/currentOrder'
+import {postAddItem} from '../../store/orderSummary'
+import {createOrder} from '../../store/orders'
 
 /**
  * Plant COMPONENT
@@ -12,8 +12,7 @@ export class Plant extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantityOrdered: '1',
-      currentOrder: {}
+      quantityOrdered: '1'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,9 +20,6 @@ export class Plant extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.plantId
     this.props.getPlant(id)
-    if (this.props.currentOrder === {}) {
-      this.props.createOrder()
-    }
   }
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
@@ -31,18 +27,14 @@ export class Plant extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     event.persist()
-    if (this.props.currentOrder === {}) {
+    if (!localStorage.getItem('currentOrder')) {
       await this.props.createOrder()
-      // await this.props.getOrder(this.props.currentOrder)
-      const {id} = this.props.currentOrder
-      const plantId = this.props.plant.id
-
-      await this.props.postAddItem(event, id, plantId)
+      localStorage.setItem('currentOrder', JSON.stringify(this.props.order))
     }
-    // else {
-    //   const {orderId} = this.props.currentOrder
-    //   this.props.putEditItem(event)
-    // }
+    const currentOrder = JSON.parse(localStorage.getItem('currentOrder'))
+    const plantId = this.props.plant.id
+
+    await this.props.postAddItem(event, currentOrder.id, plantId)
   }
   getPrice = priceInPennies => {
     let dollars = priceInPennies / 100
@@ -55,7 +47,6 @@ export class Plant extends React.Component {
 
   render() {
     const {plant} = this.props
-    const {currentOrder} = this.props
 
     return (
       <div className="plant">
@@ -71,11 +62,7 @@ export class Plant extends React.Component {
         <div style={{backgroundColor: 'lightblue'}}>
           <p>Price: {this.getPrice(plant.price)} </p>
           <p>Current Stock: {plant.stock}</p>
-          <form
-            plantid={plant.id}
-            orderid={currentOrder.id}
-            onSubmit={this.handleSubmit}
-          >
+          <form onSubmit={this.handleSubmit}>
             <input
               name="quantityOrdered"
               type="number"
@@ -104,7 +91,7 @@ export class Plant extends React.Component {
 const mapState = state => {
   return {
     plant: state.singlePlant, //get plant from redux store
-    currentOrder: state.currentOrder
+    order: state.order
   }
 }
 const mapDispatch = dispatch => {
@@ -112,8 +99,7 @@ const mapDispatch = dispatch => {
     getPlant: id => dispatch(fetchPlant(id)),
     createOrder: () => dispatch(createOrder()),
     postAddItem: (event, orderId, plantId) =>
-      dispatch(postAddItem(event, orderId, plantId)),
-    putEditItem: event => dispatch(putEditItem(event))
+      dispatch(postAddItem(event, orderId, plantId))
   }
 }
 
