@@ -8,7 +8,8 @@ import {
   UserHome,
   Allplants,
   SinglePlant,
-  Cart
+  Cart,
+  CheckoutPage
 } from './components'
 import {me} from './store'
 
@@ -40,7 +41,11 @@ class Routes extends Component {
         {/* change component to refer to single plant view */}
         <Route path="/plants/:plantId" component={SinglePlant} />
 
+        {/* cart page */}
         <Route exact path="/cart" component={Cart} />
+
+        {/* checkout page */}
+        <Route path="/cart/checkout" component={CheckoutPage} />
 
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
