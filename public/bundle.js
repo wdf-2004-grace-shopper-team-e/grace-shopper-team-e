@@ -399,7 +399,9 @@ var Cart = function Cart(props) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (order) props.getItems(order.id);
   }, []);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-page"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/cart/checkout"
   }, "Go to Checkout")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order-summary"
@@ -568,17 +570,24 @@ function (_React$Component) {
       var name = plant.name,
           price = plant.price,
           imageUrl = plant.imageUrl,
+          description = plant.description,
           stock = plant.stock;
       var _plant$plant_order = plant.plant_order,
           plantQuantity = _plant$plant_order.plantQuantity,
           plantSubtotal = _plant$plant_order.plantSubtotal;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "item-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plant-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: imageUrl,
         height: "100",
         width: "150"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "price: $", price / 100)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "in Cart: ", plantQuantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "subtotal: $", plantSubtotal / 100)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "price: $", price / 100)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "quantity-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "in Cart: ", plantQuantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "updateQuantity",
@@ -591,10 +600,10 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         disabled: !stock,
         type: "submit"
-      }, "Update Quantity"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Update Quantity"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "subtotal: $", plantSubtotal / 100), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         onClick: this.handleRemoveItem
-      }, "Remove from Cart")));
+      }, "Remove from Cart")))));
     }
   }]);
 

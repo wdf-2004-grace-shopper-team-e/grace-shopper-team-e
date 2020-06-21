@@ -13,7 +13,7 @@ export const Cart = props => {
   }, [])
 
   return (
-    <div>
+    <div className="cart-page">
       <div>
         <Link to="/cart/checkout">Go to Checkout</Link>
       </div>
