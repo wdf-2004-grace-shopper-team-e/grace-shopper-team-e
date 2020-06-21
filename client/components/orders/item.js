@@ -16,13 +16,9 @@ export class Item extends React.Component {
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
-    await this.props.putEditItem(
-      event,
-      this.props.order.id,
-      this.props.plant.id
-    )
+    this.props.putEditItem(event, this.props.order.id, this.props.plant.id)
   }
   handleRemoveItem = () => {
     this.props.deleteRemoveItem(this.props.order.id, this.props.plant.id)
@@ -30,39 +26,43 @@ export class Item extends React.Component {
 
   render() {
     const {plant} = this.props
-    const {name, price, imageUrl, stock} = plant
+    const {name, price, imageUrl, description, stock} = plant
     const {plantQuantity, plantSubtotal} = plant.plant_order
+
     return (
       <div className="item">
-        <div>
-          <h2>{name}</h2>
-          <img src={imageUrl} height="100" width="150" />
-          <h4>price: ${price / 100}</h4>
-        </div>
-        <div>
-          <h4>in Cart: {plantQuantity}</h4>
-          <h3>subtotal: ${plantSubtotal / 100}</h3>
-        </div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              name="updateQuantity"
-              type="number"
-              value={this.state.updateQuantity}
-              min="1"
-              max={stock}
-              onChange={this.handleChange}
-              required
-            />
-            <button disabled={!stock} type="submit">
-              Update Quantity
-            </button>
-          </form>
-        </div>
-        <div>
-          <button type="button" onClick={this.handleRemoveItem}>
-            Remove from Cart
-          </button>
+        <div className="item-details">
+          <div className="plant-details">
+            <h2>{name}</h2>
+            <img src={imageUrl} height="100" width="150" />
+            <p>{description}</p>
+            <h4>price: ${price / 100}</h4>
+          </div>
+          <div className="quantity-details">
+            <h4>in Cart: {plantQuantity}</h4>
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  name="updateQuantity"
+                  type="number"
+                  value={this.state.updateQuantity}
+                  min="1"
+                  max={stock}
+                  onChange={this.handleChange}
+                  required
+                />
+                <button disabled={!stock} type="submit">
+                  Update Quantity
+                </button>
+              </form>
+            </div>
+            <h3>subtotal: ${plantSubtotal / 100}</h3>
+            <div>
+              <button type="button" onClick={this.handleRemoveItem}>
+                Remove from Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )

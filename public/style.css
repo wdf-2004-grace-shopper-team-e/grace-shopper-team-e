@@ -19,3 +19,53 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.cart-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: row;
+  align-items: row;
+  flex: auto;
+  width: 50%;
+  border: 0.1rem solid #444444;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.plant-details {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.quantity-details {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  border: 0.1rem solid #444444;
+}
+
+.form-row input {
+  display: flex;
+  width: 100%;
+}

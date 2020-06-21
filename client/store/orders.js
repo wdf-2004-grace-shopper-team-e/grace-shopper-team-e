@@ -1,12 +1,17 @@
 import axios from 'axios'
+import {clearItems} from './orderSummary'
 
 // action types
 const UPDATE_ORDER = 'UPDATE_ORDER'
+const SUBMIT_ORDER = 'SUBMIT_ORDER'
 
 // action creators
 const updateOrder = order => ({
   type: UPDATE_ORDER,
   order
+})
+export const submitOrder = () => ({
+  type: SUBMIT_ORDER
 })
 
 // thunks
@@ -81,8 +86,9 @@ export const editOrder = (event, orderId) => {
         billingState: billingState.value,
         billingZipCode: billingZipCode.value
       })
-      console.log('order updated!')
-      dispatch(updateOrder(order.data))
+
+      dispatch(submitOrder())
+      dispatch(clearItems())
     } catch (error) {
       console.error(error)
     }
@@ -97,6 +103,8 @@ export default (state = order, action) => {
   switch (action.type) {
     case UPDATE_ORDER:
       return action.order
+    case SUBMIT_ORDER:
+      return {}
     default:
       return state
   }

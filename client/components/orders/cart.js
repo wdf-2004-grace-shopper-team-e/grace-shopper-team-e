@@ -9,13 +9,11 @@ export const Cart = props => {
   const order = JSON.parse(localStorage.getItem('currentOrder'))
 
   useEffect(() => {
-    if (localStorage.getItem('currentOrder')) {
-      props.getItems(order.id)
-    }
+    if (order) props.getItems(order.id)
   }, [])
 
   return (
-    <div>
+    <div className="cart-page">
       <div>
         <Link to="/cart/checkout">Go to Checkout</Link>
       </div>
