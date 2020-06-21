@@ -4,6 +4,8 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_PLANT = 'GET_PLANT'
+const UPDATE_PLANTS = 'UPDATE_PLANTS'
+const REMOVE_PLANTS = 'REMOVE_PLANTS'
 
 /**
  * ACTION CREATORS
@@ -24,6 +26,28 @@ export const fetchPlant = id => {
       dispatch(plant)
     } catch (error) {
       console.error(error)
+    }
+  }
+}
+
+export const updatePlant = (project, id) => {
+  return async dispatch => {
+    try {
+      const res = await axios.put(`/api/plants/${id}`, project)
+      const newPlant = getPlant(res.data)
+      dispatch(newPlant)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const deletePlant = plantId => {
+  return async dispatch => {
+    try {
+      const res = await axios.delete(`/api/plants/${plantId}`)
+    } catch (error) {
+      console.log(error)
     }
   }
 }
