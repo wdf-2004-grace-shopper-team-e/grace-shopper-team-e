@@ -4,38 +4,74 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>BOILERMAKER</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/plants">Plants</Link>
-          <Link to="/cart">Cart</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
-)
+class Navbar extends React.Component {
+  render() {
+    const {handleClick, isLoggedIn, isAdmin, User} = this.props // will use isAdmin and User for displaying
+    console.log('props++++++', this.props)
+    return (
+      <div>
+        <h1>BOILERMAKER</h1>
+        <nav>
+          {isLoggedIn ? (
+            <div>
+              {/* The navbar will show these links after you log in */}
+              <Link to="/home">Home</Link>
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </div>
+          ) : (
+            <div>
+              {/* The navbar will show these links before you log in */}
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+              <Link to="/plants">Plants</Link>
+              <Link to="/cart">Cart</Link>
+            </div>
+          )}
+        </nav>
+        <hr />
+      </div>
+    )
+  }
+}
+
+// Previous Code
+
+// const Navbar = ({handleClick, isLoggedIn}) => (
+//   <div>
+//     <h1>BOILERMAKER</h1>
+//     <nav>
+//       {isLoggedIn ? (
+//         <div>
+//           {/* The navbar will show these links after you log in */}
+//           <Link to="/home">Home</Link>
+//           <a href="#" onClick={handleClick}>
+//             Logout
+//           </a>
+//         </div>
+//       ) : (
+//         <div>
+//           {/* The navbar will show these links before you log in */}
+//           <Link to="/login">Login</Link>
+//           <Link to="/signup">Sign Up</Link>
+//           <Link to="/plants">Plants</Link>
+//           <Link to="/cart">Cart</Link>
+//         </div>
+//       )}
+//     </nav>
+//     <hr />
+//   </div>
+// )
 
 /**
  * CONTAINER
  */
 const mapState = state => {
+  console.log('this is state', state)
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user // Mariia this is a change
   }
 }
 
