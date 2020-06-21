@@ -2209,14 +2209,23 @@ var order = {}; // reducer
 /*!********************************!*\
   !*** ./client/store/plants.js ***!
   \********************************/
-/*! exports provided: fetchPlants, default */
+/*! exports provided: setPlant, fetchPlants, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPlant", function() { return setPlant; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPlants", function() { return fetchPlants; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2227,6 +2236,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var GET_PLANTS = 'GET_PLANTS';
+var ADD_PLANTS = 'ADD_PLANTS';
 /**
  * ACTION CREATORS
  */
@@ -2237,38 +2247,45 @@ var getPlants = function getPlants(plants) {
     plants: plants
   };
 };
+
+var addPlant = function addPlant(plant) {
+  return {
+    type: ADD_PLANTS,
+    plant: plant
+  };
+};
 /**
  * THUNK CREATORS
  */
 
 
-var fetchPlants = function fetchPlants() {
+var setPlant = function setPlant(plant) {
   return (
     /*#__PURE__*/
     function () {
       var _ref = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(dispatch) {
-        var res, plants;
+        var res, newPlant;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/plants');
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/plants/', plant);
 
               case 3:
                 res = _context.sent;
-                plants = getPlants(res.data);
-                dispatch(plants);
+                newPlant = addPlant(res.data);
+                dispatch(newPlant);
                 _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](0);
-                console.error(_context.t0);
+                console.log(_context.t0);
 
               case 11:
               case "end":
@@ -2280,6 +2297,48 @@ var fetchPlants = function fetchPlants() {
 
       return function (_x) {
         return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+var fetchPlants = function fetchPlants() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(dispatch) {
+        var res, plants;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/plants');
+
+              case 3:
+                res = _context2.sent;
+                plants = getPlants(res.data);
+                dispatch(plants);
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.error(_context2.t0);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
       };
     }()
   );
@@ -2300,6 +2359,9 @@ var initialState = [];
   switch (action.type) {
     case GET_PLANTS:
       return action.plants;
+
+    case ADD_PLANTS:
+      return [].concat(_toConsumableArray(state), [action.plant]);
 
     default:
       return state;
