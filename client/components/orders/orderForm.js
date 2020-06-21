@@ -60,9 +60,9 @@ class OrderForm extends React.Component {
         <h1>Total Cost: ${totalCost / 100}</h1>
         <div className="form-element">
           <form id={this.props.orderId} onSubmit={this.handleSubmit}>
-            <div id="shipping-info">
+            <div id="shipping-info" className="form-section">
               <h1>Shipping Information</h1>
-              <div id="shipping-name">
+              <div id="shipping-name" className="form-row">
                 <div>
                   <label>First Name:</label>
                   <input
@@ -82,16 +82,18 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="shipping-address">
-                <label>Address:</label>
-                <input
-                  type="text"
-                  name="shippingAddress"
-                  onChange={this.handleChange}
-                  value={this.state.shippingAddress}
-                />
+              <div id="shipping-address" className="form-row">
+                <div>
+                  <label>Address:</label>
+                  <input
+                    type="text"
+                    name="shippingAddress"
+                    onChange={this.handleChange}
+                    value={this.state.shippingAddress}
+                  />
+                </div>
               </div>
-              <div id="shipping-region">
+              <div id="shipping-region" className="form-row">
                 <div>
                   <label>City:</label>
                   <input
@@ -121,7 +123,7 @@ class OrderForm extends React.Component {
                 </div>
               </div>
             </div>
-            <div id="billing-info">
+            <div id="billing-info" className="form-section">
               <h1>Billing Information</h1>
               <div id="order-cost">
                 <input
@@ -131,16 +133,18 @@ class OrderForm extends React.Component {
                   value={totalCost}
                 />
               </div>
-              <div id="order-email">
-                <label>Email:</label>
-                <input
-                  type="text"
-                  name="email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
+              <div id="order-email" className="form-row">
+                <div>
+                  <label>Email:</label>
+                  <input
+                    type="text"
+                    name="email"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                </div>
               </div>
-              <div id="billing-name">
+              <div id="billing-name" className="form-row">
                 <div>
                   <label>First Name:</label>
                   <input
@@ -160,16 +164,18 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="billing-address">
-                <label>Address:</label>
-                <input
-                  type="text"
-                  name="billingAddress"
-                  onChange={this.handleChange}
-                  value={this.state.billingAddress}
-                />
+              <div id="billing-address" className="form-row">
+                <div>
+                  <label>Address:</label>
+                  <input
+                    type="text"
+                    name="billingAddress"
+                    onChange={this.handleChange}
+                    value={this.state.billingAddress}
+                  />
+                </div>
               </div>
-              <div id="billing-region">
+              <div id="billing-region" className="form-row">
                 <div>
                   <label>City:</label>
                   <input

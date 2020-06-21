@@ -732,9 +732,11 @@ function (_React$Component) {
         id: this.props.orderId,
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "shipping-info"
+        id: "shipping-info",
+        className: "form-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Shipping Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "shipping-name"
+        id: "shipping-name",
+        className: "form-row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "shippingFirstName",
@@ -746,14 +748,16 @@ function (_React$Component) {
         onChange: this.handleChange,
         value: this.state.shippingLastName
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "shipping-address"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "shipping-address",
+        className: "form-row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "shippingAddress",
         onChange: this.handleChange,
         value: this.state.shippingAddress
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "shipping-region"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "shipping-region",
+        className: "form-row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "City:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "shippingCity",
@@ -770,7 +774,8 @@ function (_React$Component) {
         onChange: this.handleChange,
         value: this.state.shippingZipCode
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "billing-info"
+        id: "billing-info",
+        className: "form-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Billing Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "order-cost"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -779,14 +784,16 @@ function (_React$Component) {
         readOnly: true,
         value: totalCost
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "order-email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "order-email",
+        className: "form-row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "email",
         onChange: this.handleChange,
         value: this.state.email
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "billing-name"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "billing-name",
+        className: "form-row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "billingFirstName",
@@ -798,14 +805,16 @@ function (_React$Component) {
         onChange: this.handleChange,
         value: this.state.billingLastName
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "billing-address"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "billing-address",
+        className: "form-row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Address:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "billingAddress",
         onChange: this.handleChange,
         value: this.state.billingAddress
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "billing-region"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "billing-region",
+        className: "form-row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "City:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "billingCity",
