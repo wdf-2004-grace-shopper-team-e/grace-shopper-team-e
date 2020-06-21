@@ -363,7 +363,8 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           handleClick = _this$props.handleClick,
           isLoggedIn = _this$props.isLoggedIn,
           isAdmin = _this$props.isAdmin,
-          User = _this$props.User;
+          User = _this$props.User; // will use isAdmin and User for displaying
+
       console.log('props++++++', this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BOILERMAKER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/home"
@@ -383,7 +384,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Navbar;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // console.log('props++++++', props)
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // Previous Code
 // const Navbar = ({handleClick, isLoggedIn}) => (
 //   <div>
 //     <h1>BOILERMAKER</h1>
@@ -419,7 +420,8 @@ var mapState = function mapState(state) {
   console.log('this is state', state);
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user // Mariia this is a change
+
   };
 };
 
