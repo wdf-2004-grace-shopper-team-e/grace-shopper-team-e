@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {setPlant} from '../../store/plants'
 import {updatePlant} from '../../store/singlePlant'
 
-export class PlantForm extends React.Component {
+export class AddPlant extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -128,4 +128,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(null, mapDispatch)(PlantForm)
+export default connect(null, mapDispatch)(AddPlant)
