@@ -9,7 +9,8 @@ import {
   Allplants,
   SinglePlant,
   Cart,
-  CheckoutPage
+  CheckoutPage,
+  AddPlant
 } from './components'
 import {me} from './store'
 
@@ -33,6 +34,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="addplant" componenet={AddPlant} />
           </Switch>
         )}
         {/* plants page listing all plants */}
