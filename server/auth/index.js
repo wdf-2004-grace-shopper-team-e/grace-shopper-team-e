@@ -4,7 +4,6 @@ module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
-    // console.log('this is req.body******', req.body)
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
       res.status(401).send('Wrong username and/or password')
@@ -22,7 +21,7 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const cart = await Order.create()
-    const user = await User.create(req.body)
+    const user = await User.create({...req.body, cartId: cart.id})
     cart.setUser(user)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
