@@ -955,7 +955,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_plants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/plants */ "./client/store/plants.js");
 /* harmony import */ var _store_singlePlant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/singlePlant */ "./client/store/singlePlant.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -963,15 +963,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -979,17 +983,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var PlantForm =
-/*#__PURE__*/
-function (_React$Component) {
+var PlantForm = /*#__PURE__*/function (_React$Component) {
   _inherits(PlantForm, _React$Component);
+
+  var _super = _createSuper(PlantForm);
 
   function PlantForm() {
     var _this;
 
     _classCallCheck(this, PlantForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PlantForm).call(this));
+    _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       _this.setState(_defineProperty({}, event.target.name, event.target.value));
@@ -1033,78 +1037,78 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "name"
-      }, "Plant Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Plant Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "name",
         type: "text",
         value: this.state.name,
         onChange: this.handleChange,
         placeholder: "Plant Name:",
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "price"
-      }, "Plant Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Plant Price:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "price",
         type: "number",
         value: this.state.price,
         onChange: this.handleChange,
         placeholder: "Plant Price",
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "description"
-      }, "Description:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         name: "description",
         value: this.state.description,
         placeholder: "Description",
         onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "stock"
-      }, "Plant Stock:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Plant Stock:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "stock",
         type: "number",
         value: this.state.stock,
         onChange: this.handleChange,
         placeholder: "Plant Stock",
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "imageUrl"
-      }, "Plant Image URL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Plant Image URL:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "imageUrl",
         type: "text",
         value: this.state.imageUrl,
         onChange: this.handleChange,
         placeholder: "Plant Image URL:",
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the living condition:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the living condition:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.livingCondition,
         onChange: this.handleChange,
         name: "livingCondition"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "indoor"
-      }, "Indoor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Indoor"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "outdoor"
-      }, "Outdoor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Outdoor"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "shade"
-      }, "Shade"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Shade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sun"
-      }, "Sun"), "x", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Sun"), "x", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "low light"
-      }, "Low light"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Low light"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Just Add Water"
-      }, "Just Add Water"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the Season:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, "Just Add Water"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the Season:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.season,
         onChange: this.handleChange,
         name: "season"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "This plant is happy all year long"
-      }, "This plant is happy all year long"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "This plant is happy all year long"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Spring"
-      }, "Spring"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Spring"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Summer"
-      }, "Summer"), "x", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Summer"), "x", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Fall"
-      }, "Fall"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Fall"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit"));
     }
@@ -1223,8 +1227,8 @@ var Plants = /*#__PURE__*/function (_React$Component) {
           key: plant.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, plant.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: plant.imageUrl,
-          height: "100",
-          width: "150"
+          height: "175",
+          width: "175"
         })));
       }));
     }
@@ -1620,11 +1624,11 @@ var UserHome = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_nav__WEBPACK_IMPORTED_MODULE_3__["UserNav"], {
         isAdmin: isAdmin
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", firstName, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, imgUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: imgUrl
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "images/defaultUser.jpg"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome Back ", firstName, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: imgUrl,
+        height: "175",
+        width: "175"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -1887,14 +1891,10 @@ var Routes = /*#__PURE__*/function (_Component) {
       }), isLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
-<<<<<<< HEAD
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "addplant",
         componenet: _components__WEBPACK_IMPORTED_MODULE_4__["AddPlant"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-=======
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
->>>>>>> fb933d4cc6995a26239fb1c6cd1cc94ebd59946d
         exact: true,
         path: "/plants",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Allplants"]
@@ -2473,13 +2473,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePlant", function() { return deletePlant; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -2522,59 +2526,29 @@ var removePlant = function removePlant(plantId) {
  */
 
 
-<<<<<<< HEAD
 var setPlant = function setPlant(plant) {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(dispatch) {
-        var res, newPlant;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/plants/', plant);
-
-              case 3:
-                res = _context.sent;
-                newPlant = addPlant(res.data);
-                dispatch(newPlant);
-                _context.next = 11;
-                break;
-
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
-=======
-var fetchPlants = function fetchPlants() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var res, plants;
+      var res, newPlant;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/plants');
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/plants/', plant);
 
             case 3:
               res = _context.sent;
-              plants = getPlants(res.data);
-              dispatch(plants);
+              newPlant = addPlant(res.data);
+              dispatch(newPlant);
               _context.next = 11;
               break;
 
             case 8:
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
->>>>>>> fb933d4cc6995a26239fb1c6cd1cc94ebd59946d
+              console.log(_context.t0);
 
             case 11:
             case "end":
@@ -2590,88 +2564,78 @@ var fetchPlants = function fetchPlants() {
   }();
 };
 var fetchPlants = function fetchPlants() {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(dispatch) {
-        var res, plants;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/plants');
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var res, plants;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/plants');
 
-              case 3:
-                res = _context2.sent;
-                plants = getPlants(res.data);
-                dispatch(plants);
-                _context2.next = 11;
-                break;
+            case 3:
+              res = _context2.sent;
+              plants = getPlants(res.data);
+              dispatch(plants);
+              _context2.next = 11;
+              break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                console.error(_context2.t0);
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              console.error(_context2.t0);
 
-              case 11:
-              case "end":
-                return _context2.stop();
-            }
+            case 11:
+            case "end":
+              return _context2.stop();
           }
-        }, _callee2, null, [[0, 8]]);
-      }));
+        }
+      }, _callee2, null, [[0, 8]]);
+    }));
 
-      return function (_x2) {
-        return _ref2.apply(this, arguments);
-      };
-    }()
-  );
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
 };
 var deletePlant = function deletePlant(plantId) {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(dispatch) {
-        var res, deletedPlant;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/plants/".concat(plantId));
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+      var res, deletedPlant;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/plants/".concat(plantId));
 
-              case 3:
-                res = _context3.sent;
-                deletedPlant = removePlant(plantId);
-                dispatch(deletedPlant);
-                _context3.next = 11;
-                break;
+            case 3:
+              res = _context3.sent;
+              deletedPlant = removePlant(plantId);
+              dispatch(deletedPlant);
+              _context3.next = 11;
+              break;
 
-              case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
-                console.log(_context3.t0);
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](0);
+              console.log(_context3.t0);
 
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
+            case 11:
+            case "end":
+              return _context3.stop();
           }
-        }, _callee3, null, [[0, 8]]);
-      }));
+        }
+      }, _callee3, null, [[0, 8]]);
+    }));
 
-      return function (_x3) {
-        return _ref3.apply(this, arguments);
-      };
-    }()
-  );
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
 };
 /**
  * INITIAL STATE
@@ -2790,46 +2754,41 @@ var fetchPlant = function fetchPlant(id) {
   }();
 };
 var updatePlant = function updatePlant(project, id) {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(dispatch) {
-        var res, newPlant;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/plants/".concat(id), project);
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var res, newPlant;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/plants/".concat(id), project);
 
-              case 3:
-                res = _context2.sent;
-                newPlant = getPlant(res.data);
-                dispatch(newPlant);
-                _context2.next = 11;
-                break;
+            case 3:
+              res = _context2.sent;
+              newPlant = getPlant(res.data);
+              dispatch(newPlant);
+              _context2.next = 11;
+              break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
 
-              case 11:
-              case "end":
-                return _context2.stop();
-            }
+            case 11:
+            case "end":
+              return _context2.stop();
           }
-        }, _callee2, null, [[0, 8]]);
-      }));
+        }
+      }, _callee2, null, [[0, 8]]);
+    }));
 
-      return function (_x2) {
-        return _ref2.apply(this, arguments);
-      };
-    }()
-  );
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
 };
 /**
  * INITIAL STATE

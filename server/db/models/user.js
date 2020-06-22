@@ -53,7 +53,8 @@ const User = db.define('user', {
   },
   imgUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'images/defaultUser.jpg'
+    defaultValue:
+      'https://cdn.shopify.com/s/files/1/0680/9661/products/DSC_0020_1200x1200.jpg?v=1586992924'
   }
 })
 

@@ -1,8 +1,29 @@
 const userSeeds = [
   {
-    email: 'grace-shopper-team-e@email.com',
-    firstName: 'Team',
-    lastName: 'LetterE',
+    email: 'Frederick@plantagram.com',
+    firstName: 'Frederick',
+    lastName: 'Tetteh',
+    password: 'fullstack',
+    isAdmin: true
+  },
+  {
+    email: 'Mariia@plantagram.com',
+    firstName: 'Mariia',
+    lastName: 'Romaniuk',
+    password: 'fullstack',
+    isAdmin: true
+  },
+  {
+    email: 'Ube@plantagram.com',
+    firstName: 'Ube',
+    lastName: 'Halaya',
+    password: 'fullstack',
+    isAdmin: true
+  },
+  {
+    email: 'Kay@plantagram.com',
+    firstName: 'Kay',
+    lastName: 'Hardeman',
     password: 'fullstack',
     isAdmin: true
   },
@@ -25,26 +46,26 @@ const userSeeds = [
     password: '1234'
   },
   {
-    email: 'frederickD@email.com',
-    firstName: 'Frederick',
+    email: 'jamesD@email.com',
+    firstName: 'James',
     lastName: 'Doe',
     password: '1234'
   },
   {
-    email: 'ubeT@email.com',
-    firstName: 'Ube',
+    email: 'kylieT@email.com',
+    firstName: 'Kylie',
     lastName: 'Thomas',
     password: '1234'
   },
   {
-    email: 'KayP@email.com',
-    firstName: 'Kay',
+    email: 'richardP@email.com',
+    firstName: 'Richard',
     lastName: 'Packman',
     password: '1234'
   },
   {
-    email: 'mariaJ@email.com',
-    firstName: 'Mariia',
+    email: 'orlandoJ@email.com',
+    firstName: 'Orlando',
     lastName: 'Johnson',
     password: '1234'
   },

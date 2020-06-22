@@ -45,6 +45,8 @@ async function seed() {
   const plant3 = await Plant.create({
     name: 'Treant',
     price: 2999,
+    imageUrl:
+      'https://images.unsplash.com/photo-1507746212228-2d3645cbeb56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant4 = await Plant.create({
@@ -75,7 +77,7 @@ async function seed() {
     price: 1900,
     description: 'indoor dry plant',
     imageUrl:
-      'https://images.unsplash.com/photo-1558693168-c370615b54e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
+      'https://images.unsplash.com/photo-1591454371758-644f9d123a81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant8 = await Plant.create({
@@ -120,15 +122,15 @@ async function seed() {
   })
   const plant13 = await Plant.create({
     name: 'Gillyweed',
-    price: 2700,
+    price: 1700,
     description: 'indoor dry plant',
     imageUrl:
-      'https://images.unsplash.com/photo-1575652471646-d37126819b27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
+      'https://images.unsplash.com/photo-1590622541550-5bc0b2df5bd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60%27',
     stock: 10
   })
   const plant14 = await Plant.create({
     name: 'Buy 1 Get 3',
-    price: 2900,
+    price: 2800,
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1556408978-4d89b27624bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
@@ -138,8 +140,10 @@ async function seed() {
   })
   const plant15 = await Plant.create({
     name: 'Cactus',
-    price: 1200,
+    price: 2900,
     description: 'indoor dry plant',
+    imageUrl:
+      'https://images.unsplash.com/photo-1565241603507-952d845eceb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
   })
   const plant16 = await Plant.create({
