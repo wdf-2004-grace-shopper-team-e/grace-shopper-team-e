@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {UserNav} from './user-nav'
 import {updateUserThunk} from '../store/user'
+import {getOrder} from '../store/orders'
 
 /**
  * COMPONENT
@@ -29,14 +30,19 @@ export class UserHome extends Component {
     })
     this.handleLogin()
   }
-
   async handleLogin() {
     const ls = window.localStorage
-    const guestCart = JSON.parse(ls.getItem('cart'))
-    await this.props.getAllCartItems()
+    const guestCart = JSON.parse(ls.getItem('currentOrder'))
+    await this.props.getOrder(this.props.cartId)
+    // const update = {this.props.cartId: this.props.orderId}
+    // updateUserThunk(id, update)
+
     if (guestCart) {
-      this.props.mergeCarts({guestCart, userCart: this.props.userCart})
-      ls.removeItem('cart')
+      const loggedUserCart = this.props.mergeCarts({
+        guestCart,
+        userCart: this.props.order
+      })
+      ls.setItem('currentOrder', JSON.stringify(loggedUserCart))
       console.log('guest cart: ', guestCart)
       console.log('user cart: ', this.props.userCart)
     } else {
@@ -121,12 +127,15 @@ const mapState = state => {
     imgUrl: state.user.imgUrl,
     googleId: state.user.googleId,
     id: state.user.id,
-    isAdmin: state.user.isAdmin
+    isAdmin: state.user.isAdmin,
+    cartId: state.user.cartId,
+    order: state.order
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: (id, update) => dispatch(updateUserThunk(id, update))
+  updateUser: (id, update) => dispatch(updateUserThunk(id, update)),
+  getOrder: orderId => dispatch(getOrder(orderId))
 })
 
 export default connect(mapState, mapDispatchToProps)(UserHome)

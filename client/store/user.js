@@ -38,7 +38,8 @@ export const updateUserThunk = (id, update) => async dispatch => {
       firstName: update.firstName,
       lastName: update.lastName,
       email: update.email,
-      id: update.id
+      id: update.id,
+      cartId: update.cartId
     })
     dispatch(updateUser(id, update))
   } catch (error) {
