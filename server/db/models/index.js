@@ -14,6 +14,9 @@ const OrderSummary = require('./orderSummary')
 Plant.belongsToMany(Order, {as: 'OrderSummary', through: 'plant_order'})
 Order.belongsToMany(Plant, {as: 'OrderSummary', through: 'plant_order'})
 
+// User.hasMany(Order)
+// Order.belongsToOne(User)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
