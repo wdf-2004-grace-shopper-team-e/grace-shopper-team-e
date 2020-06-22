@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchPlants} from '../../store/plants'
+import AddPlant from './AddPlant'
 /**
  * Plants COMPONENT
  */
@@ -24,6 +25,7 @@ export class Plants extends React.Component {
     const {plants} = this.props
     return (
       <div className="plants-list">
+        <AddPlant />
         {plants.map(plant => (
           <Link to={`/plants/${plant.id}`} key={plant.id}>
             <div>

@@ -258,7 +258,7 @@ AuthForm.propTypes = {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: Navbar, UserHome, Allplants, SinglePlant, Login, Signup, Cart, CheckoutPage */
+/*! exports provided: Navbar, UserHome, Allplants, SinglePlant, Login, Signup, Cart, CheckoutPage, AddPlant */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -286,11 +286,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _orders_checkout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./orders/checkout */ "./client/components/orders/checkout.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CheckoutPage", function() { return _orders_checkout__WEBPACK_IMPORTED_MODULE_6__["default"]; });
 
+/* harmony import */ var _plants_AddPlant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./plants/AddPlant */ "./client/components/plants/AddPlant.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AddPlant", function() { return _plants_AddPlant__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 
 
 
@@ -855,23 +859,18 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
-/***/ "./client/components/plants/AllPlants.js":
-/*!***********************************************!*\
-  !*** ./client/components/plants/AllPlants.js ***!
-  \***********************************************/
-/*! exports provided: Plants, default */
+/***/ "./client/components/plants/AddPlant.js":
+/*!**********************************************!*\
+  !*** ./client/components/plants/AddPlant.js ***!
+  \**********************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plants", function() { return Plants; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _store_plants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/plants */ "./client/store/plants.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -891,6 +890,171 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var PlantForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PlantForm, _React$Component);
+
+  function PlantForm() {
+    var _this;
+
+    _classCallCheck(this, PlantForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PlantForm).call(this));
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
+      _this.setState(_defineProperty({}, event.target.name, event.target.value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function () {});
+
+    _this.state = {
+      name: '',
+      price: 0,
+      description: '',
+      imageUrl: '',
+      stock: 0,
+      livingCondition: 'indoor',
+      season: 'This plant is happy all year long'
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(PlantForm, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "name"
+      }, "Plant Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "name",
+        type: "text",
+        value: this.state.name,
+        onChange: this.handleChange,
+        placeholder: "Plant Name:",
+        required: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "price"
+      }, "Plant Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "price",
+        type: "number",
+        value: this.state.price,
+        onChange: this.handleChange,
+        placeholder: "Plant Price",
+        required: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "description"
+      }, "Description:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        name: "description",
+        value: this.state.description,
+        placeholder: "Description",
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "stock"
+      }, "Plant Stock:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "stock",
+        type: "number",
+        value: this.state.stock,
+        onChange: this.handleChange,
+        placeholder: "Plant Stock",
+        required: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "imageUrl"
+      }, "Plant Image URL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "imageUrl",
+        type: "text",
+        value: this.state.imageUrl,
+        onChange: this.handleChange,
+        placeholder: "Plant Image URL:",
+        required: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the living condition:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.livingCondition,
+        onChange: this.handleChange,
+        name: "livingCondition"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "indoor"
+      }, "Indoor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "outdoor"
+      }, "Outdoor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "shade"
+      }, "Shade"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "sun"
+      }, "Sun"), "x", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "low light"
+      }, "Low light"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Just Add Water"
+      }, "Just Add Water"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pick the Season:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.season,
+        onChange: this.handleChange,
+        name: "season"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "This plant is happy all year long"
+      }, "This plant is happy all year long"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Spring"
+      }, "Spring"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Summer"
+      }, "Summer"), "x", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Fall"
+      }, "Fall"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "Submit"));
+    }
+  }]);
+
+  return PlantForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatch)(PlantForm));
+
+/***/ }),
+
+/***/ "./client/components/plants/AllPlants.js":
+/*!***********************************************!*\
+  !*** ./client/components/plants/AllPlants.js ***!
+  \***********************************************/
+/*! exports provided: Plants, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plants", function() { return Plants; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_plants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/plants */ "./client/store/plants.js");
+/* harmony import */ var _AddPlant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddPlant */ "./client/components/plants/AddPlant.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -942,7 +1106,7 @@ function (_React$Component) {
       var plants = this.props.plants;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "plants-list"
-      }, plants.map(function (plant) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddPlant__WEBPACK_IMPORTED_MODULE_5__["default"], null), plants.map(function (plant) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: "/plants/".concat(plant.id),
           key: plant.id
