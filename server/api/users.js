@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Order} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -47,5 +48,37 @@ router.get('/:id', async (req, res, next) => {
     res.json(user)
   } catch (err) {
     next(err)
+  }
+})
+
+// Get all plants currently in users cart
+// ask Ube if it is the same as 'api/:orderId' !!!
+// router.get('/', async (req, res, next) => {
+//   try {
+//     if (!req.user) {
+//       res.sendStatus(204)
+//     } else {
+//       const allCartItems = await Order.getAllItemsInCart(
+//         req.user.dataValues.cartId
+//       )
+//       res.json(allCartItems)
+//     }
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+// Merge guest cart with users cart
+// similar to the PUT, but the body of the request contains only
+// the property of the resource that needs to be changed.
+router.patch('/', async (req, res, next) => {
+  const orderId = req.user.dataValues.cartId
+  const {guestCart, userCart} = req.body
+  try {
+    const mergedCarts = await Order.mergeCarts(orderId, guestCart, userCart)
+    console.log('Merged carts: ', mergedCarts)
+    res.status(202).json(mergedCarts)
+  } catch (error) {
+    console.error('Error in the cart merge route.', error)
   }
 })

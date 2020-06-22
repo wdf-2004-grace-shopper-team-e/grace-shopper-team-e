@@ -30,10 +30,10 @@ export class UserNav extends Component {
                   <Link to="/users">View All Users</Link>
                 </li>
                 <li>
-                  <Link to="/addplant">Add Products</Link>
+                  <Link to="/addplant">Add Plant</Link>
                 </li>
                 <li>
-                  <Link to="/plants">Edit Products</Link>
+                  <Link to="/plants">Edit Plant</Link>
                 </li>
               </ul>
             </div>

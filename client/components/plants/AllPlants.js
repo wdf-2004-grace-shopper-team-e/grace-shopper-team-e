@@ -24,6 +24,7 @@ export class Plants extends React.Component {
     const {plants} = this.props
     return (
       <div className="plants-list">
+        <Link to="/addplant">Add plant</Link>
         {plants.map(plant => (
           <Link to={`/plants/${plant.id}`} key={plant.id}>
             <div>
