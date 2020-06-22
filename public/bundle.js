@@ -231,10 +231,15 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     handleSubmit: function handleSubmit(evt) {
       evt.preventDefault();
-      var formName = evt.target.name;
+      var firstName = evt.target.firstName;
+      var lastName = evt.target.lastName;
       var email = evt.target.email.value;
       var password = evt.target.password.value;
-      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, formName));
+      var method = evt.target.name;
+      console.log('evt.target', evt.target);
+      console.log(firstName.value, lastName.value);
+      console.log(email);
+      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, method, firstName, lastName));
     }
   };
 };
@@ -384,33 +389,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Navbar;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // Previous Code
-// const Navbar = ({handleClick, isLoggedIn}) => (
-//   <div>
-//     <h1>BOILERMAKER</h1>
-//     <nav>
-//       {isLoggedIn ? (
-//         <div>
-//           {/* The navbar will show these links after you log in */}
-//           <Link to="/home">Home</Link>
-//           <a href="#" onClick={handleClick}>
-//             Logout
-//           </a>
-//         </div>
-//       ) : (
-//         <div>
-//           {/* The navbar will show these links before you log in */}
-//           <Link to="/login">Login</Link>
-//           <Link to="/signup">Sign Up</Link>
-//           <Link to="/plants">Plants</Link>
-//           <Link to="/cart">Cart</Link>
-//         </div>
-//       )}
-//     </nav>
-//     <hr />
-//   </div>
-// )
-
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 /**
  * CONTAINER
  */
@@ -1295,6 +1274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _user_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-nav */ "./client/components/user-nav.js");
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
+/* harmony import */ var _store_orders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/orders */ "./client/store/orders.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1322,6 +1302,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1369,23 +1350,25 @@ var UserHome = /*#__PURE__*/function (_Component) {
     key: "handleLogin",
     value: function () {
       var _handleLogin = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var ls, guestCart;
+        var ls, guestCart, loggedUserCart;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 ls = window.localStorage;
-                guestCart = JSON.parse(ls.getItem('cart'));
+                guestCart = JSON.parse(ls.getItem('currentOrder'));
                 _context.next = 4;
-                return this.props.getAllCartItems();
+                return this.props.getOrder(this.props.cartId);
 
               case 4:
+                // const update = {this.props.cartId: this.props.orderId}
+                // updateUserThunk(id, update)
                 if (guestCart) {
-                  this.props.mergeCarts({
+                  loggedUserCart = this.props.mergeCarts({
                     guestCart: guestCart,
-                    userCart: this.props.userCart
+                    userCart: this.props.order
                   });
-                  ls.removeItem('cart');
+                  ls.setItem('currentOrder', JSON.stringify(loggedUserCart));
                   console.log('guest cart: ', guestCart);
                   console.log('user cart: ', this.props.userCart);
                 } else {
@@ -1467,7 +1450,9 @@ var mapState = function mapState(state) {
     imgUrl: state.user.imgUrl,
     googleId: state.user.googleId,
     id: state.user.id,
-    isAdmin: state.user.isAdmin
+    isAdmin: state.user.isAdmin,
+    cartId: state.user.cartId,
+    order: state.order
   };
 };
 
@@ -1475,6 +1460,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     updateUser: function updateUser(id, update) {
       return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_4__["updateUserThunk"])(id, update));
+    },
+    getOrder: function getOrder(orderId) {
+      return dispatch(Object(_store_orders__WEBPACK_IMPORTED_MODULE_5__["getOrder"])(orderId));
     }
   };
 };
@@ -2568,7 +2556,8 @@ var updateUserThunk = function updateUserThunk(id, update) {
                 firstName: update.firstName,
                 lastName: update.lastName,
                 email: update.email,
-                id: update.id
+                id: update.id,
+                cartId: update.cartId
               });
 
             case 3:
