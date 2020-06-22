@@ -102,15 +102,23 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const firstName = evt.target.firstName
-      const lastName = evt.target.lastName
-      const email = evt.target.email.value
-      const password = evt.target.password.value
       const method = evt.target.name
-      console.log('evt.target', evt.target)
-      console.log(firstName.value, lastName.value)
-      console.log(email)
-      dispatch(auth(email, password, method, firstName, lastName))
+      console.log(method)
+      if (method === 'signup') {
+        const firstName = evt.target.firstName.value
+        const lastName = evt.target.lastName.value
+        const email = evt.target.email.value
+        const password = evt.target.password.value
+        dispatch(auth(email, password, method, firstName, lastName))
+      } else {
+        const email = evt.target.email.value
+        const password = evt.target.password.value
+        dispatch(auth(email, password, method))
+      }
+
+      // console.log('evt.target', evt.target)
+      // console.log(firstName.value, lastName.value)
+      // console.log(email)
     }
   }
 }
