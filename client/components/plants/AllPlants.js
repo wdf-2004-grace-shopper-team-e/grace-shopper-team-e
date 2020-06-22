@@ -29,7 +29,7 @@ export class Plants extends React.Component {
           <Link to={`/plants/${plant.id}`} key={plant.id}>
             <div>
               <h1>{plant.name}</h1>
-              <img src={plant.imageUrl} height="100" width="150" />
+              <img src={plant.imageUrl} height="175" width="175" />
             </div>
           </Link>
         ))}
