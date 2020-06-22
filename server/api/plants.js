@@ -26,4 +26,44 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//add a new plant to the database
+router.post('/', async (req, res, next) => {
+  try {
+    const newPlant = await Plants.create(req.body)
+    res.json(newPlant)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// update the plant info
+router.put('/:id', async (req, res, next) => {
+  try {
+    const plantId = req.params.id
+    const plant = await Plants.findOne({
+      where: {id: plantId}
+    })
+    const updatedPlant = await plant.update(req.body)
+
+    console.log('updated plant: ', updatedPlant)
+    res.json(updatedPlant)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//delete plant from database
+router.delete('/id', async (req, res, next) => {
+  try {
+    await Plants.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
