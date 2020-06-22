@@ -58,6 +58,7 @@ export class UserHome extends Component {
 
   render() {
     const {firstName, imgUrl, isAdmin} = this.props // add googleId, email
+    console.log('user props', this.props)
     return (
       <div>
         <div>

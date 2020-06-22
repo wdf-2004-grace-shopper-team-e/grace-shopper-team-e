@@ -8,9 +8,10 @@ class Navbar extends React.Component {
   render() {
     const {handleClick, isLoggedIn, isAdmin, User} = this.props // will use isAdmin and User for displaying
     console.log('props++++++', this.props)
+
     return (
       <div>
-        <h1>BOILERMAKER</h1>
+        <h1>Plantagram</h1>
         <nav>
           {isLoggedIn ? (
             <div>
@@ -19,6 +20,8 @@ class Navbar extends React.Component {
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
+              <Link to="/plants">Plants</Link>
+              <Link to="/cart">Cart</Link>
             </div>
           ) : (
             <div>
