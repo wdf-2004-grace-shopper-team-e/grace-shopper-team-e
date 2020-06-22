@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {setPlant} from '../../store/plants'
+import {updatePlant} from '../../store/singlePlant'
 
-class PlantForm extends React.Component {
+export class PlantForm extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -20,7 +22,23 @@ class PlantForm extends React.Component {
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-  handleSubmit = () => {}
+  handleSubmit(event) {
+    event.preventDefault()
+    if (this.props.state) {
+      this.props.updatePlant(this.state, this.props.state.id)
+    } else {
+      this.props.setPlant(this.state)
+    }
+    this.setState({
+      name: '',
+      price: 0,
+      description: '',
+      imageUrl: '',
+      stock: 0,
+      livingCondition: 'indoor',
+      season: 'This plant is happy all year long'
+    })
+  }
   render() {
     return (
       <form>
@@ -104,7 +122,10 @@ class PlantForm extends React.Component {
 }
 
 const mapDispatch = dispatch => {
-  return {}
+  return {
+    setPlant: plant => dispatch(setPlant(plant)),
+    updatePlant: (plant, id) => dispatch(updatePlant(plant, id))
+  }
 }
 
 export default connect(null, mapDispatch)(PlantForm)

@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_PLANTS = 'GET_PLANTS'
 const ADD_PLANTS = 'ADD_PLANTS'
+const DELETE_PLANT = 'DELETE PLANT'
 
 /**
  * ACTION CREATORS
@@ -17,6 +18,10 @@ const getPlants = plants => ({
 const addPlant = plant => ({
   type: ADD_PLANTS,
   plant
+})
+const removePlant = plantId => ({
+  type: DELETE_PLANT,
+  plantId
 })
 
 /**
@@ -44,6 +49,17 @@ export const fetchPlants = () => {
     }
   }
 }
+export const deletePlant = plantId => {
+  return async dispatch => {
+    try {
+      const res = await axios.delete(`/api/plants/${plantId}`)
+      const deletedPlant = removePlant(plantId)
+      dispatch(deletedPlant)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 /**
  * INITIAL STATE
  */
@@ -58,6 +74,16 @@ export default function(state = initialState, action) {
       return action.plants
     case ADD_PLANTS:
       return [...state, action.plant]
+    case DELETE_PLANT: {
+      const newPlants = state.filter(plant => {
+        if (plant.id === action.plantId) {
+          return false
+        } else {
+          return true
+        }
+      })
+      return newPlants
+    }
     default:
       return state
   }

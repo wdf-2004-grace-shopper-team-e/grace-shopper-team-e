@@ -42,15 +42,6 @@ export const updatePlant = (project, id) => {
   }
 }
 
-export const deletePlant = plantId => {
-  return async dispatch => {
-    try {
-      const res = await axios.delete(`/api/plants/${plantId}`)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
 /**
  * INITIAL STATE
  */
