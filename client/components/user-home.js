@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {UserNav} from './user-nav'
 import {updateUserThunk} from '../store/user'
 import {getOrder} from '../store/orders'
+import axios from 'axios'
 
 /**
  * COMPONENT
@@ -14,7 +15,9 @@ export class UserHome extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
+      id: '',
+      imgUrl: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -33,20 +36,15 @@ export class UserHome extends Component {
   async handleLogin() {
     const ls = window.localStorage
     const guestCart = JSON.parse(ls.getItem('currentOrder'))
-    await this.props.getOrder(this.props.cartId)
-    // const update = {this.props.cartId: this.props.orderId}
-    // updateUserThunk(id, update)
 
     if (guestCart) {
-      const loggedUserCart = this.props.mergeCarts({
-        guestCart,
-        userCart: this.props.order
-      })
-      ls.setItem('currentOrder', JSON.stringify(loggedUserCart))
-      console.log('guest cart: ', guestCart)
-      console.log('user cart: ', this.props.userCart)
-    } else {
-      console.log('no guest cart found')
+      const updateCart = {
+        cartId: guestCart.id,
+        id: this.props.id,
+        email: this.props.email
+      }
+      await this.props.updateUser(this.props.id, updateCart)
+      await axios.put(`/api/users/${this.props.id}/set/${guestCart.id}`)
     }
   }
 
@@ -64,14 +62,14 @@ export class UserHome extends Component {
 
   render() {
     const {firstName, imgUrl, isAdmin} = this.props // add googleId, email
-    console.log('user props', this.props)
+    // console.log('user props', this.props)
     return (
       <div>
         <div>
-          <UserNav isAdmin={isAdmin} />
           <div>
             <h3>Welcome Back {firstName}!</h3>
             <img src={imgUrl} height="175" width="175" />
+            <UserNav isAdmin={isAdmin} />
             <div>
               <div>
                 {/* {imgUrl ? (

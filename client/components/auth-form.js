@@ -11,7 +11,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="limiter">
       {displayName === 'Login' ? (
         <div>
           <h3>Log In</h3>
@@ -115,10 +115,6 @@ const mapDispatch = dispatch => {
         const password = evt.target.password.value
         dispatch(auth(email, password, method))
       }
-
-      // console.log('evt.target', evt.target)
-      // console.log(firstName.value, lastName.value)
-      // console.log(email)
     }
   }
 }
