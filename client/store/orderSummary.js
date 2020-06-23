@@ -45,7 +45,6 @@ export const postAddItem = (event, orderId, plantId) => {
 export const deleteRemoveItem = (orderId, plantId) => {
   return async dispatch => {
     try {
-      // const {orderId, plantId} = event.target
       const plants = await axios.delete(
         `/api/ordersummary/${orderId}/remove/${plantId}`
       )

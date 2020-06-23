@@ -22,8 +22,6 @@ router.post('/signup', async (req, res, next) => {
   try {
     const cart = await Order.create()
     const user = await User.create({...req.body, cartId: cart.id})
-    console.log(cart)
-    console.log(user)
     cart.setUser(user)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {

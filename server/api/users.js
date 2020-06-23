@@ -2,7 +2,6 @@ const router = require('express').Router()
 const adminCheck = require('./gatekeepers')
 const {User, Order, Plant} = require('../db/models')
 
-
 module.exports = router
 
 router.get('/', adminCheck, async (req, res, next) => {

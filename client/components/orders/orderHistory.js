@@ -1,17 +1,19 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 
 const OrderHistory = props => {
   return (
-    <div>
+    <div className="orderhistory-page">
       <ul>
-        {props.user.id ? (
+        {typeof props.user.id === 'number' ? (
           <div>
-            <h1>user name {props.user.firstName}</h1>
+            <h1>
+              Order History for {props.user.firstName} {props.user.lastName}
+            </h1>
             {props.user.orders.map(order => {
               if (!order.isCart) {
                 return (
-                  <div key={order.id}>
+                  <div key={order.id} className="order-details overlay">
                     <h2>Order Number {order.id}</h2>
                     <h3>Order Total ${order.totalCost / 100}</h3>
                     {order.OrderSummary.map(plant => {
