@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {default as Item} from './item'
 import {getItems} from '../../store/orderSummary'
+import {me} from '../../store/user'
 import {Link} from 'react-router-dom'
 
 export const Cart = props => {
@@ -35,13 +36,15 @@ export const Cart = props => {
 const mapState = state => {
   return {
     orderSummary: state.orderSummary,
-    order: state.order
+    order: state.order,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getItems: orderId => dispatch(getItems(orderId))
+    getItems: orderId => dispatch(getItems(orderId)),
+    me: () => dispatch(me())
   }
 }
 

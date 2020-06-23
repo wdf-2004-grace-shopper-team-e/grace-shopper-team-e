@@ -25,12 +25,15 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   const userId = req.body.id
+  console.log(req.body)
   try {
-    await User.update(req.body, {
+    console.log('userId', userId)
+    const user = await User.update(req.body, {
       where: {
         id: userId
       }
     })
+    console.log(user)
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -48,6 +51,24 @@ router.get('/:id', async (req, res, next) => {
     res.json(user)
   } catch (err) {
     next(err)
+  }
+})
+
+// set specific order to user
+router.put('/:userId/set/:orderId', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {id: req.params.userId}
+    })
+    const order = await Order.findOne({
+      where: {id: req.params.orderId}
+    })
+
+    await user.addOrder(order)
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
   }
 })
 
