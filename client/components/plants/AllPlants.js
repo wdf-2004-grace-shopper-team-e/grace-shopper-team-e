@@ -5,8 +5,10 @@ import {Link} from 'react-router-dom'
 import {
   fetchPlants,
   filterByCondition,
-  filterBySeason
+  filterBySeason,
+  deletePlant
 } from '../../store/plants'
+
 /**
  * Plants COMPONENT
  */
@@ -25,15 +27,28 @@ export class Plants extends React.Component {
   }
 
   render() {
-    const {plants} = this.props
+    const {plants, isAdmin, isLoggedIn} = this.props
+
     return (
       <div className="plants-list">
-        <Link to="/addplant">Add plant</Link>
+        {isAdmin && isLoggedIn && <Link to="/addplant">Add plant</Link>}
+
         {plants.map(plant => (
           <Link to={`/plants/${plant.id}`} key={plant.id}>
             <div>
               <h1>{plant.name}</h1>
               <img src={plant.imageUrl} height="175" width="175" />
+              {isAdmin &&
+                isLoggedIn && (
+                  <Link to="/plants">
+                    <button
+                      type="button"
+                      onClick={() => this.props.removePlant(plant.id)}
+                    >
+                      Remove Plant
+                    </button>
+                  </Link>
+                )}
             </div>
           </Link>
         ))}
@@ -47,14 +62,17 @@ export class Plants extends React.Component {
  */
 const mapState = state => {
   return {
-    plants: state.plants //get from redux store
+    plants: state.plants, //get from redux store
+    isAdmin: state.user.isAdmin,
+    isLoggedIn: !!state.user.id
   }
 }
 const mapDispatch = dispatch => {
   return {
     getPlants: () => dispatch(fetchPlants()),
     filterByCondition: condition => dispatch(filterByCondition(condition)),
-    filterBySeason: season => dispatch(filterBySeason(season))
+    filterBySeason: season => dispatch(filterBySeason(season)),
+    removePlant: id => dispatch(deletePlant(id))
   }
 }
 
@@ -64,5 +82,7 @@ export default connect(mapState, mapDispatch)(Plants)
  * PROP TYPES
  */
 Plants.propTypes = {
-  plants: PropTypes.array
+  plants: PropTypes.array,
+  isAdmin: PropTypes.bool,
+  isLoggedIn: PropTypes.bool
 }

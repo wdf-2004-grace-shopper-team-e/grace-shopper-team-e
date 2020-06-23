@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchPlant} from '../../store/singlePlant'
 import {postAddItem} from '../../store/orderSummary'
 import {createOrder} from '../../store/orders'
+import {Link} from 'react-router-dom'
 
 /**
  * Plant COMPONENT
@@ -46,10 +47,14 @@ export class Plant extends React.Component {
   }
 
   render() {
-    const {plant} = this.props
+    const {plant, isAdmin, isLoggedIn} = this.props
 
     return (
       <div className="plant">
+        {isAdmin &&
+          isLoggedIn && (
+            <Link to={`/updateplant/${plant.id}`}>Update plant</Link>
+          )}
         <div>
           <h1>{plant.name}</h1>
           <img src={plant.imageUrl} height="100" width="150" />
@@ -91,7 +96,9 @@ export class Plant extends React.Component {
 const mapState = state => {
   return {
     plant: state.singlePlant, //get plant from redux store
-    order: state.order
+    order: state.order,
+    isAdmin: state.user.isAdmin,
+    isLoggedIn: !!state.user.id
   }
 }
 const mapDispatch = dispatch => {
@@ -109,5 +116,7 @@ export default connect(mapState, mapDispatch)(Plant)
  * PROP TYPES
  */
 Plant.propTypes = {
-  plant: PropTypes.object
+  plant: PropTypes.object,
+  isAdmin: PropTypes.bool,
+  isLoggedIn: PropTypes.bool
 }

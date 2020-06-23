@@ -42,13 +42,12 @@ class Routes extends Component {
         {/* checkout page */}
         <Route path="/cart/checkout" component={CheckoutPage} />
 
-        <Route exact path="/addplant" componenet={AddPlant} />
-
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/addplant" componenet={AddPlant} />
+            <Route path="/addplant" component={AddPlant} />
+            <Route path="/updateplant/:plantId" component={AddPlant} />
           </Switch>
         )}
 

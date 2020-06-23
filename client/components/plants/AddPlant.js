@@ -1,22 +1,43 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {setPlant} from '../../store/plants'
-import {updatePlant} from '../../store/singlePlant'
+import {updatePlant, fetchPlant} from '../../store/singlePlant'
+import {Redirect} from 'react-router-dom'
 
 export class AddPlant extends React.Component {
   constructor() {
     super()
-    this.state = {
-      name: '',
-      price: 0,
-      description: '',
-      imageUrl: '',
-      stock: 0,
-      livingCondition: 'indoor',
-      season: 'This plant is happy all year long'
-    }
+    this.state = {}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  componentDidMount() {
+    const id = this.props.match.params.plantId
+    if (id !== 'addplant') {
+      this.props.getPlant(id)
+      const plant = this.props.plant
+      this.setState({
+        name: plant.name,
+        price: plant.price,
+        description: plant.description,
+        imageUrl: plant.imageUrl,
+        stock: plant.stock,
+        livingCondition: plant.livingCondition,
+        season: plant.season,
+        redirectToPlants: false
+      })
+    } else {
+      this.setState({
+        name: '',
+        price: 0,
+        description: '',
+        imageUrl: '',
+        stock: 0,
+        livingCondition: 'indoor',
+        season: 'This plant is happy all year long',
+        redirectToPlants: false
+      })
+    }
   }
 
   handleChange = event => {
@@ -24,8 +45,15 @@ export class AddPlant extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault()
-    if (this.props.state) {
-      this.props.updatePlant(this.state, this.props.state.id)
+    let price = this.state.price
+    let stock = this.state.stock
+    this.setState({
+      price: parseInt(price, 10),
+      stock: parseInt(stock, 10)
+    })
+    console.log('addplant,form', this.state)
+    if (this.props.plant.name) {
+      this.props.updatePlant(this.state, this.props.plant.id)
     } else {
       this.props.setPlant(this.state)
     }
@@ -36,12 +64,17 @@ export class AddPlant extends React.Component {
       imageUrl: '',
       stock: 0,
       livingCondition: 'indoor',
-      season: 'This plant is happy all year long'
+      season: 'This plant is happy all year long',
+      redirectToPlants: true
     })
   }
   render() {
-    return (
-      <form>
+    const redirectToPlants = this.state.redirectToPlants
+    if (redirectToPlants === true) {
+      return <Redirect to="/plants" />
+    }
+    return this.state ? (
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor="name">Plant Name:</label>
         <input
           name="name"
@@ -117,15 +150,20 @@ export class AddPlant extends React.Component {
         </label>
         <button type="submit">Submit</button>
       </form>
-    )
+    ) : null
   }
 }
-
+const mapState = state => {
+  return {
+    plant: state.singlePlant //get plant from redux store
+  }
+}
 const mapDispatch = dispatch => {
   return {
     setPlant: plant => dispatch(setPlant(plant)),
-    updatePlant: (plant, id) => dispatch(updatePlant(plant, id))
+    updatePlant: (plant, id) => dispatch(updatePlant(plant, id)),
+    getPlant: id => dispatch(fetchPlant(id))
   }
 }
 
-export default connect(null, mapDispatch)(AddPlant)
+export default connect(mapState, mapDispatch)(AddPlant)
