@@ -88,23 +88,25 @@ export class Plants extends React.Component {
           </label>
         </div>
         {plants.map(plant => (
-          <Link to={`/plants/${plant.id}`} key={plant.id}>
-            <div>
-              <h1>{plant.name}</h1>
-              <img src={plant.imageUrl} height="175" width="175" />
-              {isAdmin &&
-                isLoggedIn && (
-                  <Link to="/plants">
-                    <button
-                      type="button"
-                      onClick={() => this.props.removePlant(plant.id)}
-                    >
-                      Remove Plant
-                    </button>
-                  </Link>
-                )}
-            </div>
-          </Link>
+          <div key={plant.id}>
+            <Link to={`/plants/${plant.id}`}>
+              <div>
+                <h1>{plant.name}</h1>
+                <img src={plant.imageUrl} height="175" width="175" />
+              </div>
+            </Link>
+            {isAdmin &&
+              isLoggedIn && (
+                <Link to="/plants">
+                  <button
+                    type="button"
+                    onClick={() => this.props.removePlant(plant.id)}
+                  >
+                    Remove Plant
+                  </button>
+                </Link>
+              )}
+          </div>
         ))}
       </div>
     )
