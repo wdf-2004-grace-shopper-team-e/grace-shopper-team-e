@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {editOrder} from '../../store/orders'
+import {completeOrder} from '../../store/orders'
 
 class OrderForm extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class OrderForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.editOrder(event, this.props.order.id)
+    this.props.completeOrder(event, this.props.order.id)
     localStorage.removeItem('currentOrder')
 
     this.setState({
@@ -213,14 +213,10 @@ class OrderForm extends React.Component {
   }
 }
 
-const mapState = state => {
-  return {}
-}
-
 const mapDispatch = dispatch => {
   return {
-    editOrder: (event, orderId) => dispatch(editOrder(event, orderId))
+    completeOrder: (event, orderId) => dispatch(completeOrder(event, orderId))
   }
 }
 
-export default connect(mapState, mapDispatch)(OrderForm)
+export default connect(null, mapDispatch)(OrderForm)
