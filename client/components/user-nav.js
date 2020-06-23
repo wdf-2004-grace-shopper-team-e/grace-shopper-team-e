@@ -12,9 +12,6 @@ export class UserNav extends Component {
           <div>
             <ul>
               <li>
-                <Link to="/user">Edit Profile</Link>
-              </li>
-              <li>
                 <Link to="/cart">View Cart</Link>
               </li>
               <li>
