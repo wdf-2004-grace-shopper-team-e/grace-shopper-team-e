@@ -11,24 +11,13 @@ export class Users extends React.Component {
 
   render() {
     const {users} = this.props
-    console.log('users:::::', users)
     return (
       <div>
         {/* <Link to="/"></Link> */}
         {users.map(user => (
           <Link to={`/users/${user.id}`} key={user.id}>
             <div>
-              <img
-                src={
-                  user.imgUrl ? (
-                    <img src={user.imgUrl} />
-                  ) : (
-                    <img src="../../public/images/defaultUser.jpg" />
-                  )
-                }
-                height="175"
-                width="175"
-              />
+              <img src={user.imgUrl} height="175" width="175" />
               <p>
                 {user.firstName} {user.lastName}{' '}
               </p>
@@ -45,7 +34,6 @@ export class Users extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('stateeeeeeee', state)
   return {
     users: state.users //get from redux store
   }
