@@ -77,7 +77,7 @@ export class UserHome extends Component {
                 {/* {imgUrl ? (
                   <img src={imgUrl} />
                 ) : (
-                  <img src="images/defaultUser.jpg" />
+                  <img src="../../public/images/defaultUser.jpg" />
                 )} */}
               </div>
               <div>
