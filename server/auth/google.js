@@ -29,33 +29,6 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     callbackURL: process.env.GOOGLE_CALLBACK
   }
 
-  // const strategy = new GoogleStrategy(
-  //   googleConfig,
-  //   async (token, refreshToken, profile, done) => {
-  //     const googleId = profile.id
-  //     const name = profile.displayName
-  //     const email = profile.emails[0].value
-  //     const imgUrl = profile.photos[0].value
-
-  //     try {
-  //       const [user] = await User.findOrCreate({
-  //         where: {googleId},
-  //         defaults: {name, email, imgUrl}
-  //       })
-  //       if (!user.cartId) {
-  //         const cart = await Order.create()
-  //         await user.update({cartId: cart.id})
-  //         cart.setUser(user)
-  //       }
-  //       // the server is working, and the credentials match this user object
-  //       done(null, user)
-  //     } catch (error) {
-  //       // the server failed somehow (e.g. the database is down)
-  //       done(error)
-  //     }
-  //   }
-  // )
-
   const strategy = new GoogleStrategy(
     googleConfig,
     (token, refreshToken, profile, done) => {
@@ -70,7 +43,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
         where: {googleId},
         defaults: {email, imgUrl, firstName, lastName, fullName}
       })
-        .then(([user]) => done(null, user))
+        .then(([user]) => done(null, user)) // the server is working, and the credentials match this user object
         .catch(done)
     }
   )
