@@ -1,59 +1,54 @@
-// import React from 'react'
-// import {Link} from 'react-router-dom'
-// import {connect} from 'react-redux'
-// import {getAllUsers} from '../../store/user'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {fetchUsers} from '../../store/user'
 
-// /**
-//   All users COMPONENT for admin
-//  */
+export class Users extends React.Component {
+  componentDidMount() {
+    this.props.getUsers()
+  }
 
-// export class AllUsers extends React.Component {
-//   async componentDidMount() {
-//     await this.props.getAllUsers()
-//   }
+  render() {
+    const {users} = this.props
+    return (
+      <div>
+        {/* <Link to="/"></Link> */}
+        {users.map(user => (
+          <Link to={`/users/${user.id}`} key={user.id}>
+            <div>
+              <img src={user.imageUrl} height="175" width="175" />
+              <p>
+                {user.firstName} {user.lastName}{' '}
+              </p>
+              <p>{user.email}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    )
+  }
+}
 
-//   render() {
-//     let users = this.props.users
-//     return (
-//       <div>
-//         <h3>All Users</h3>
-//         {users ? (
-//           <ul>
-//             {users.map(user => (
-//               <li key={user.id}>
-//                 <Link key={user.id} to={`/users/${user.id}`}>
-//                   <h2> {user.id} </h2>
-//                 </Link>
-//                 <img src={user.imgUrl} height="175" width="175" />
-//                 <p>
-//                   User: {user.firstName} {user.lastName}
-//                 </p>
-//                 <p>User Cart: {user.cartId}</p>
-//                 <p>Email: {user.email}</p>
-//               </li>
-//             ))}
-//           </ul>
-//         ) : (
-//           <h2>No One Has Signed up Yet</h2>
-//         )}
-//       </div>
-//     )
-//   }
-// }
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    users: state.users //get from redux store
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    getUsers: () => dispatch(fetchUsers())
+  }
+}
 
-// const mapState = state => {
-//   console.log('this is user state', state)
-//   return {
-//     users: state.user.users
-//   }
-// }
+export default connect(mapState, mapDispatch)(Users)
 
-// const mapDispatch = dispatch => {
-//   return {
-//     getAllUsers: () => {
-//       dispatch(getAllUsers())
-//     }
-//   }
-// }
-
-// export default connect(mapState, mapDispatch)(AllUsers)
+/**
+ * PROP TYPES
+ */
+Users.propTypes = {
+  users: PropTypes.array
+}

@@ -11,14 +11,14 @@ export class UserNav extends Component {
           <span>Account Settings</span>
           <div>
             <ul>
+              {/* <li>
+                {/* <Link to="/user">Edit Profile</Link> */}
+              {/* </li> */}
               <li>
-                <Link to="/user">Edit Profile</Link>
+                <Link to="/orders">Order History</Link>
               </li>
               <li>
                 <Link to="/cart">View Cart</Link>
-              </li>
-              <li>
-                <Link to="/orders">Order History</Link>
               </li>
             </ul>
           </div>
@@ -30,7 +30,7 @@ export class UserNav extends Component {
                   <Link to="/users">View All Users</Link>
                 </li>
                 <li>
-                  <Link to="/addplant">Add Plant</Link>
+                  <Link to="/addplant">Update Inventory</Link>
                 </li>
                 <li>
                   <Link to="/plants">Edit Plant</Link>

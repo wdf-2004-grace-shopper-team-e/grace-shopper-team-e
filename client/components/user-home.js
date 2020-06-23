@@ -64,14 +64,14 @@ export class UserHome extends Component {
 
   render() {
     const {firstName, imgUrl, isAdmin} = this.props // add googleId, email
-    console.log('user props', this.props)
+    // console.log('user props', this.props)
     return (
       <div>
         <div>
-          <UserNav isAdmin={isAdmin} />
           <div>
             <h3>Welcome Back {firstName}!</h3>
             <img src={imgUrl} height="175" width="175" />
+            <UserNav isAdmin={isAdmin} />
             <div>
               <div>
                 {/* {imgUrl ? (
