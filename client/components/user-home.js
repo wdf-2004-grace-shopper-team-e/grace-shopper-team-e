@@ -36,12 +36,16 @@ export class UserHome extends Component {
   async handleLogin() {
     const ls = window.localStorage
     const guestCart = JSON.parse(ls.getItem('currentOrder'))
-    const updateCart = {
-      cartId: guestCart.id,
-      id: this.props.id
+
+    if (guestCart) {
+      const updateCart = {
+        cartId: guestCart.id,
+        id: this.props.id,
+        email: this.props.email
+      }
+      await this.props.updateUser(this.props.id, updateCart)
+      await axios.put(`/api/users/${this.props.id}/set/${guestCart.id}`)
     }
-    await this.props.updateUser(this.props.id, updateCart)
-    await axios.put(`/api/users/${this.props.id}/set/${guestCart.id}`)
   }
 
   handleChange(event) {

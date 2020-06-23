@@ -10,7 +10,8 @@ import {
   SinglePlant,
   Cart,
   CheckoutPage,
-  AddPlant
+  AddPlant,
+  OrderHistory
 } from './components'
 import {me} from './store'
 
@@ -43,6 +44,9 @@ class Routes extends Component {
         <Route path="/cart/checkout" component={CheckoutPage} />
 
         <Route exact path="/addplant" componenet={AddPlant} />
+
+        {/* order history */}
+        <Route path="/orders" component={OrderHistory} />
 
         {isLoggedIn && (
           <Switch>
