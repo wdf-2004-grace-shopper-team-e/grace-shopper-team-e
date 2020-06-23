@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {fetchPlant} from '../../store/singlePlant'
 import {postAddItem} from '../../store/orderSummary'
 import {createOrder} from '../../store/orders'
+import {updateUserThunk} from '../../store/user'
+import axios from 'axios'
 
 /**
  * Plant COMPONENT
@@ -28,8 +30,22 @@ export class Plant extends React.Component {
     event.preventDefault()
     event.persist()
     if (!localStorage.getItem('currentOrder')) {
+      // if there's no current order, create a new order
       await this.props.createOrder()
       localStorage.setItem('currentOrder', JSON.stringify(this.props.order))
+      // and then associate that order with the user
+      // const guestCart = JSON.parse(localStorage.getItem('currentOrder'))
+      if (this.props.user.id) {
+        const updater = {
+          cartId: this.props.order.id,
+          id: this.props.user.id,
+          email: this.props.user.email
+        }
+        await this.props.updateUser(this.props.user.id, updater)
+        await axios.put(
+          `/api/users/${this.props.user.id}/set/${this.props.order.id}`
+        )
+      }
     }
     const currentOrder = JSON.parse(localStorage.getItem('currentOrder'))
     const plantId = this.props.plant.id
@@ -91,7 +107,8 @@ export class Plant extends React.Component {
 const mapState = state => {
   return {
     plant: state.singlePlant, //get plant from redux store
-    order: state.order
+    order: state.order,
+    user: state.user
   }
 }
 const mapDispatch = dispatch => {
@@ -99,7 +116,8 @@ const mapDispatch = dispatch => {
     getPlant: id => dispatch(fetchPlant(id)),
     createOrder: () => dispatch(createOrder()),
     postAddItem: (event, orderId, plantId) =>
-      dispatch(postAddItem(event, orderId, plantId))
+      dispatch(postAddItem(event, orderId, plantId)),
+    updateUser: (userId, updater) => dispatch(updateUserThunk(userId, updater))
   }
 }
 
