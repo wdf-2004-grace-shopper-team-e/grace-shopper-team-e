@@ -94,6 +94,26 @@ export default function(state = initialState, action) {
       })
       return newPlants
     }
+    case SEASON_FILTER: {
+      const newPlants = state.filter(plant => {
+        if (plant.season === action.season) {
+          return true
+        } else {
+          return false
+        }
+      })
+      return newPlants
+    }
+    case CONDITION_FILTER: {
+      const newPlants = state.filter(plant => {
+        if (plant.livingCondition === action.condition) {
+          return true
+        } else {
+          return false
+        }
+      })
+      return newPlants
+    }
     default:
       return state
   }
