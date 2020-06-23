@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {UserNav} from './user-nav'
 import {updateUserThunk} from '../store/user'
 import {getOrder} from '../store/orders'
+import axios from 'axios'
 
 /**
  * COMPONENT
@@ -14,7 +15,9 @@ export class UserHome extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
+      id: '',
+      imgUrl: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -33,20 +36,15 @@ export class UserHome extends Component {
   async handleLogin() {
     const ls = window.localStorage
     const guestCart = JSON.parse(ls.getItem('currentOrder'))
-    await this.props.getOrder(this.props.cartId)
-    // const update = {this.props.cartId: this.props.orderId}
-    // updateUserThunk(id, update)
 
     if (guestCart) {
-      const loggedUserCart = this.props.mergeCarts({
-        guestCart,
-        userCart: this.props.order
-      })
-      ls.setItem('currentOrder', JSON.stringify(loggedUserCart))
-      console.log('guest cart: ', guestCart)
-      console.log('user cart: ', this.props.userCart)
-    } else {
-      console.log('no guest cart found')
+      const updateCart = {
+        cartId: guestCart.id,
+        id: this.props.id,
+        email: this.props.email
+      }
+      await this.props.updateUser(this.props.id, updateCart)
+      await axios.put(`/api/users/${this.props.id}/set/${guestCart.id}`)
     }
   }
 
@@ -77,7 +75,7 @@ export class UserHome extends Component {
                 {/* {imgUrl ? (
                   <img src={imgUrl} />
                 ) : (
-                  <img src="images/defaultUser.jpg" />
+                  <img src="../../public/images/defaultUser.jpg" />
                 )} */}
               </div>
               <div>

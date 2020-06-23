@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models')
 const adminCheck = require('./gatekeepers')
+const {User, Order, Plant} = require('../db/models')
+
 
 module.exports = router
 
@@ -18,7 +19,7 @@ router.get('/', adminCheck, async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   const userId = req.body.id
   try {
-    await User.update(req.body, {
+    const user = await User.update(req.body, {
       where: {
         id: userId
       }
@@ -42,6 +43,36 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+// set specific order to user
+router.put('/:userId/set/:orderId', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {id: req.params.userId}
+    })
+    const order = await Order.findOne({
+      where: {id: req.params.orderId}
+    })
+
+    await user.addOrder(order)
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// // get all orders from a specific user
+// router.get('/:userId/orders', async (req, res, next) => {
+//   try {
+//     const user = await User.findOne({
+//       where: {id: req.params.userId},
+//       include: {model: Order}
+//     })
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 // Get all plants currently in users cart
 // ask Ube if it is the same as 'api/:orderId' !!!

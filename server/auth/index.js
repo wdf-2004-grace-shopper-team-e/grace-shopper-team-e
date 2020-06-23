@@ -1,10 +1,9 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models/index')
+const {User, Order, Plant} = require('../db/models/index')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
-    // console.log('this is req.body******', req.body)
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
       res.status(401).send('Wrong username and/or password')
@@ -23,7 +22,9 @@ router.post('/signup', async (req, res, next) => {
   try {
     const cart = await Order.create()
     const user = await User.create({...req.body, cartId: cart.id})
-    // cart.setUser(user)
+    console.log(cart)
+    console.log(user)
+    cart.setUser(user)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -34,14 +35,33 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.post('/logout', (req, res) => {
+// router.post('/logout', (req, res) => {
+//   req.logout()
+//   req.session.destroy()
+//   res.redirect('/')
+// })
+
+router.delete('/logout', (req, res, next) => {
   req.logout()
-  req.session.destroy()
+  req.session.destroy(err => {
+    if (err) return next(err)
+    res.status(204).end()
+  })
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
-  res.json(req.user)
+router.get('/me', async (req, res) => {
+  const user = await User.findOne({
+    where: {id: req.user.id},
+    include: {
+      model: Order,
+      include: {
+        model: Plant,
+        as: 'OrderSummary'
+      }
+    }
+  })
+  res.json(user)
 })
 
 router.use('/google', require('./google'))

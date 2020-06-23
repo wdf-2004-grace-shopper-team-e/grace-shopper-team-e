@@ -4,6 +4,10 @@ import {connect} from 'react-redux'
 import {fetchPlant} from '../../store/singlePlant'
 import {postAddItem} from '../../store/orderSummary'
 import {createOrder} from '../../store/orders'
+import {updateUserThunk} from '../../store/user'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 
 /**
  * Plant COMPONENT
@@ -28,8 +32,22 @@ export class Plant extends React.Component {
     event.preventDefault()
     event.persist()
     if (!localStorage.getItem('currentOrder')) {
+      // if there's no current order, create a new order
       await this.props.createOrder()
       localStorage.setItem('currentOrder', JSON.stringify(this.props.order))
+      // and then associate that order with the user
+      // const guestCart = JSON.parse(localStorage.getItem('currentOrder'))
+      if (this.props.user.id) {
+        const updater = {
+          cartId: this.props.order.id,
+          id: this.props.user.id,
+          email: this.props.user.email
+        }
+        await this.props.updateUser(this.props.user.id, updater)
+        await axios.put(
+          `/api/users/${this.props.user.id}/set/${this.props.order.id}`
+        )
+      }
     }
     const currentOrder = JSON.parse(localStorage.getItem('currentOrder'))
     const plantId = this.props.plant.id
@@ -46,10 +64,14 @@ export class Plant extends React.Component {
   }
 
   render() {
-    const {plant} = this.props
+    const {plant, isAdmin, isLoggedIn} = this.props
 
     return (
       <div className="plant">
+        {isAdmin &&
+          isLoggedIn && (
+            <Link to={`/updateplant/${plant.id}`}>Update plant</Link>
+          )}
         <div>
           <h1>{plant.name}</h1>
           <img src={plant.imageUrl} height="100" width="150" />
@@ -91,7 +113,10 @@ export class Plant extends React.Component {
 const mapState = state => {
   return {
     plant: state.singlePlant, //get plant from redux store
-    order: state.order
+    order: state.order,
+    user: state.user,
+    isAdmin: state.user.isAdmin,
+    isLoggedIn: !!state.user.id
   }
 }
 const mapDispatch = dispatch => {
@@ -99,7 +124,8 @@ const mapDispatch = dispatch => {
     getPlant: id => dispatch(fetchPlant(id)),
     createOrder: () => dispatch(createOrder()),
     postAddItem: (event, orderId, plantId) =>
-      dispatch(postAddItem(event, orderId, plantId))
+      dispatch(postAddItem(event, orderId, plantId)),
+    updateUser: (userId, updater) => dispatch(updateUserThunk(userId, updater))
   }
 }
 
@@ -109,5 +135,7 @@ export default connect(mapState, mapDispatch)(Plant)
  * PROP TYPES
  */
 Plant.propTypes = {
-  plant: PropTypes.object
+  plant: PropTypes.object,
+  isAdmin: PropTypes.bool,
+  isLoggedIn: PropTypes.bool
 }
