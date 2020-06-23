@@ -41,7 +41,9 @@ export class UserHome extends Component {
       const updateCart = {
         cartId: guestCart.id,
         id: this.props.id,
-        email: this.props.email
+        email: this.props.email,
+        firstName: this.props.firstName,
+        lastName: this.props.lastName
       }
       await this.props.updateUser(this.props.id, updateCart)
       await axios.put(`/api/users/${this.props.id}/set/${guestCart.id}`)
