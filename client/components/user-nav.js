@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 export class UserNav extends Component {
   render() {
+    console.log('admin', this.props.isAdmin)
     return (
       <div>
         <div>
