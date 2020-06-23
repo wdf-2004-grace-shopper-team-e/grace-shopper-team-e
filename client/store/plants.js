@@ -102,6 +102,7 @@ export default function(state = initialState, action) {
           return false
         }
       })
+      console.log('season filter', newPlants)
       return newPlants
     }
     case CONDITION_FILTER: {

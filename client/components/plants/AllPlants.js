@@ -14,6 +14,10 @@ import {
  */
 
 export class Plants extends React.Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
+  }
   componentDidMount() {
     this.props.getPlants()
   }
@@ -25,14 +29,64 @@ export class Plants extends React.Component {
     })
     return dollars
   }
+  handleChange = event => {
+    // this.setState({[event.target.name]: event.target.value})
+    const filterName = event.target.name
+    const filterValue = event.target.value
+    if (filterName === 'season') {
+      this.props.getPlants()
+      this.props.filterBySeason(filterValue)
+    } else {
+      this.props.getPlants()
+      this.props.filterByCondition(filterValue)
+    }
+    console.log(
+      'filterName',
+      filterName,
+      'filterValue',
+      filterValue,
+      this.props.plants
+    )
+  }
 
   render() {
     const {plants, isAdmin, isLoggedIn} = this.props
 
     return (
       <div className="plants-list">
-        {isAdmin && isLoggedIn && <Link to="/addplant">Add plant</Link>}
-
+        <div>
+          {isAdmin && isLoggedIn && <Link to="/addplant">Add plant</Link>}
+          <label>
+            Condition:
+            <select onChange={this.handleChange} name="livingCondition">
+              <option value="none" disabled hidden>
+                Select a Condition
+              </option>
+              <option value="All Conditions">All Conditions</option>
+              <option value="indoor">Indoor</option>
+              <option value="outdoor">Outdoor</option>
+              <option value="shade">Shade</option>
+              <option value="sun">Sun</option>x
+              <option value="low light">Low light</option>
+              <option value="Just Add Water">Just Add Water</option>
+            </select>
+          </label>
+          <label>
+            Season:
+            <select onChange={this.handleChange} name="season">
+              <option value="none" disabled hidden>
+                Select a Season
+              </option>
+              <option value="All Seasons">All Seasons</option>
+              <option value="This plant is happy all year long">
+                This plant is happy all year long
+              </option>
+              <option value="Spring">Spring</option>
+              <option value="Summer">Summer</option>x
+              <option value="Fall">Fall</option>
+            </select>
+          </label>
+        </div>
         {plants.map(plant => (
           <Link to={`/plants/${plant.id}`} key={plant.id}>
             <div>
