@@ -1,23 +1,15 @@
 const router = require('express').Router()
+const adminCheck = require('./gatekeepers')
 const {User, Order, Plant} = require('../db/models')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminCheck, async (req, res, next) => {
   try {
-    if (req.user.isAdmin) {
-      const users = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
-        attributes: ['id', 'email', 'firstName', 'lastName', 'cartId', 'imgUrl']
-      })
-      res.json(users)
-    } else {
-      const err = new Error('You do not have Administrator access!')
-      err.status = 401
-      return next(err)
-    }
+    const users = await User.findAll({
+      attributes: ['id', 'email', 'firstName', 'lastName', 'cartId', 'imgUrl']
+    })
+    res.json(users)
   } catch (err) {
     next(err)
   }
