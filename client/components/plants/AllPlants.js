@@ -2,7 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchPlants} from '../../store/plants'
+import {
+  fetchPlants,
+  filterByCondition,
+  filterBySeason
+} from '../../store/plants'
 /**
  * Plants COMPONENT
  */
@@ -48,7 +52,9 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    getPlants: () => dispatch(fetchPlants())
+    getPlants: () => dispatch(fetchPlants()),
+    filterByCondition: condition => dispatch(filterByCondition(condition)),
+    filterBySeason: season => dispatch(filterBySeason(season))
   }
 }
 
