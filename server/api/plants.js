@@ -53,7 +53,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //delete plant from database
-router.delete('/id', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await Plants.destroy({
       where: {

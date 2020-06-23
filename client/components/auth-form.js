@@ -14,7 +14,7 @@ const AuthForm = props => {
     <div>
       {displayName === 'Login' ? (
         <div>
-          <h3>Sign up</h3>
+          <h3>Log In</h3>
           New user? <Link to="/signup">Sign Up</Link>
           <form onSubmit={handleSubmit} name={name}>
             <div>
@@ -38,7 +38,7 @@ const AuthForm = props => {
         </div>
       ) : (
         <div>
-          <h3>Log In</h3>
+          <h3>Sign up</h3>
           <p>
             Returning user? <Link to="/login">Login</Link>
           </p>

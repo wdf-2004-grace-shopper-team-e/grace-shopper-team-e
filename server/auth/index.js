@@ -4,7 +4,6 @@ module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
-    // console.log('this is req.body******', req.body)
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
       res.status(401).send('Wrong username and/or password')
@@ -36,9 +35,18 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.post('/logout', (req, res) => {
+// router.post('/logout', (req, res) => {
+//   req.logout()
+//   req.session.destroy()
+//   res.redirect('/')
+// })
+
+router.delete('/logout', (req, res, next) => {
   req.logout()
-  req.session.destroy()
+  req.session.destroy(err => {
+    if (err) return next(err)
+    res.status(204).end()
+  })
   res.redirect('/')
 })
 
