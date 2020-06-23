@@ -9,7 +9,6 @@ router.get('/:orderId/plants', async (req, res, next) => {
       where: {id: req.params.orderId},
       include: [{model: Plant, as: 'OrderSummary'}]
     })
-
     res.json(order.OrderSummary)
   } catch (error) {
     next(error)
