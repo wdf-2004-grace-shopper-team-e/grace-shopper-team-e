@@ -13,7 +13,7 @@ export const CheckoutPage = props => {
   }, [])
 
   return (
-    <div>
+    <div className="checkout-page">
       <div>
         <Link to="/plants">Continue Shopping</Link>
         <br />
