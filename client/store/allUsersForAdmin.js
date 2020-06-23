@@ -1,31 +1,26 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// export const FETCH_USERS = 'FETCH_USERS'
+const GET_USERS = 'GET_USERS'
 
-// const defaultUser = {}
+const getUsers = users => ({type: GET_USERS, users})
 
-// const fetchedUsers = function(users) {
-//   return {
-//     type: FETCH_USERS,
-//     users
-//   }
-// }
+export const fetchUsers = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/users')
+    const users = getUsers(res.data)
+    dispatch(users)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-// export const fetchUsersThunk = () => async dispatch => {
-//   try {
-//     const res = await axios.get('/api/users')
-//     dispatch(fetchedUsers(res.data))
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
+const AllUsers = []
 
-// export default function(state = defaultUser, action) {
-//   console.log('this action', action)
-//   switch (action.type) {
-//     case FETCH_USERS:
-//       return {...state, users: action.users}
-//     default:
-//       return state
-//   }
-// }
+export default function(state = AllUsers, action) {
+  switch (action.type) {
+    case GET_USERS:
+      return action.users
+    default:
+      return state
+  }
+}
