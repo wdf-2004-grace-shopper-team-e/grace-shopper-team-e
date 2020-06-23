@@ -66,10 +66,10 @@ export class UserHome extends Component {
     return (
       <div>
         <div>
-          <UserNav isAdmin={isAdmin} />
           <div>
             <h3>Welcome Back {firstName}!</h3>
             <img src={imgUrl} height="175" width="175" />
+            <UserNav isAdmin={isAdmin} />
             <div>
               <div>
                 {/* {imgUrl ? (
