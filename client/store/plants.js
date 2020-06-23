@@ -6,6 +6,8 @@ import axios from 'axios'
 const GET_PLANTS = 'GET_PLANTS'
 const ADD_PLANTS = 'ADD_PLANTS'
 const DELETE_PLANT = 'DELETE PLANT'
+const SEASON_FILTER = 'SEASON_FILTER'
+const CONDITION_FILTER = 'CONDITION_FILTER'
 
 /**
  * ACTION CREATORS
@@ -22,6 +24,14 @@ const addPlant = plant => ({
 const removePlant = plantId => ({
   type: DELETE_PLANT,
   plantId
+})
+export const filterBySeason = season => ({
+  type: SEASON_FILTER,
+  season
+})
+export const filterByCondition = condition => ({
+  type: CONDITION_FILTER,
+  condition
 })
 
 /**
@@ -80,6 +90,26 @@ export default function(state = initialState, action) {
           return false
         } else {
           return true
+        }
+      })
+      return newPlants
+    }
+    case SEASON_FILTER: {
+      const newPlants = state.filter(plant => {
+        if (plant.season === action.season) {
+          return true
+        } else {
+          return false
+        }
+      })
+      return newPlants
+    }
+    case CONDITION_FILTER: {
+      const newPlants = state.filter(plant => {
+        if (plant.livingCondition === action.condition) {
+          return true
+        } else {
+          return false
         }
       })
       return newPlants

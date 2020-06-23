@@ -52,7 +52,8 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/addplant" componenet={AddPlant} />
+            <Route path="/addplant" component={AddPlant} />
+            <Route path="/updateplant/:plantId" component={AddPlant} />
           </Switch>
         )}
 
