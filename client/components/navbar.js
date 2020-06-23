@@ -7,8 +7,6 @@ import {logout} from '../store'
 class Navbar extends React.Component {
   render() {
     const {handleClick, isLoggedIn, isAdmin, User} = this.props // will use isAdmin and User for displaying
-    console.log('props++++++', this.props)
-
     return (
       <div>
         <h1>Plantagram</h1>
@@ -45,7 +43,7 @@ class Navbar extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('this is state', state)
+  // console.log('this is state', state)
   return {
     isLoggedIn: !!state.user.id,
     user: state.user // Mariia this is a change
