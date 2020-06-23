@@ -74,11 +74,11 @@ export class UserHome extends Component {
             <img src={imgUrl} height="175" width="175" />
             <div>
               <div>
-                {imgUrl ? (
+                {/* {imgUrl ? (
                   <img src={imgUrl} />
                 ) : (
                   <img src="../../public/images/defaultUser.jpg" />
-                )}
+                )} */}
               </div>
               <div>
                 <div>
