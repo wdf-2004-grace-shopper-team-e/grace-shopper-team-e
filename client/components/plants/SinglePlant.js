@@ -35,7 +35,6 @@ export class Plant extends React.Component {
       await this.props.createOrder()
       localStorage.setItem('currentOrder', JSON.stringify(this.props.order))
       // and then associate that order with the user
-      // const guestCart = JSON.parse(localStorage.getItem('currentOrder'))
       if (this.props.user.id) {
         const updater = {
           cartId: this.props.order.id,

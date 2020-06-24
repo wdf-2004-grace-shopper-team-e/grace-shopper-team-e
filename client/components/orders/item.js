@@ -31,7 +31,7 @@ export class Item extends React.Component {
 
     return (
       <div className="item">
-        <div className="item-details">
+        <div className="item-details overlay">
           <div className="plant-details">
             <h2>{name}</h2>
             <img src={imageUrl} height="100" width="150" />
@@ -40,24 +40,28 @@ export class Item extends React.Component {
           </div>
           <div className="quantity-details">
             <h4>in Cart: {plantQuantity}</h4>
-            <div>
+            <div className="button-input">
               <form onSubmit={this.handleSubmit}>
-                <input
-                  name="updateQuantity"
-                  type="number"
-                  value={this.state.updateQuantity}
-                  min="1"
-                  max={stock}
-                  onChange={this.handleChange}
-                  required
-                />
-                <button disabled={!stock} type="submit">
-                  Update Quantity
-                </button>
+                <div className="button-input">
+                  <input
+                    name="updateQuantity"
+                    type="number"
+                    value={this.state.updateQuantity}
+                    min="1"
+                    max={stock}
+                    onChange={this.handleChange}
+                    required
+                  />
+                </div>
+                <div className="button-input">
+                  <button disabled={!stock} type="submit">
+                    Update Quantity
+                  </button>
+                </div>
               </form>
             </div>
             <h3>subtotal: ${plantSubtotal / 100}</h3>
-            <div>
+            <div className="button-input">
               <button type="button" onClick={this.handleRemoveItem}>
                 Remove from Cart
               </button>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {editOrder} from '../../store/orders'
+import {completeOrder} from '../../store/orders'
 
 class OrderForm extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class OrderForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.editOrder(event, this.props.order.id)
+    this.props.completeOrder(event, this.props.order.id)
     localStorage.removeItem('currentOrder')
 
     this.setState({
@@ -60,9 +60,9 @@ class OrderForm extends React.Component {
         <h1>Total Cost: ${totalCost / 100}</h1>
         <div className="form-element">
           <form id={this.props.orderId} onSubmit={this.handleSubmit}>
-            <div id="shipping-info" className="form-section">
+            <div id="shipping-info" className="form-section overlay">
               <h1>Shipping Information</h1>
-              <div id="shipping-name" className="form-row">
+              <div id="shipping-name" className="name-input">
                 <div>
                   <label>First Name:</label>
                   <input
@@ -82,7 +82,7 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="shipping-address" className="form-row">
+              <div id="shipping-address" className="address-input">
                 <div>
                   <label>Address:</label>
                   <input
@@ -93,7 +93,7 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="shipping-region" className="form-row">
+              <div id="shipping-region" className="address-input">
                 <div>
                   <label>City:</label>
                   <input
@@ -123,7 +123,7 @@ class OrderForm extends React.Component {
                 </div>
               </div>
             </div>
-            <div id="billing-info" className="form-section">
+            <div id="billing-info" className="form-section overlay">
               <h1>Billing Information</h1>
               <div id="order-cost">
                 <input
@@ -133,7 +133,7 @@ class OrderForm extends React.Component {
                   value={totalCost}
                 />
               </div>
-              <div id="order-email" className="form-row">
+              <div id="order-email" className="name-input">
                 <div>
                   <label>Email:</label>
                   <input
@@ -144,7 +144,7 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="billing-name" className="form-row">
+              <div id="billing-name" className="name-input">
                 <div>
                   <label>First Name:</label>
                   <input
@@ -164,7 +164,7 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="billing-address" className="form-row">
+              <div id="billing-address" className="address-input">
                 <div>
                   <label>Address:</label>
                   <input
@@ -175,7 +175,7 @@ class OrderForm extends React.Component {
                   />
                 </div>
               </div>
-              <div id="billing-region" className="form-row">
+              <div id="billing-region" className="address-input">
                 <div>
                   <label>City:</label>
                   <input
@@ -205,7 +205,9 @@ class OrderForm extends React.Component {
                 </div>
               </div>
             </div>
-            <button type="submit">Submit Order</button>
+            <div className="form-section button-input">
+              <button type="submit">Submit Order</button>
+            </div>
           </form>
         </div>
       </div>
@@ -213,14 +215,10 @@ class OrderForm extends React.Component {
   }
 }
 
-const mapState = state => {
-  return {}
-}
-
 const mapDispatch = dispatch => {
   return {
-    editOrder: (event, orderId) => dispatch(editOrder(event, orderId))
+    completeOrder: (event, orderId) => dispatch(completeOrder(event, orderId))
   }
 }
 
-export default connect(mapState, mapDispatch)(OrderForm)
+export default connect(null, mapDispatch)(OrderForm)
