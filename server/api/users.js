@@ -32,9 +32,16 @@ router.put('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      attributes: ['id', 'email', 'firstName', 'lastName', 'cartId'],
+      attributes: ['id', 'email', 'firstName', 'lastName', 'cartId', 'isAdmin'],
       where: {
         id: req.params.id
+      },
+      include: {
+        model: Order,
+        include: {
+          model: Plant,
+          as: 'OrderSummary'
+        }
       }
     })
     res.json(user)
@@ -58,49 +65,5 @@ router.put('/:userId/set/:orderId', async (req, res, next) => {
     res.sendStatus(204)
   } catch (error) {
     next(error)
-  }
-})
-
-// // get all orders from a specific user
-// router.get('/:userId/orders', async (req, res, next) => {
-//   try {
-//     const user = await User.findOne({
-//       where: {id: req.params.userId},
-//       include: {model: Order}
-//     })
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
-// Get all plants currently in users cart
-// ask Ube if it is the same as 'api/:orderId' !!!
-// router.get('/', async (req, res, next) => {
-//   try {
-//     if (!req.user) {
-//       res.sendStatus(204)
-//     } else {
-//       const allCartItems = await Order.getAllItemsInCart(
-//         req.user.dataValues.cartId
-//       )
-//       res.json(allCartItems)
-//     }
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
-// Merge guest cart with users cart
-// similar to the PUT, but the body of the request contains only
-// the property of the resource that needs to be changed.
-router.patch('/', async (req, res, next) => {
-  const orderId = req.user.dataValues.cartId
-  const {guestCart, userCart} = req.body
-  try {
-    const mergedCarts = await Order.mergeCarts(orderId, guestCart, userCart)
-    console.log('Merged carts: ', mergedCarts)
-    res.status(202).json(mergedCarts)
-  } catch (error) {
-    console.error('Error in the cart merge route.', error)
   }
 })
