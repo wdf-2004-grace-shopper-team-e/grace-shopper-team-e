@@ -235,6 +235,27 @@ form div {
   transition: background-color 0.8s ease;
 }
 
+.checkout-page button:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: '';
+  color: #bee3db !important;
+  background: #555b6e;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.checkout-page .overlay {
+  background-color: #bee3db;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.8s ease;
+}
+
 .checkout-page .overlay:hover {
   background-color: #89b0ae;
 }
@@ -244,6 +265,13 @@ form div {
   flex-direction: row;
   height: 100vh;
   color: #555b6e;
+}
+
+.orderhistory-page h1 {
+  align-self: center;
+  font-size: 24px;
+  line-height: 10px;
+  letter-spacing: 1px;
 }
 
 .orderhistory-page h1 {
@@ -567,3 +595,75 @@ hr {
     transform: scale(1);
   }
 }
+
+/* nav view */
+nav {
+  margin: 27px auto 0;
+
+  position: relative;
+  width: 590px;
+  height: 50px;
+  background-color: #34495e;
+  border-radius: 8px;
+  font-size: 0;
+}
+nav a {
+  line-height: 50px;
+  height: 100%;
+  font-size: 15px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+nav .animation {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: all 0.5s ease 0s;
+  border-radius: 8px;
+}
+a:nth-child(1) {
+  width: 130px;
+}
+a:nth-child(2) {
+  width: 130px;
+}
+a:nth-child(3) {
+  width: 130px;
+}
+a:nth-child(4) {
+  width: 130px;
+}
+
+nav .start-home,
+a:nth-child(1):hover ~ .animation {
+  width: 130px;
+  left: 0;
+  background-color: #1abc9c;
+}
+nav .start-about,
+a:nth-child(2):hover ~ .animation {
+  width: 130px;
+  left: 130px;
+  background-color: #e74c3c;
+}
+nav .start-blog,
+a:nth-child(3):hover ~ .animation {
+  width: 130px;
+  left: 260px;
+  background-color: #3498db;
+}
+nav .start-portefolio,
+a:nth-child(4):hover ~ .animation {
+  width: 130px;
+  left: 390px;
+  background-color: #9b59b6;
+}
+
+/* nav view */
