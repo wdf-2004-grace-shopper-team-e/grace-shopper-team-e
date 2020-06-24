@@ -7,7 +7,7 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  //user can be found at user-seed.js I got an error that I was hitting them maximum seeding per file
+  //user dummy data can be found at user-seed.js
   const users = await Promise.all(
     userSeeds.map(user => {
       return User.create(user)
@@ -18,13 +18,7 @@ async function seed() {
 
   //Plant images From: Unsplash - The internet’s source of freely-usable images.
 
-  // phase 1 of seeding data. Would like too:
-  // update the description and price
-  // randomize the season, stock and living condition
-  // If not will manually update
-
-  //api is currently producing all plant dummy data and single plant dummy data
-
+  //plant dummy data
   const plant1 = await Plant.create({
     name: 'Cactus',
     price: 1000,
@@ -32,29 +26,39 @@ async function seed() {
     imageUrl:
       'https://images.unsplash.com/photo-1519336056116-bc0f1771dec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
-    livingConditions: 'shade',
+    livingConditions: 'indoor',
     season: 'Summer'
   })
   const plant2 = await Plant.create({
     name: 'Plantera',
     price: 1899,
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    season: 'Summer'
   })
   const plant3 = await Plant.create({
     name: 'Treant',
     price: 2999,
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1507746212228-2d3645cbeb56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'shade',
+    season: 'Fall'
   })
   const plant4 = await Plant.create({
     name: 'Kelpie',
     price: 3498,
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1530176238587-b53132214c54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    season: 'Spring'
   })
   const plant5 = await Plant.create({
     name: 'Myconid',
@@ -62,7 +66,8 @@ async function seed() {
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1521944521548-a8ed0caa8f38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'indoor'
   })
   const plant6 = await Plant.create({
     name: 'Shalebark',
@@ -70,15 +75,18 @@ async function seed() {
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1533629046790-addefc28951e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    season: 'Fall'
   })
   const plant7 = await Plant.create({
     name: 'Rockbuds',
     price: 1900,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1591454371758-644f9d123a81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    season: 'Spring'
   })
   const plant8 = await Plant.create({
     name: 'Knobweed',
@@ -91,15 +99,19 @@ async function seed() {
   const plant9 = await Plant.create({
     name: 'Prickletac',
     price: 1599,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1556408978-ce0a0a5e352e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'low light',
+    season: 'Spring'
   })
   const plant10 = await Plant.create({
     name: 'Firemoss',
     price: 1000,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1575772684422-06925a4a8ee8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10
@@ -110,7 +122,9 @@ async function seed() {
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1591958911259-bee2173bdccc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'shade',
+    season: 'Spring'
   })
   const plant12 = await Plant.create({
     name: 'Gurdyroot',
@@ -123,10 +137,13 @@ async function seed() {
   const plant13 = await Plant.create({
     name: 'Gillyweed',
     price: 1700,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1590622541550-5bc0b2df5bd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60%27',
-    stock: 10
+    stock: 10,
+    livingConditions: 'outdoor',
+    season: 'Summer'
   })
   const plant14 = await Plant.create({
     name: 'Buy 1 Get 3',
@@ -136,7 +153,7 @@ async function seed() {
       'https://images.unsplash.com/photo-1556408978-4d89b27624bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
     livingConditions: 'shade',
-    season: 'Summer'
+    season: 'Spring'
   })
   const plant15 = await Plant.create({
     name: 'Cactus',
@@ -144,16 +161,18 @@ async function seed() {
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1565241603507-952d845eceb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'sun'
   })
   const plant16 = await Plant.create({
     name: 'Bowtruckle',
     price: 2100,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1556408977-209cb41649e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
     stock: 10,
-    livingConditions: 'sun',
+    livingConditions: 'low light',
     season: 'Summer'
   })
   const plant17 = await Plant.create({
@@ -162,15 +181,19 @@ async function seed() {
     description: 'indoor dry plant',
     imageUrl:
       'https://images.unsplash.com/photo-1562351757-66f3589f30cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    livingConditions: 'sun',
+    season: 'Summer'
   })
   const plant18 = await Plant.create({
     name: 'Biollante',
     price: 1799,
-    description: 'indoor dry plant',
+    description:
+      "If you're itching to exercise your green thumb and add a new addition to your home then you've come to the right place. Take home yours today!",
     imageUrl:
       'https://images.unsplash.com/photo-1580428456289-31b363a16e73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-    stock: 10
+    stock: 10,
+    season: 'Spring'
   })
 
   const order1 = await Order.create({
@@ -186,7 +209,6 @@ async function seed() {
   await order1.setOrderSummary([plant1, plant2])
   await order2.setOrderSummary([plant4, plant5])
 
-  // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
 // We've separated the `seed` function from the `runSeed` function.

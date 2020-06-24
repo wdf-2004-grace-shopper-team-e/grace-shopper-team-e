@@ -4,24 +4,27 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchUsers} from '../../store/allUsersForAdmin'
 
+/**
+ * COMPONENT
+ */
 export class Users extends React.Component {
   componentDidMount() {
     this.props.getUsers()
   }
-
   render() {
     const {users} = this.props
     return (
-      <div>
-        {/* <Link to="/"></Link> */}
+      <div className="AllUsers">
         {users.map(user => (
           <Link to={`/users/${user.id}`} key={user.id}>
             <div>
-              <img src={user.imgUrl} height="175" width="175" />
-              <p>
+              <div>
+                <img src={user.imgUrl} height="175" width="175" />
+              </div>
+              <p className="user-Img">
                 {user.firstName} {user.lastName}{' '}
               </p>
-              <p>{user.email}</p>
+              <p className="user-Img">{user.email}</p>
             </div>
           </Link>
         ))}

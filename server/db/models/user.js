@@ -53,7 +53,9 @@ const User = db.define('user', {
   },
   imgUrl: {
     type: Sequelize.STRING,
+
     defaultValue: '/images/defaultUser.jpg'
+
   }
 })
 

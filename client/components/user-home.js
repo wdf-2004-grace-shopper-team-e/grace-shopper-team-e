@@ -65,22 +65,15 @@ export class UserHome extends Component {
 
   render() {
     const {firstName, imgUrl, isAdmin} = this.props // add googleId, email
-    // console.log('user props', this.props)
     return (
       <div>
         <div>
           <div>
-            <h3>Welcome Back {firstName}!</h3>
+            <h3 className="user-welcome">Welcome Back {firstName}!</h3>
             <img src={imgUrl} height="175" width="175" />
             <UserNav isAdmin={isAdmin} />
             <div>
-              <div>
-                {/* {imgUrl ? (
-                  <img src={imgUrl} />
-                ) : (
-                  <img src="../../public/images/defaultUser.jpg" />
-                )} */}
-              </div>
+              <div />
               <div>
                 <div>
                   <form onSubmit={this.handleSubmit}>

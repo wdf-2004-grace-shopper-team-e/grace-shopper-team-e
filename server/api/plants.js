@@ -44,8 +44,6 @@ router.put('/:id', async (req, res, next) => {
       where: {id: plantId}
     })
     const updatedPlant = await plant.update(req.body)
-
-    console.log('updated plant: ', updatedPlant)
     res.json(updatedPlant)
   } catch (err) {
     next(err)

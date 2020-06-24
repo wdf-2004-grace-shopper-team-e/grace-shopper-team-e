@@ -4,6 +4,8 @@ const {User, Order, Plant} = require('../db/models')
 
 module.exports = router
 
+// Find all users
+// Use Middleware to Check if the user has correct security clearance
 router.get('/', adminCheck, async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -29,6 +31,7 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+//find single user order by id
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({
