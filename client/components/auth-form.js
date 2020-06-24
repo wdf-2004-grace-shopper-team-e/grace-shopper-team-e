@@ -11,7 +11,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="login">
       {displayName === 'Login' ? (
         <div>
           <h3>Log In</h3>
@@ -37,7 +37,7 @@ const AuthForm = props => {
           <a href="/auth/google">{displayName} with Google</a>
         </div>
       ) : (
-        <div>
+        <div className="sig-up">
           <h3>Sign up</h3>
           <p>
             Returning user? <Link to="/login">Login</Link>
