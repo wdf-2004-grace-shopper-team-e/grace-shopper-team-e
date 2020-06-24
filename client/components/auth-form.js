@@ -18,49 +18,63 @@ const AuthForm = props => {
           New user? <Link to="/signup">Sign Up</Link>
           <form onSubmit={handleSubmit} name={name}>
             <div>
-              <label htmlFor="email">
+              <label className="label" htmlFor="email">
                 <small>Email</small>
               </label>
-              <input name="email" type="text" required />
+              <input className="input" name="email" type="text" required />
             </div>
             <div>
-              <label htmlFor="password">
+              <label className="label" htmlFor="password">
                 <small>Password</small>
               </label>
-              <input name="password" type="password" required />
+              <input
+                className="input"
+                name="password"
+                type="password"
+                required
+              />
             </div>
             <div>
-              <button type="submit">{displayName}</button>
+              <button className="submit-button" type="submit">
+                {displayName}
+              </button>
             </div>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
           <a href="/auth/google">{displayName} with Google</a>
         </div>
       ) : (
-        <div className="sig-up">
+        <div className="sign-up">
           <h3>Sign up</h3>
           <p>
             Returning user? <Link to="/login">Login</Link>
           </p>
           <form onSubmit={handleSubmit} name={name}>
             <div>
-              <label htmlFor="firstName">First Name</label>
-              <input name="firstName" type="text" required />
+              <label className="label" htmlFor="firstName">
+                First Name
+              </label>
+              <input className="input" name="firstName" type="text" required />
             </div>
             <div>
               <label htmlFor="lastName">Last Name</label>
-              <input name="lastName" type="text" required />
+              <input className="input" name="lastName" type="text" required />
             </div>
             <div className="input-field">
               <label htmlFor="email">Email</label>
-              <input name="email" type="email" required />
+              <input className="input" name="email" type="email" required />
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input name="password" type="password" required />
+              <input
+                className="input"
+                name="password"
+                type="password"
+                required
+              />
             </div>
             <div>
-              <button className="button" type="submit">
+              <button className="submit-button" type="submit">
                 {displayName}
               </button>
             </div>
