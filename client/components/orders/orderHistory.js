@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const OrderHistory = props => {
   return (
@@ -20,9 +21,17 @@ const OrderHistory = props => {
                       {order.OrderSummary ? (
                         order.OrderSummary.map(plant => {
                           return (
-                            <div key={plant.id}>
-                              <h4>Plant Name: {plant.name}</h4>
+                            <div key={plant.id} className="order-summary">
+                              <Link
+                                to={location => ({
+                                  ...location,
+                                  pathname: '/plants/' + plant.id
+                                })}
+                              >
+                                Plant Name: {plant.name}
+                              </Link>
                               <h4>Qty: {plant.plant_order.plantQuantity}</h4>
+                              <h4>Plant subtotal: ${plant.price / 100}</h4>
                             </div>
                           )
                         })
