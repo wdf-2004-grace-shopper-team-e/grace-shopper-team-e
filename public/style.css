@@ -460,7 +460,7 @@ hr {
   visibility: visible;
   position: absolute;
   z-index: 2000;
-  top: 50%;
+  top: 55%;
   left: 50%;
   margin-top: -330px;
   margin-left: -210px;
@@ -475,24 +475,6 @@ hr {
   -webkit-box-shadow: 10px 10px 15px -6px rgba(0, 0, 0, 0.25);
   transition: opacity 0.3s ease-in 0.3s, visibility 0.3s ease-in 0.3s;
   transform: scale(0.9);
-}
-
-.login-closed {
-  z-index: 2000;
-  opacity: 0;
-  visibility: hidden;
-  margin-left: -400px;
-  transition: opacity 0.3s ease-out, visibility 0.3s ease-out,
-    margin 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-}
-
-.sign-up-closed {
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  margin-left: -400px;
-  transition: opacity 0.3s ease-out, visibility 3s ease-out,
-    margin 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .field {
@@ -551,28 +533,6 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.in-out {
-  font-size: 12px;
-  margin-top: 30px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
-.in-out a {
-  color: rgba(0, 0, 0, 0.7);
-  text-decoration: none;
-  margin-left: 17px;
-  border: 1px solid rgba(0, 0, 0, 0.7);
-  border-radius: 2px;
-  padding: 2px;
-  transition: all 0.4s ease-out;
-}
-
-.in-out a:hover {
-  color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(255, 255, 255, 1);
-}
-
 .field-in {
   animation: pulse 0.7s 1;
 }
@@ -613,75 +573,3 @@ hr {
     transform: scale(1);
   }
 }
-
-/* nav view */
-nav {
-  margin: 27px auto 0;
-
-  position: relative;
-  width: 590px;
-  height: 50px;
-  background-color: #34495e;
-  border-radius: 8px;
-  font-size: 0;
-}
-nav a {
-  line-height: 50px;
-  height: 100%;
-  font-size: 15px;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-}
-nav .animation {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  z-index: 0;
-  transition: all 0.5s ease 0s;
-  border-radius: 8px;
-}
-a:nth-child(1) {
-  width: 130px;
-}
-a:nth-child(2) {
-  width: 130px;
-}
-a:nth-child(3) {
-  width: 130px;
-}
-a:nth-child(4) {
-  width: 130px;
-}
-
-nav .start-home,
-a:nth-child(1):hover ~ .animation {
-  width: 130px;
-  left: 0;
-  background-color: #1abc9c;
-}
-nav .start-about,
-a:nth-child(2):hover ~ .animation {
-  width: 130px;
-  left: 130px;
-  background-color: #e74c3c;
-}
-nav .start-blog,
-a:nth-child(3):hover ~ .animation {
-  width: 130px;
-  left: 260px;
-  background-color: #3498db;
-}
-nav .start-portefolio,
-a:nth-child(4):hover ~ .animation {
-  width: 130px;
-  left: 390px;
-  background-color: #9b59b6;
-}
-
-/* nav view */
