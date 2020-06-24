@@ -49,7 +49,8 @@ export const deleteOrder = event => {
   }
 }
 
-export const editOrder = (event, orderId) => {
+// submitting an order and turning it from a cart to an order
+export const completeOrder = (event, orderId) => {
   return async dispatch => {
     try {
       const {
@@ -69,7 +70,7 @@ export const editOrder = (event, orderId) => {
         billingZipCode
       } = event.target
 
-      const order = await axios.put(`/api/orders/${orderId}`, {
+      await axios.put(`/api/orders/${orderId}`, {
         email: email.value,
         isCart: false,
         totalCost: totalCost.value,

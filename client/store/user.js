@@ -39,7 +39,8 @@ export const updateUserThunk = (id, update) => async dispatch => {
       lastName: update.lastName,
       email: update.email,
       id: update.id,
-      cartId: update.cartId
+      cartId: update.cartId,
+      isAdmin: update.isAdmin
     })
     dispatch(updateUser(id, update))
   } catch (error) {
@@ -92,7 +93,6 @@ export const logout = () => async dispatch => {
  * REDUCER
  */
 export default function(state = defaultUser, action) {
-  console.log('this is action', action)
   switch (action.type) {
     case GET_USER:
       return action.user

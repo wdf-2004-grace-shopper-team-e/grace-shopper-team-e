@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models/index')
+const {User, Order, Plant} = require('../db/models/index')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
@@ -22,7 +22,7 @@ router.post('/signup', async (req, res, next) => {
   try {
     const cart = await Order.create()
     const user = await User.create({...req.body, cartId: cart.id})
-    // cart.setUser(user)
+    cart.setUser(user)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -48,8 +48,18 @@ router.delete('/logout', (req, res, next) => {
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
-  res.json(req.user)
+router.get('/me', async (req, res) => {
+  const user = await User.findOne({
+    where: {id: req.user.id},
+    include: {
+      model: Order,
+      include: {
+        model: Plant,
+        as: 'OrderSummary'
+      }
+    }
+  })
+  res.json(user)
 })
 
 router.use('/google', require('./google'))

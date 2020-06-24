@@ -5,7 +5,7 @@ import {default as OrderForm} from './orderForm'
 import {getItems} from '../../store/orderSummary'
 
 export const CheckoutPage = props => {
-  const {orderSummary} = props
+  const {orderSummary, user} = props
   const order = JSON.parse(localStorage.getItem('currentOrder'))
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const CheckoutPage = props => {
   }, [])
 
   return (
-    <div>
+    <div className="checkout-page">
       <div>
         <Link to="/plants">Continue Shopping</Link>
         <br />
@@ -21,7 +21,7 @@ export const CheckoutPage = props => {
       </div>
       <h1>Checkout Page</h1>
       <div>
-        <OrderForm order={order} orderSummary={orderSummary} />
+        <OrderForm order={order} orderSummary={orderSummary} user={user} />
       </div>
     </div>
   )
@@ -30,7 +30,8 @@ export const CheckoutPage = props => {
 const mapState = state => {
   return {
     orderSummary: state.orderSummary,
-    order: state.order
+    order: state.order,
+    user: state.user
   }
 }
 

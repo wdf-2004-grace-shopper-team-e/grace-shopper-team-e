@@ -5,17 +5,21 @@ import {Link} from 'react-router-dom'
 
 export class UserNav extends Component {
   render() {
+    console.log('admin', this.props.isAdmin)
     return (
       <div>
         <div>
           <span>Account Settings</span>
           <div>
             <ul>
-              <li>
-                <Link to="/cart">View Cart</Link>
-              </li>
+              {/* <li>
+                {/* <Link to="/user">Edit Profile</Link> */}
+              {/* </li> */}
               <li>
                 <Link to="/orders">Order History</Link>
+              </li>
+              <li>
+                <Link to="/cart">View Cart</Link>
               </li>
             </ul>
           </div>
@@ -27,10 +31,10 @@ export class UserNav extends Component {
                   <Link to="/users">View All Users</Link>
                 </li>
                 <li>
-                  <Link to="/addplant">Add Plant</Link>
+                  <Link to="/addplant">Add New Inventory</Link>
                 </li>
                 <li>
-                  <Link to="/plants">Edit Plant</Link>
+                  <Link to="/plants">Edit Plants</Link>
                 </li>
               </ul>
             </div>

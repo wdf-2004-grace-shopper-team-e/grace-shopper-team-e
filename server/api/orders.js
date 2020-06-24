@@ -12,6 +12,15 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.get('/', async (req, res, next) => {
+  try {
+    const order = await Order.findAll()
+    res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // get the current order
 router.get('/:orderId', async (req, res, next) => {
   try {
