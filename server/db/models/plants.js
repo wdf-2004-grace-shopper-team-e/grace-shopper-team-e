@@ -5,7 +5,6 @@ const Plants = db.define('plants', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
-    // should the product be unique ?
   },
   price: {
     type: Sequelize.INTEGER,
@@ -19,7 +18,7 @@ const Plants = db.define('plants', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://images.unsplash.com/photo-1517204452548-5f07ce910c9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60' //customize
+      'https://images.unsplash.com/photo-1517204452548-5f07ce910c9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60'
   },
   stock: {
     type: Sequelize.INTEGER,

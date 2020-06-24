@@ -1,48 +1,39 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-//Check the ROUTES !
-
 export class UserNav extends Component {
   render() {
-    console.log('admin', this.props.isAdmin)
     return (
       <div>
         <div>
-          <span>Account Settings</span>
+          <ul>
+            <li className="inset">
+              <Link to="/orders">Order History</Link>
+            </li>
+            <li className="inset">
+              <Link to="/cart">View Cart</Link>
+            </li>
+            <li className="inset">
+              <Link to="/plants">Start Shopping</Link>
+            </li>
+          </ul>
+        </div>
+        {this.props.isAdmin ? (
           <div>
+            <span className="user-span">Admin</span>
             <ul>
-              {/* <li>
-                {/* <Link to="/user">Edit Profile</Link> */}
-              {/* </li> */}
-              <li>
-                <Link to="/orders">Order History</Link>
+              <li className="user-span">
+                <Link to="/users">View All User Name and Emails</Link>
               </li>
-              <li>
-                <Link to="/cart">View Cart</Link>
+              <li className="user-span">
+                <Link to="/addplant">Add New Inventory</Link>
+              </li>
+              <li className="user-span">
+                <Link to="/plants">Edit Plants</Link>
               </li>
             </ul>
           </div>
-          {this.props.isAdmin ? (
-            <div>
-              <span>Admin</span>
-              <ul>
-                <li>
-                  <Link to="/users">View All Users</Link>
-                </li>
-                <li>
-                  <Link to="/addplant">Add New Inventory</Link>
-                </li>
-                <li>
-                  <Link to="/plants">Edit Plants</Link>
-                </li>
-              </ul>
-            </div>
-          ) : null}
-        </div>
-        <div>
-          <Link to="/plants">Start Shopping</Link>
-        </div>
+        ) : null}
       </div>
     )
   }
