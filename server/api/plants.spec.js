@@ -1,13 +1,3 @@
-// const plant1 = await Plant.create({
-//   name: 'Cactus',
-//   price: 1000,
-//   description: 'indoor dry plant',
-//   imageUrl:
-//     'https://images.unsplash.com/photo-1519336056116-bc0f1771dec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60',
-//   stock: 10,
-//   livingConditions: 'shade',
-//   season: 'Summer'
-// })
 /* global describe beforeEach it */
 const {expect} = require('chai')
 const request = require('supertest')
