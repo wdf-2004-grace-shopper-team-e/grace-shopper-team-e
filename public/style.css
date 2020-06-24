@@ -415,6 +415,12 @@ body {
   font-family: 'quicksand';
 }
 
+h1 {
+  color: #25291b;
+  text-align: center;
+  font-family: 'quicksand';
+}
+
 hr {
   border: 0;
   height: 1px;

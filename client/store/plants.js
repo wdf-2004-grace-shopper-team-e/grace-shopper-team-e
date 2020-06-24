@@ -27,11 +27,11 @@ const removePlant = plantId => ({
 })
 export const filterBySeason = season => ({
   type: SEASON_FILTER,
-  season
+  season: season
 })
 export const filterByCondition = condition => ({
   type: CONDITION_FILTER,
-  condition
+  condition: condition
 })
 
 /**
@@ -96,6 +96,8 @@ export default function(state = initialState, action) {
     }
     case SEASON_FILTER: {
       const newPlants = state.filter(plant => {
+        console.log('plant season', plant.season)
+        console.log('action season', action.season)
         if (plant.season === action.season) {
           return true
         } else {

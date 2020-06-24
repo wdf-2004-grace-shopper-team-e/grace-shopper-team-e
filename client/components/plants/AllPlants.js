@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
 import {
   fetchPlants,
   filterByCondition,
@@ -32,22 +31,16 @@ export class Plants extends React.Component {
   }
   handleChange = event => {
     // this.setState({[event.target.name]: event.target.value})
+    event.preventDefault()
     const filterName = event.target.name
     const filterValue = event.target.value
-    if (filterName === 'season') {
+    if (filterName === 'All Conditions' || filterName === 'All Seasons') {
       this.props.getPlants()
+    } else if (filterName === 'season') {
       this.props.filterBySeason(filterValue)
     } else {
-      this.props.getPlants()
       this.props.filterByCondition(filterValue)
     }
-    console.log(
-      'filterName',
-      filterName,
-      'filterValue',
-      filterValue,
-      this.props.plants
-    )
   }
 
   render() {
