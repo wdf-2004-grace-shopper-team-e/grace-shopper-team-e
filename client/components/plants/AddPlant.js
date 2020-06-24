@@ -74,7 +74,7 @@ export class AddPlant extends React.Component {
       return <Redirect to="/plants" />
     }
     return this.state ? (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="add-plant">
         <label htmlFor="name">Plant Name:</label>
         <input
           name="name"

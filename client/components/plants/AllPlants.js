@@ -31,10 +31,9 @@ export class Plants extends React.Component {
   }
   handleChange = event => {
     // this.setState({[event.target.name]: event.target.value})
-    event.preventDefault()
     const filterName = event.target.name
     const filterValue = event.target.value
-    if (filterName === 'All Conditions' || filterName === 'All Seasons') {
+    if (filterValue === 'All Conditions' || filterValue === 'All Seasons') {
       this.props.getPlants()
     } else if (filterName === 'season') {
       this.props.filterBySeason(filterValue)

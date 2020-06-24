@@ -442,7 +442,7 @@ hr {
   visibility: visible;
   position: absolute;
   z-index: 2000;
-  top: 50%;
+  top: 55%;
   left: 50%;
   margin-top: -330px;
   margin-left: -210px;
@@ -457,24 +457,6 @@ hr {
   -webkit-box-shadow: 10px 10px 15px -6px rgba(0, 0, 0, 0.25);
   transition: opacity 0.3s ease-in 0.3s, visibility 0.3s ease-in 0.3s;
   transform: scale(0.9);
-}
-
-.login-closed {
-  z-index: 2000;
-  opacity: 0;
-  visibility: hidden;
-  margin-left: -400px;
-  transition: opacity 0.3s ease-out, visibility 0.3s ease-out,
-    margin 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-}
-
-.sign-up-closed {
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  margin-left: -400px;
-  transition: opacity 0.3s ease-out, visibility 3s ease-out,
-    margin 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .field {
@@ -533,28 +515,6 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.in-out {
-  font-size: 12px;
-  margin-top: 30px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
-.in-out a {
-  color: rgba(0, 0, 0, 0.7);
-  text-decoration: none;
-  margin-left: 17px;
-  border: 1px solid rgba(0, 0, 0, 0.7);
-  border-radius: 2px;
-  padding: 2px;
-  transition: all 0.4s ease-out;
-}
-
-.in-out a:hover {
-  color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(255, 255, 255, 1);
-}
-
 .field-in {
   animation: pulse 0.7s 1;
 }
@@ -595,6 +555,7 @@ hr {
     transform: scale(1);
   }
 }
+
 
 /* nav view */
 nav {
@@ -668,6 +629,7 @@ a:nth-child(4):hover ~ .animation {
 
 /* nav view */
 
+
 /* user-nav */
 .inset {
   border-style: inset;
@@ -707,3 +669,67 @@ p.user-Img {
   margin: 17px;
   color: #ffd6ba;
 }
+=======
+/*     forms css   */
+.add-plant {
+  font-family: 'Open Sans Condensed', arial, sans;
+  width: 500px;
+  padding: 30px;
+  background: #264653;
+  margin: 50px auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+.add-plant input[type='text'],
+.add-plant input[type='date'],
+.add-plant input[type='number'],
+.add-plant textarea,
+.add-plant select {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+  height: 45px;
+  color: #f4a261;
+}
+.add-plant textarea {
+  resize: none;
+  overflow: hidden;
+}
+.add-plant label {
+  color: #e9c46a;
+}
+.add-plant button,
+.add-plant button[type='submit'] {
+  -moz-box-shadow: inset 0px 1px 0px 0px #45d6d6;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #45d6d6;
+  box-shadow: inset 0px 1px 0px 0px #45d6d6;
+  background-color: #2cbbbb;
+  border: 1px solid #27a0a0;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.add-plant input[type='button']:hover,
+.add-plant input[type='submit']:hover {
+  background: linear-gradient(to bottom, #34caca 5%, #30c9c9 100%);
+  background-color: #34caca;
+}
+
+/* ***    forms css ****  */
+
+
