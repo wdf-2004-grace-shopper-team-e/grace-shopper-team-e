@@ -10,24 +10,28 @@ const OrderHistory = props => {
             <h1>
               Order History for {props.user.firstName} {props.user.lastName}
             </h1>
-            {props.user.orders.map(order => {
-              if (!order.isCart) {
-                return (
-                  <div key={order.id} className="order-details overlay">
-                    <h2>Order Number {order.id}</h2>
-                    <h3>Order Total ${order.totalCost / 100}</h3>
-                    {order.OrderSummary.map(plant => {
-                      return (
-                        <div key={plant.id}>
-                          <h4>Plant Name: {plant.name}</h4>
-                          <h4>Qty: {plant.plant_order.plantQuantity}</h4>
-                        </div>
-                      )
-                    })}
-                  </div>
-                )
-              }
-            })}
+            {props.user.orders.length > 0 ? (
+              props.user.orders.map(order => {
+                if (!order.isCart) {
+                  return (
+                    <div key={order.id} className="order-details overlay">
+                      <h2>Order Number {order.id}</h2>
+                      <h3>Order Total ${order.totalCost / 100}</h3>
+                      {order.OrderSummary.map(plant => {
+                        return (
+                          <div key={plant.id}>
+                            <h4>Plant Name: {plant.name}</h4>
+                            <h4>Qty: {plant.plant_order.plantQuantity}</h4>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )
+                }
+              })
+            ) : (
+              <h1>You have no orders.</h1>
+            )}
           </div>
         ) : (
           <h1>no user</h1>
