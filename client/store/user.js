@@ -42,7 +42,8 @@ export const updateUserThunk = (id, update) => async dispatch => {
       cartId: update.cartId,
       isAdmin: update.isAdmin
     })
-    dispatch(updateUser(id, update))
+    const user = await axios.get(`/api/users/${id}`)
+    dispatch(getUser(user.data))
   } catch (error) {
     console.log(error)
   }
